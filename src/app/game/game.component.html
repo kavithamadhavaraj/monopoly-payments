@@ -1,3 +1,29 @@
-<p>
-  This game suddenly works!
-</p>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<title>Liquidity</title>
+</head>
+
+<body>
+
+<div id="page-transitions">
+	<div id="header" class="header-logo-left header-dark">
+		<a href="#" class="header-logo"></a>
+	</div>
+	<div id="page-content" class="page-content">	
+		<div *ngFor='let gameInfo of userBoard' class="content content-boxed content-boxed-padding" routerLink='/game/{{gameInfo.gameID}}'>
+			<h4 class="uppercase ultrabold small-top">{{gameInfo.gameID}}</h4>			
+			<p class="one-half">
+				{{gameInfo.expiry}}
+			</p>
+			<p class="one-half last-column">
+				{{gameInfo.status}}
+			</p>
+		</div>		
+	</div>
+	
+	<a href="#" class="back-to-top-badge back-to-top-small"><i class="fa fa-angle-up"></i>Back to Top</a>
+</div>
+</body>

@@ -7,36 +7,16 @@
 </head>
 
 <body>
-	
-<div id="preloader" class="preloader-light">
-	<h1></h1>
-	<div id="preload-spinner"></div>
-	<p>Board is loading</p>
-	<em>This will only take a second. It's totally worth it!</em>
-</div> 
-	
+
 <div id="page-transitions">
 	<div id="header" class="header-logo-left header-dark">
 		<a href="#" class="header-logo"></a>
-		<a href="#" class="header-icon header-icon-1 hamburger-animated" data-deploy-menu="menu-1"></a>
 	</div>
-
-	<div id="menu-1" class="menu-wrapper menu-dark menu-sidebar-left-small menu-small">
-		<div class="menu-scroll">
-			<div class="menu">
-				<a href="index-walkthrough.html"><i class="fa fa-star color-yellow-dark"></i><em>Welcome</em></a>
-				<a href="homepages.html" class="active-item"><i class="fa fa-home color-blue-dark"></i><em>Home</em><i class="fa fa-caret-left"></i></a>
-				<a href="features.html"><i class="fa fa-cog color-red-dark"></i><em>Features</em></a>
-				<a href="#" class="close-menu"><i class="fa fa-times color-red-dark"></i><em>Close</em></a>
-				<div class="clear"></div>
-			</div>
-		</div>
-	</div>>
 	<div id="page-content" class="page-content">	
-		<div *ngFor='let gameInfo of userGameList' class="content content-boxed content-boxed-padding" (click)="redirectToGamePage(gameInfo.gameId)">
-			<h4 class="uppercase ultrabold small-top">{{gameInfo.gameId}}</h4>			
+		<div *ngFor='let gameInfo of userBoard' class="content content-boxed content-boxed-padding" routerLink='/game/{{gameInfo.gameID}}'>
+			<h4 class="uppercase ultrabold small-top">{{gameInfo.gameID}}</h4>			
 			<p class="one-half">
-				{{gameInfo.date}}
+				{{gameInfo.expiry}}
 			</p>
 			<p class="one-half last-column">
 				{{gameInfo.status}}
@@ -46,7 +26,4 @@
 	
 	<a href="#" class="back-to-top-badge back-to-top-small"><i class="fa fa-angle-up"></i>Back to Top</a>
 </div>
-
-
-
 </body>
