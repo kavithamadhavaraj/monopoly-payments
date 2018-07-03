@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { BoardDetail } from '../board-detail';
+import { GameInfo } from '../game-detail';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -8,9 +9,10 @@ import { BoardDetail } from '../board-detail';
   })
 export class BoardComponent implements OnInit {
   constructor(private dataService:DataService) { }
-  public userBoard: BoardDetail[];
-
+  public userBoard: GameInfo[];
+  public thisPlayer: string;
   ngOnInit() {
     this.userBoard = this.dataService.getBoardDetails();
-   }
+    this.thisPlayer = 'Kavitha';
+  }
 }

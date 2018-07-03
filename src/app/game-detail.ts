@@ -1,21 +1,24 @@
 export class GameDetail {
-    expiry: Date;
-    gameID: string;
-    status: string;
+    gameInfo: GameInfo;
     logs: Transaction[];
     players: Player[];
-    banker: Player['name'];
+    banker: string;
 }
 
 export class Transaction {
-    from: Player['name'];
-    to: Player['name'];
+    from: string;
+    to: string;
     amount: number;
     timestamp: Date;
 }
 
 export class Player {
-    name: string;
     playerID: string;
     balance: number;
+}
+
+export class GameInfo {
+    expiry: Date;
+    gameID: string;
+    status: string;
 }

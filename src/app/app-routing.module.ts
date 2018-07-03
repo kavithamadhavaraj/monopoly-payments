@@ -4,11 +4,12 @@ import {BoardComponent} from './board/board.component';
 import {GameComponent} from './game/game.component';
 
 
-const routes: Routes = [{
-  path: 'game/:id',
-  component: GameComponent
-},
-{
+const routes: Routes = [
+  {
+    path: 'game/:id/:context',
+    component: GameComponent,
+  },
+  {
   path: 'board',
   component: BoardComponent
 },

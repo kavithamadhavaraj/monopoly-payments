@@ -13,7 +13,7 @@
 		<a href="#" class="header-logo"></a>
 	</div>
 	<div id="page-content" class="page-content">	
-		<div *ngFor='let gameInfo of userBoard' class="content content-boxed content-boxed-padding" routerLink='/game/{{gameInfo.gameID}}'>
+		<div *ngFor='let gameInfo of userBoard' class="content content-boxed content-boxed-padding" routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>
 			<h4 class="uppercase ultrabold small-top">{{gameInfo.gameID}}</h4>			
 			<p class="one-half">
 				{{gameInfo.expiry}}
