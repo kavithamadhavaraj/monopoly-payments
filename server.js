@@ -6,6 +6,11 @@ const app = express();
 // Heroku port
 app.listen(process.env.PORT || 4201);
 
+// Run the app by serving the static files
+// in the dist directory
+app.use(express.static(__dirname + '/dist'))
+
+
 // If an incoming request uses
 // a protocol other than HTTPS,
 // redirect that request to the
