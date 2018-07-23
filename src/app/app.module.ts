@@ -6,13 +6,15 @@ import { GameComponent } from './game/game.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { PlayerFilterPipe } from './player-filter.pipe';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     BoardComponent,
     GameComponent,
     MainComponent,
-    PlayerFilterPipe
+    PlayerFilterPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
