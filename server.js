@@ -10,7 +10,6 @@ app.listen(process.env.PORT || 4201);
 // in the dist directory
 app.use(express.static(__dirname + '/dist'))
 
-
 // If an incoming request uses
 // a protocol other than HTTPS,
 // redirect that request to the
