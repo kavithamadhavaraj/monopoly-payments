@@ -12,11 +12,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  googleLogin(){
+  googleLogin() {
     console.log('googlelogin');
   }
 
-  fbLogin(){
+  fbLogin() {
     console.log('fblogin');
   }
 
