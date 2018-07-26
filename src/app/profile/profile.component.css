@@ -1,9 +1,12 @@
-
-
-.payments {	
+.welcome {	
     position: relative;
     right:50%;
     left: 30%;
-    top: 50.97%;
-    bottom: 45.43%;   
     height: 3.6%;	width: 41.87%;	color: #11BA78;	font-family: "Arial Rounded MT Bold";	font-size: 16px;	letter-spacing: 10px;	line-height: 24px;}
+.profile{
+    background-color: #232C3D;
+    height: 70%;
+    width: 350px;
+    margin-left: 30%;
+    margin-right: 80%;
+}

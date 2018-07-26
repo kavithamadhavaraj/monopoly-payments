@@ -1,41 +1,32 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>Liquidity</title>
-</head>
 
-<body>
+<mat-tab-group>
+	<mat-tab *ngFor='let player of gameDetail.players | playerFilter:thisPlayer:True' (click)= "switchContextTo(thisPlayer)" label={{player.playerID}}>	
+		<h4>Balance: {{player.balance}}</h4>		
+	</mat-tab>
+	<mat-tab *ngFor='let player of gameDetail.players | playerFilter:"Bank":True'  (click)= "switchContextTo('Bank')" label={{player.playerID}}>	
+		<h4>Balance: {{player.balance}}</h4>		
+	</mat-tab>
+</mat-tab-group>  
 
-<div id="page-transitions">
-	<div id="header" class="header-logo-left header-dark">
-		<a href="#" class="header-logo"></a>
-	</div>
-	<div id="page-content" class="page-content">
-		<div *ngFor='let player of gameDetail.players | playerFilter:thisPlayer' class="content one-half content-boxed content-boxed-padding" (click)= "switchContextTo(thisPlayer)">
-					<h4 class="small-top">{{player.playerID}}</h4>	
-					<h4 class="small-top">{{player.balance}}</h4>		
-
-		</div>
-		<div *ngFor='let player of gameDetail.players | playerFilter:"Bank"' class="content content-boxed content-boxed-padding" (click)= "switchContextTo('Bank')">
-			<h4 class="small-top">{{player.playerID}}</h4>	
-			<h4 class="small-top">{{player.balance}}</h4>		
-		</div>
-		<p>Transfer</p>
-		<div *ngFor='let player of gameDetail.players'>
-			    <div *ngIf='player.playerID != context' class="content content-boxed content-boxed-padding">
-					<h4 class="small-top">{{player.playerID}}</h4>	
-					<h4 class="small-top">{{player.balance}}</h4>		
-				</div>
-		</div>	
-		<p>Transactions</p>		
-		<div class="content content-boxed content-boxed-padding">
-			<ul *ngFor='let log of gameDetail.logs' >	
-			<p>{{log.timestamp.toLocaleString()}} : {{log.to}} received {{log.amount}} from {{log.from}}</p>
-			</ul>
-		</div>					
-	</div>
-	<a href="#" class="back-to-top-badge back-to-top-small"><i class="fa fa-angle-up"></i>Back to Top</a>
-</div>
-</body>
+<mat-card>
+		<mat-card-header>
+				<mat-card-title><b>Transfer</b></mat-card-title>
+		</mat-card-header>
+		<mat-card-content >
+				<mat-tab-group>
+						<mat-tab *ngFor='let player of gameDetail.players | playerFilter:context:false' label={{player.playerID}}>	
+								<h4 >{{player.balance}}</h4>		
+						</mat-tab>
+				</mat-tab-group> 
+		</mat-card-content>						
+</mat-card>	
+<mat-card>
+<mat-card-header>
+		<mat-card-title><b>Transactions</b></mat-card-title>
+</mat-card-header>
+<mat-card-content>									
+	<ul *ngFor='let log of gameDetail.logs' >	
+		<p>{{log.timestamp.toLocaleString()}} : {{log.to}} received {{log.amount}} from {{log.from}}</p>
+	</ul>				
+</mat-card-content>	
+</mat-card>			

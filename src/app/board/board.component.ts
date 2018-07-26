@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { GameInfo } from '../game-detail';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -8,11 +9,15 @@ import { GameInfo } from '../game-detail';
   styleUrls: ['./board.component.css']
   })
 export class BoardComponent implements OnInit {
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, private route: ActivatedRoute) {
+  }
   public userBoard: GameInfo[];
   public thisPlayer: string;
   ngOnInit() {
-    this.userBoard = this.dataService.getBoardDetails();
-    this.thisPlayer = 'Kavitha';
+    this.route.params.subscribe(params => {
+        const user_id = params.id;
+        this.userBoard = this.dataService.getBoardDetails(user_id);
+        this.thisPlayer = user_id;
+    });
   }
 }

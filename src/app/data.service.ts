@@ -4,11 +4,12 @@ import { Player, GameDetail, GameInfo } from './game-detail';
   providedIn: 'root'
 })
 export class DataService {
-  userBoard: GameInfo[] = [];
+  userBoard: GameInfo[] = null;
   gameInfo: GameDetail = new GameDetail();
 
 
-  getBoardDetails(): GameInfo[] {
+  getBoardDetails(id): GameInfo[] {
+   this.userBoard = []
    this.userBoard.push({
       status: 'On-going',
       gameID: 'ID113',
@@ -35,7 +36,7 @@ export class DataService {
     };
     
     this.gameInfo.players = [{
-        playerID: 'Kavitha',
+        playerID: 'kavi5712',
         balance: 200
       },
       {
@@ -47,7 +48,7 @@ export class DataService {
         balance: 2500
       }
     ];
-    this.gameInfo.banker = 'Kavitha';
+    this.gameInfo.banker = 'kavi5712';
     this.gameInfo.logs = [{
       from: 'Bank',
       to: 'Priya',
@@ -56,7 +57,7 @@ export class DataService {
     },
     {
       from: 'Bank',
-      to: 'Kavitha',
+      to: 'kavi5712',
       amount: 1500,
       timestamp : new Date('2018-08-09')
     }];

@@ -1,29 +1,17 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>Liquidity</title>
-</head>
-
-<body>
-
-<div id="page-transitions">
-	<div id="header" class="header-logo-left header-dark">
-		<a href="#" class="header-logo"></a>
-	</div>
-	<div id="page-content" class="page-content">	
-		<div *ngFor='let gameInfo of userBoard' class="content content-boxed content-boxed-padding" routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>
-			<h4 class="uppercase ultrabold small-top">{{gameInfo.gameID}}</h4>			
-			<p class="one-half">
-				{{gameInfo.expiry}}
-			</p>
-			<p class="one-half last-column">
-				{{gameInfo.status}}
-			</p>
-		</div>			
-	</div>
-	
-	<a href="#" class="back-to-top-badge back-to-top-small"><i class="fa fa-angle-up"></i>Back to Top</a>
+<div *ngFor='let gameInfo of userBoard'>
+	<mat-card routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>
+		<mat-card-header>
+			<mat-card-title><h4>{{gameInfo.gameID}}</h4></mat-card-title>
+			<mat-card-subtitle><p>{{gameInfo.status}}</p></mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>									
+				<p>
+					Expires on : {{gameInfo.expiry}}
+				</p>	
+		<mat-card-actions>
+				<button mat-raised-button color="warn">Delete</button>
+		</mat-card-actions>					
+		</mat-card-content>
+	</mat-card>
+	<br/>
 </div>
-</body>
