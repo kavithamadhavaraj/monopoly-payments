@@ -1,36 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
-/***/ "./node_modules/webpack/buildin/global.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ "./src/$$_lazy_route_resource lazy recursive":
 /*!**********************************************************!*\
   !*** ./src/$$_lazy_route_resource lazy namespace object ***!
@@ -69,6 +38,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board_board_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board/board.component */ "./src/app/board/board.component.ts");
 /* harmony import */ var _game_game_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./game/game.component */ "./src/app/game/game.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -80,18 +50,23 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     {
         path: 'game/:id/:context',
         component: _game_game_component__WEBPACK_IMPORTED_MODULE_3__["GameComponent"]
     },
     {
-        path: 'board',
+        path: 'board/:id',
         component: _board_board_component__WEBPACK_IMPORTED_MODULE_2__["BoardComponent"]
     },
     {
         path: '',
         component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"]
+    },
+    {
+        path: 'profile',
+        component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"]
     }
     // {
     //   path: '',
@@ -142,12 +117,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
 /* harmony import */ var _player_filter_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./player-filter.pipe */ "./src/app/player-filter.pipe.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -166,11 +147,16 @@ var AppModule = /** @class */ (function () {
                 _game_game_component__WEBPACK_IMPORTED_MODULE_3__["GameComponent"],
                 _main_main_component__WEBPACK_IMPORTED_MODULE_5__["MainComponent"],
                 _player_filter_pipe__WEBPACK_IMPORTED_MODULE_6__["PlayerFilterPipe"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"]
+                _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatTabsModule"]
             ],
             providers: [],
             bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_5__["MainComponent"]]
@@ -201,7 +187,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE HTML>\n<html lang=\"en\">\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1\" />\n<title>Liquidity</title>\n</head>\n\n<body>\n\n<div id=\"page-transitions\">\n\t<div id=\"header\" class=\"header-logo-left header-dark\">\n\t\t<a href=\"#\" class=\"header-logo\"></a>\n\t</div>\n\t<div id=\"page-content\" class=\"page-content\">\t\n\t\t<div *ngFor='let gameInfo of userBoard' class=\"content content-boxed content-boxed-padding\" routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t<h4 class=\"uppercase ultrabold small-top\">{{gameInfo.gameID}}</h4>\t\t\t\n\t\t\t<p class=\"one-half\">\n\t\t\t\t{{gameInfo.expiry}}\n\t\t\t</p>\n\t\t\t<p class=\"one-half last-column\">\n\t\t\t\t{{gameInfo.status}}\n\t\t\t</p>\n\t\t</div>\t\t\t\n\t</div>\n\t\n\t<a href=\"#\" class=\"back-to-top-badge back-to-top-small\"><i class=\"fa fa-angle-up\"></i>Back to Top</a>\n</div>\n</body>"
+module.exports = "<div *ngFor='let gameInfo of userBoard'>\n\t<mat-card routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t<mat-card-header>\n\t\t\t<mat-card-title><h4>{{gameInfo.gameID}}</h4></mat-card-title>\n\t\t\t<mat-card-subtitle><p>{{gameInfo.status}}</p></mat-card-subtitle>\n\t\t</mat-card-header>\n\t\t<mat-card-content>\t\t\t\t\t\t\t\t\t\n\t\t\t\t<p>\n\t\t\t\t\tExpires on : {{gameInfo.expiry}}\n\t\t\t\t</p>\t\n\t\t<mat-card-actions>\n\t\t\t\t<button mat-raised-button color=\"warn\">Delete</button>\n\t\t</mat-card-actions>\t\t\t\t\t\n\t\t</mat-card-content>\n\t</mat-card>\n\t<br/>\n</div>"
 
 /***/ }),
 
@@ -217,6 +203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardComponent", function() { return BoardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -228,13 +215,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var BoardComponent = /** @class */ (function () {
-    function BoardComponent(dataService) {
+    function BoardComponent(dataService, route) {
         this.dataService = dataService;
+        this.route = route;
     }
     BoardComponent.prototype.ngOnInit = function () {
-        this.userBoard = this.dataService.getBoardDetails();
-        this.thisPlayer = 'Kavitha';
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            var user_id = params.id;
+            _this.userBoard = _this.dataService.getBoardDetails(user_id);
+            _this.thisPlayer = user_id;
+        });
     };
     BoardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -242,7 +235,7 @@ var BoardComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./board.component.html */ "./src/app/board/board.component.html"),
             styles: [__webpack_require__(/*! ./board.component.css */ "./src/app/board/board.component.css")]
         }),
-        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
+        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], BoardComponent);
     return BoardComponent;
 }());
@@ -273,10 +266,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var DataService = /** @class */ (function () {
     function DataService() {
-        this.userBoard = [];
+        this.userBoard = null;
         this.gameInfo = new _game_detail__WEBPACK_IMPORTED_MODULE_1__["GameDetail"]();
     }
-    DataService.prototype.getBoardDetails = function () {
+    DataService.prototype.getBoardDetails = function (id) {
+        this.userBoard = [];
         this.userBoard.push({
             status: 'On-going',
             gameID: 'ID113',
@@ -301,7 +295,7 @@ var DataService = /** @class */ (function () {
             expiry: new Date('2018-08-10')
         };
         this.gameInfo.players = [{
-                playerID: 'Kavitha',
+                playerID: 'kavi5712',
                 balance: 200
             },
             {
@@ -313,7 +307,7 @@ var DataService = /** @class */ (function () {
                 balance: 2500
             }
         ];
-        this.gameInfo.banker = 'Kavitha';
+        this.gameInfo.banker = 'kavi5712';
         this.gameInfo.logs = [{
                 from: 'Bank',
                 to: 'Priya',
@@ -322,7 +316,7 @@ var DataService = /** @class */ (function () {
             },
             {
                 from: 'Bank',
-                to: 'Kavitha',
+                to: 'kavi5712',
                 amount: 1500,
                 timestamp: new Date('2018-08-09')
             }];
@@ -399,7 +393,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE HTML>\n<html lang=\"en\">\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1\" />\n<title>Liquidity</title>\n</head>\n\n<body>\n\n<div id=\"page-transitions\">\n\t<div id=\"header\" class=\"header-logo-left header-dark\">\n\t\t<a href=\"#\" class=\"header-logo\"></a>\n\t</div>\n\t<div id=\"page-content\" class=\"page-content\">\n\t\t<div *ngFor='let player of gameDetail.players | playerFilter:thisPlayer' class=\"content one-half content-boxed content-boxed-padding\" (click)= \"switchContextTo(thisPlayer)\">\n\t\t\t\t\t<h4 class=\"small-top\">{{player.playerID}}</h4>\t\n\t\t\t\t\t<h4 class=\"small-top\">{{player.balance}}</h4>\t\t\n\n\t\t</div>\n\t\t<div *ngFor='let player of gameDetail.players | playerFilter:\"Bank\"' class=\"content content-boxed content-boxed-padding\" (click)= \"switchContextTo('Bank')\">\n\t\t\t<h4 class=\"small-top\">{{player.playerID}}</h4>\t\n\t\t\t<h4 class=\"small-top\">{{player.balance}}</h4>\t\t\n\t\t</div>\n\t\t<p>Transfer</p>\n\t\t<div *ngFor='let player of gameDetail.players'>\n\t\t\t    <div *ngIf='player.playerID != context' class=\"content content-boxed content-boxed-padding\">\n\t\t\t\t\t<h4 class=\"small-top\">{{player.playerID}}</h4>\t\n\t\t\t\t\t<h4 class=\"small-top\">{{player.balance}}</h4>\t\t\n\t\t\t\t</div>\n\t\t</div>\t\n\t\t<p>Transactions</p>\t\t\n\t\t<div class=\"content content-boxed content-boxed-padding\">\n\t\t\t<ul *ngFor='let log of gameDetail.logs' >\t\n\t\t\t<p>{{log.timestamp.toLocaleString()}} : {{log.to}} received {{log.amount}} from {{log.from}}</p>\n\t\t\t</ul>\n\t\t</div>\t\t\t\t\t\n\t</div>\n\t<a href=\"#\" class=\"back-to-top-badge back-to-top-small\"><i class=\"fa fa-angle-up\"></i>Back to Top</a>\n</div>\n</body>"
+module.exports = "\n<mat-tab-group>\n\t<mat-tab *ngFor='let player of gameDetail.players | playerFilter:thisPlayer:True' (click)= \"switchContextTo(thisPlayer)\" label={{player.playerID}}>\t\n\t\t<h4>Balance: {{player.balance}}</h4>\t\t\n\t</mat-tab>\n\t<mat-tab *ngFor='let player of gameDetail.players | playerFilter:\"Bank\":True'  (click)= \"switchContextTo('Bank')\" label={{player.playerID}}>\t\n\t\t<h4>Balance: {{player.balance}}</h4>\t\t\n\t</mat-tab>\n</mat-tab-group>  \n\n<mat-card>\n\t\t<mat-card-header>\n\t\t\t\t<mat-card-title><b>Transfer</b></mat-card-title>\n\t\t</mat-card-header>\n\t\t<mat-card-content >\n\t\t\t\t<mat-tab-group>\n\t\t\t\t\t\t<mat-tab *ngFor='let player of gameDetail.players | playerFilter:context:false' label={{player.playerID}}>\t\n\t\t\t\t\t\t\t\t<h4 >{{player.balance}}</h4>\t\t\n\t\t\t\t\t\t</mat-tab>\n\t\t\t\t</mat-tab-group> \n\t\t</mat-card-content>\t\t\t\t\t\t\n</mat-card>\t\n<mat-card>\n<mat-card-header>\n\t\t<mat-card-title><b>Transactions</b></mat-card-title>\n</mat-card-header>\n<mat-card-content>\t\t\t\t\t\t\t\t\t\n\t<ul *ngFor='let log of gameDetail.logs' >\t\n\t\t<p>{{log.timestamp.toLocaleString()}} : {{log.to}} received {{log.amount}} from {{log.from}}</p>\n\t</ul>\t\t\t\t\n</mat-card-content>\t\n</mat-card>\t\t\t"
 
 /***/ }),
 
@@ -471,6 +465,52 @@ var GameComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/login.service.ts":
+/*!**********************************!*\
+  !*** ./src/app/login.service.ts ***!
+  \**********************************/
+/*! exports provided: LoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var LoginService = /** @class */ (function () {
+    function LoginService() {
+    }
+    LoginService.prototype.authenticate = function () {
+        return { 'status': true,
+            'data': {
+                'username': 'Kavitha Madhavaraj',
+                'email_id': 'kavitha.madhavaraj@gmail.com',
+                'user_id': 'kavi5712'
+            }
+        };
+    };
+    LoginService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], LoginService);
+    return LoginService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/login/login.component.css":
 /*!*******************************************!*\
   !*** ./src/app/login/login.component.css ***!
@@ -478,7 +518,7 @@ var GameComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".background {\n    height: 100%;\t\n    width: 100%;\n    background-color: #212431;\n    background-image: url('Rectangle.png')  \n}\n\n.payments {\t\n    position: relative;\n    right:50%;\n    left: 30%;\n    top: 50.97%;\n    bottom: 45.43%;   \n    height: 3.6%;\twidth: 41.87%;\tcolor: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n\n.rectangle-3 {\theight: 6.6%;\twidth: 89.33%;\tborder-radius: 4px;\tbackground-color: #EA4335;\tbox-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);}\n\n.rectangle-4 {\theight: 6.6%;\twidth: 89.33%;\tborder-radius: 4px;\tbackground-color: #4267B2;\tbox-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);}"
+module.exports = "\n\n.payments {\t\n    position: relative;\n    right:50%;\n    left: 30%;\n    top: 50.97%;\n    bottom: 45.43%;   \n    height: 3.6%;\twidth: 41.87%;\tcolor: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n"
 
 /***/ }),
 
@@ -489,7 +529,7 @@ module.exports = ".background {\n    height: 100%;\t\n    width: 100%;\n    back
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"background\">\n<div class='payments'>\n  PAYMENTS\n</div>\n<div class='rectangle-3' (click) = 'googleLogin()'>Google Login</div>\n<div class='rectangle-4' (click) = 'fbLogin()' >FB Login</div>\n</body>"
+module.exports = "<body class='mat-app-background'>\n<div class='payments'>\n  PAYMENTS\n</div>\n<button mat-raised-button color=\"primary\" (click) = 'googleLogin()'>Google Login</button>\n<button mat-raised-button color=\"primary\" (click) = 'fbLogin()' >FB Login</button>\n</body>"
 
 /***/ }),
 
@@ -504,8 +544,8 @@ module.exports = "<body class=\"background\">\n<div class='payments'>\n  PAYMENT
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var oauth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! oauth */ "./node_modules/oauth/index.js");
-/* harmony import */ var oauth__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(oauth__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -517,20 +557,38 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+// import * as oauth from 'oauth';
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
-        this.Oauth2 = oauth__WEBPACK_IMPORTED_MODULE_1__["OAuth2"];
+    function LoginComponent(router, loginService) {
+        this.router = router;
+        this.loginService = loginService;
+        // private  Oauth2 = oauth.OAuth2;
+        this.loginStatus = false;
+        this.userData = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.googleLogin = function () {
         console.log('googlelogin');
-        var googleConsumerKey = '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com';
-        var googleConsumerSecret = 'ixQKfkok1VXb0hYKSt0HacDa';
-        var oauth2 = new oauth__WEBPACK_IMPORTED_MODULE_1__["OAuth2"](googleConsumerKey, googleConsumerSecret, 'https://accounts.google.com/o/oauth2/', 'auth', 'token', null);
-        oauth2.getOAuthAccessToken('', { 'grant_type': 'client_credentials' }, function (e, access_token, refresh_token, results) {
-            console.log('bearer: ', access_token);
-        });
+        var response = this.loginService.authenticate();
+        if (response.status === true) {
+            this.router.navigate(['board', response.data.user_id]);
+        }
+        //   const googleConsumerKey = '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com';
+        //    const googleConsumerSecret = 'ixQKfkok1VXb0hYKSt0HacDa';
+        //    const oauth2 = new oauth.OAuth2(googleConsumerKey,
+        //     googleConsumerSecret,
+        //      'https://accounts.google.com/o/oauth2/',
+        //       'auth',
+        //       'token',
+        //       {'Access-Control-Allow-Origin': '*' } );
+        //    oauth2.getOAuthAccessToken(
+        //      '',
+        //      {'grant_type': 'client_credentials'},
+        //      function (e, access_token, refresh_token, results){
+        //         console.log('bearer: ', access_token);
+        //      });
     };
     LoginComponent.prototype.fbLogin = function () {
         console.log('fblogin');
@@ -541,7 +599,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -568,7 +626,7 @@ module.exports = ".background {\n    height: 100%;\t\n    width: 100%;\n    posi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='background'>\n<router-outlet></router-outlet> \n</body>"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -634,8 +692,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var PlayerFilterPipe = /** @class */ (function () {
     function PlayerFilterPipe() {
     }
-    PlayerFilterPipe.prototype.transform = function (allPlayers, key) {
-        return allPlayers.filter(function (player) { return player.playerID === key; });
+    PlayerFilterPipe.prototype.transform = function (allPlayers, key, match) {
+        if (match === void 0) { match = true; }
+        if (match === true) {
+            return allPlayers.filter(function (player) { return player.playerID === key; });
+        }
+        else {
+            return allPlayers.filter(function (player) { return player.playerID !== key; });
+        }
     };
     PlayerFilterPipe = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
@@ -643,6 +707,69 @@ var PlayerFilterPipe = /** @class */ (function () {
         })
     ], PlayerFilterPipe);
     return PlayerFilterPipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.component.css":
+/*!***********************************************!*\
+  !*** ./src/app/profile/profile.component.css ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".welcome {\t\n    position: relative;\n    right:50%;\n    left: 30%;\n    height: 3.6%;\twidth: 41.87%;\tcolor: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n.profile{\n    background-color: #232C3D;\n    height: 70%;\n    width: 350px;\n    margin-left: 30%;\n    margin-right: 80%;\n}"
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.component.html":
+/*!************************************************!*\
+  !*** ./src/app/profile/profile.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<body class=\"background\">\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <div class=\"profile\">\n    <div> Give yourself a Cool name </div>\n  </div>\n</body>"
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/profile/profile.component.ts ***!
+  \**********************************************/
+/*! exports provided: ProfileComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProfileComponent = /** @class */ (function () {
+    function ProfileComponent() {
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+    };
+    ProfileComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'profile',
+            template: __webpack_require__(/*! ./profile.component.html */ "./src/app/profile/profile.component.html"),
+            styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/profile/profile.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
 
 
@@ -711,50 +838,6 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 
 module.exports = __webpack_require__(/*! /media/quadrisk-kannann/Quadrisk/liquidity/monopoly-payments/src/main.ts */"./src/main.ts");
 
-
-/***/ }),
-
-/***/ 1:
-/*!**********************!*\
-  !*** util (ignored) ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 2:
-/*!**********************!*\
-  !*** util (ignored) ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 3:
-/*!************************!*\
-  !*** buffer (ignored) ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 4:
-/*!************************!*\
-  !*** crypto (ignored) ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
 
 /***/ })
 
