@@ -111,15 +111,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _board_board_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board/board.component */ "./src/app/board/board.component.ts");
-/* harmony import */ var _game_game_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./game/game.component */ "./src/app/game/game.component.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
-/* harmony import */ var _player_filter_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./player-filter.pipe */ "./src/app/player-filter.pipe.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _board_board_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./board/board.component */ "./src/app/board/board.component.ts");
+/* harmony import */ var _game_game_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./game/game.component */ "./src/app/game/game.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
+/* harmony import */ var _player_filter_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./player-filter.pipe */ "./src/app/player-filter.pipe.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -137,29 +138,35 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _board_board_component__WEBPACK_IMPORTED_MODULE_2__["BoardComponent"],
-                _game_game_component__WEBPACK_IMPORTED_MODULE_3__["GameComponent"],
-                _main_main_component__WEBPACK_IMPORTED_MODULE_5__["MainComponent"],
-                _player_filter_pipe__WEBPACK_IMPORTED_MODULE_6__["PlayerFilterPipe"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"]
+                _board_board_component__WEBPACK_IMPORTED_MODULE_3__["BoardComponent"],
+                _game_game_component__WEBPACK_IMPORTED_MODULE_4__["GameComponent"],
+                _main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"],
+                _player_filter_pipe__WEBPACK_IMPORTED_MODULE_7__["PlayerFilterPipe"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileDialog"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCardModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatTabsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatProgressSpinnerModule"]
             ],
             providers: [],
-            bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_5__["MainComponent"]]
+            bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]],
+            entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileDialog"]]
         })
     ], AppModule);
     return AppModule;
@@ -268,6 +275,7 @@ var DataService = /** @class */ (function () {
     function DataService() {
         this.userBoard = null;
         this.gameInfo = new _game_detail__WEBPACK_IMPORTED_MODULE_1__["GameDetail"]();
+        this.userList = [];
     }
     DataService.prototype.getBoardDetails = function (id) {
         this.userBoard = [];
@@ -321,6 +329,27 @@ var DataService = /** @class */ (function () {
                 timestamp: new Date('2018-08-09')
             }];
         return this.gameInfo;
+    };
+    DataService.prototype.checkAvailability = function (userID) {
+        var response = new Promise(function (resolve, reject) {
+            if ((userID === '') || (userID === undefined)) {
+                reject('UserID cannot be empty');
+            }
+            else {
+                resolve(true);
+            }
+        });
+        return response;
+    };
+    DataService.prototype.createProfile = function (userID) {
+        var _this = this;
+        var response = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                _this.userList.push(userID);
+                resolve(true);
+            }, 2000);
+        });
+        return response;
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -713,6 +742,17 @@ var PlayerFilterPipe = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/profile/profile-dialog.html":
+/*!*********************************************!*\
+  !*** ./src/app/profile/profile-dialog.html ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n <div *ngIf=\"registering == 'start'\">\n    <h1 mat-dialog-title>Hold on.. Creating profile..</h1>\n    <div mat-dialog-content>\n    <mat-progress-spinner\n    color=\"accent\"\n    mode=\"indeterminate\">\n    </mat-progress-spinner>\n    </div>\n</div>\n<div *ngIf=\"registering == 'nostart'\">\n    <h1 mat-dialog-title>Give yourself a cool player name</h1>\n<div mat-dialog-content>\n\n      <h3>Player name</h3>\n      <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>\n        <input placeholder= 'CoolJack' matInput [(ngModel)] = \"userID\">\n    <div mat-dialog-actions>\n      <button mat-raised-button color='primary' (click)=\"register(userID)\" cdkFocusInitial>CONTINUE</button>\n      <div *ngIf='reason'>{{reason}}</div>\n    </div>\n</div>\n</div> \n"
+
+/***/ }),
+
 /***/ "./src/app/profile/profile.component.css":
 /*!***********************************************!*\
   !*** ./src/app/profile/profile.component.css ***!
@@ -720,7 +760,7 @@ var PlayerFilterPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome {\t\n    position: relative;\n    right:50%;\n    left: 30%;\n    height: 3.6%;\twidth: 41.87%;\tcolor: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n.profile{\n    background-color: #232C3D;\n    height: 70%;\n    width: 350px;\n    margin-left: 30%;\n    margin-right: 80%;\n}"
+module.exports = ".welcome {\t\n   color: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}"
 
 /***/ }),
 
@@ -731,7 +771,7 @@ module.exports = ".welcome {\t\n    position: relative;\n    right:50%;\n    lef
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class=\"background\">\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <div class=\"profile\">\n    <div> Give yourself a Cool name </div>\n  </div>\n</body>"
+module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n</body>"
 
 /***/ }),
 
@@ -739,13 +779,17 @@ module.exports = "<body class=\"background\">\n  <div class='welcome'>Welcome to
 /*!**********************************************!*\
   !*** ./src/app/profile/profile.component.ts ***!
   \**********************************************/
-/*! exports provided: ProfileComponent */
+/*! exports provided: ProfileComponent, ProfileDialog */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileDialog", function() { return ProfileDialog; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -755,11 +799,30 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
 
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent() {
+    function ProfileComponent(dialog) {
+        this.dialog = dialog;
+        this.userID = null;
+        this.dialogRef = null;
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            var dialogOptions = {
+                width: '250px',
+                hasBackdrop: false,
+                disableClose: true,
+                data: _this.userID
+            };
+            _this.dialogRef = _this.dialog.open(ProfileDialog, dialogOptions);
+        }, 20);
     };
     ProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -767,9 +830,56 @@ var ProfileComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./profile.component.html */ "./src/app/profile/profile.component.html"),
             styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/profile/profile.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], ProfileComponent);
     return ProfileComponent;
+}());
+
+var ProfileDialog = /** @class */ (function () {
+    function ProfileDialog(dialogRef, data, dataService, router) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.dataService = dataService;
+        this.router = router;
+        this.reason = '';
+        this.registering = 'nostart';
+        this.format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    }
+    ProfileDialog.prototype.register = function (userID) {
+        var _this = this;
+        if ((userID === '') || (userID === undefined)) {
+            this.reason = 'User ID cannot be empty';
+        }
+        else if ((userID.length < 4) || (userID.length > 12)) {
+            this.reason = 'Length must be between 4 - 12';
+        }
+        else if (this.format.test(userID)) {
+            this.reason = 'Space & special characters not allowed';
+        }
+        else {
+            this.dataService.checkAvailability(userID).then(function (valid) {
+                if (valid) {
+                    _this.registering = 'start';
+                    _this.dataService.createProfile(userID).then(function (response) {
+                        _this.dialogRef.close();
+                        _this.router.navigate(['board', userID]);
+                    });
+                }
+            }).catch(function (err) { return _this.reason = err; });
+        }
+    };
+    ProfileDialog = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'profile-dialog',
+            template: __webpack_require__(/*! ./profile-dialog.html */ "./src/app/profile/profile-dialog.html")
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"],
+            String,
+            _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], ProfileDialog);
+    return ProfileDialog;
 }());
 
 
@@ -836,7 +946,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /media/quadrisk-kannann/Quadrisk/liquidity/monopoly-payments/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /media/quadrisk-kannann/Quadrisk/monopoly-payments/src/main.ts */"./src/main.ts");
 
 
 /***/ })
