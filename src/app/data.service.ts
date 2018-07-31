@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Player, GameDetail, GameInfo } from './game-detail';
+import { GameDetail, GameInfo } from './game-detail';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   userBoard: GameInfo[] = null;
   gameInfo: GameDetail = new GameDetail();
-
+  userList: String[] = [];
 
   getBoardDetails(id): GameInfo[] {
    this.userBoard = []
@@ -62,5 +62,27 @@ export class DataService {
       timestamp : new Date('2018-08-09')
     }];
     return this.gameInfo;
+  }
+
+  checkAvailability(userID: String): Promise<Boolean> {
+    const response = new Promise<Boolean>((resolve, reject) => {
+      if ((userID === '') || (userID === undefined)) {
+        reject('UserID cannot be empty');
+      }
+      else{
+        resolve(true);
+      }
+    });
+    return response;
+  }
+
+  createProfile(userID: String): Promise<Boolean> {
+      const response = new Promise<Boolean>((resolve, reject) => {
+          setTimeout(() => {
+          this.userList.push(userID);
+          resolve(true);
+          }, 2000);
+      });
+      return response;
   }
 }

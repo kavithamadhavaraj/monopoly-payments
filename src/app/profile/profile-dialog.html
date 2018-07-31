@@ -1,0 +1,23 @@
+
+ <div *ngIf="registering == 'start'">
+    <h1 mat-dialog-title>Hold on.. Creating profile..</h1>
+    <div mat-dialog-content>
+    <mat-progress-spinner
+    color="accent"
+    mode="indeterminate">
+    </mat-progress-spinner>
+    </div>
+</div>
+<div *ngIf="registering == 'nostart'">
+    <h1 mat-dialog-title>Give yourself a cool player name</h1>
+<div mat-dialog-content>
+
+      <h3>Player name</h3>
+      <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>
+        <input placeholder= 'CoolJack' matInput [(ngModel)] = "userID">
+    <div mat-dialog-actions>
+      <button mat-raised-button color='primary' (click)="register(userID)" cdkFocusInitial>CONTINUE</button>
+      <div *ngIf='reason'>{{reason}}</div>
+    </div>
+</div>
+</div> 
