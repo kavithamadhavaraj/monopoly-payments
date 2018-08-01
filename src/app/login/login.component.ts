@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     console.log('googlelogin');
     const response = this.loginService.authenticate();
     if (response.status === true) {
-        this.router.navigate(['board', response.data.user_id]);
+        this.router.navigate(['mygames', response.data.user_id]);
     }
   //   const googleConsumerKey = '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com';
   //    const googleConsumerSecret = 'ixQKfkok1VXb0hYKSt0HacDa';

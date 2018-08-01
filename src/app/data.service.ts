@@ -1,41 +1,45 @@
 import { Injectable } from '@angular/core';
-import { GameDetail, GameInfo } from './game-detail';
+import { GameData, GameInfo } from './game-detail';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  userBoard: GameInfo[] = null;
-  gameInfo: GameDetail = new GameDetail();
+  gameList: GameInfo[] = null;
+  gameData: GameData = new GameData();
   userList: String[] = [];
 
-  getBoardDetails(id): GameInfo[] {
-   this.userBoard = []
-   this.userBoard.push({
-      status: 'On-going',
-      gameID: 'ID113',
-      expiry: new Date('2018-08-10')
+  getGameDetails(userID): GameInfo[] {
+   this.gameList = []
+   if (userID === 'kavitha') { return this.gameList; }
+   this.gameList.push({
+        active: true,
+        gameID: 'ID113',
+        players: [ 'kavi5712', 'Priya', 'Bank'],
+        active_since: new Date('2018-08-10')
     });
-    this.userBoard.push({
-      status: 'Completed',
+    this.gameList.push({
+      active: false,
       gameID: 'ID123',
-      expiry: new Date('2018-03-10')
+      players: ['kavitha', 'Priya', 'kavi5712', 'Bank'],
+      active_since: new Date('2018-03-10')
     });
-    this.userBoard.push({
-      status: 'Completed',
+    this.gameList.push({
+      active: false,
       gameID: 'ID143',
-      expiry: new Date('2018-02-15')
+      players: ['kavitha', 'Priya', 'kavi5712', 'kavin', 'Bank'],
+      active_since: new Date('2018-02-15')
     });
-    return this.userBoard;
+    return this.gameList;
   }
 
-  getGameDetails(gameID: string): GameDetail {
-    this.gameInfo.gameInfo = {
-      status: 'On-going',
-      gameID: gameID,
-      expiry: new Date('2018-08-10')
+  getBoard(gameID: string): GameData {
+    this.gameData.gameInfo = {
+      active: false,
+      gameID: 'ID123',
+      players: ['kavitha', 'Priya', 'kavi5712', 'Bank'],
+      active_since: new Date('2018-03-10')
     };
-    
-    this.gameInfo.players = [{
+    this.gameData.players = [{
         playerID: 'kavi5712',
         balance: 200
       },
@@ -48,8 +52,8 @@ export class DataService {
         balance: 2500
       }
     ];
-    this.gameInfo.banker = 'kavi5712';
-    this.gameInfo.logs = [{
+    this.gameData.banker = 'kavi5712';
+    this.gameData.logs = [{
       from: 'Bank',
       to: 'Priya',
       amount: 1500,
@@ -61,7 +65,7 @@ export class DataService {
       amount: 1500,
       timestamp : new Date('2018-08-09')
     }];
-    return this.gameInfo;
+    return this.gameData;
   }
 
   checkAvailability(userID: String): Promise<Boolean> {

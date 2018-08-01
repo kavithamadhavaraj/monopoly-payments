@@ -16,7 +16,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       const dialogOptions = {
-        width: '250px',
+        width: '80vw',
+        height: '120vw',
         hasBackdrop: false,
         disableClose: true,
         data: this.userID
@@ -33,7 +34,7 @@ export class ProfileComponent implements OnInit {
 export class ProfileDialog {
   reason = '';
   registering = 'nostart';
-  format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   constructor(
     public dialogRef: MatDialogRef<ProfileDialog>,
@@ -57,7 +58,7 @@ export class ProfileDialog {
             this.registering = 'start';
             this.dataService.createProfile(userID).then(response => {
               this.dialogRef.close();
-              this.router.navigate(['board', userID]);
+              this.router.navigate(['mygames', userID]);
             });
           }
         }).catch(err => this.reason = err);

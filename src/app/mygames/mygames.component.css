@@ -1,0 +1,8 @@
+.nogame{
+    display:flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+.toolbar{
+    justify-content: space-between;
+}

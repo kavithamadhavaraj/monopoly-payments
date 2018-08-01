@@ -1,4 +1,4 @@
-export class GameDetail {
+export class GameData {
     gameInfo: GameInfo;
     logs: Transaction[];
     players: Player[];
@@ -18,7 +18,8 @@ export class Player {
 }
 
 export class GameInfo {
-    expiry: Date;
+    active_since: Date;
     gameID: string;
-    status: string;
+    active: boolean;
+    players: string[];
 }

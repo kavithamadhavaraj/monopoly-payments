@@ -5,7 +5,7 @@ import { Player } from './game-detail';
 })
 export class PlayerFilterPipe implements PipeTransform {
 
-  transform(allPlayers : Player[], key: string, match: boolean= true): any {
+  transform(allPlayers : Player[], key: string, match: boolean=true): any {
     if (match === true) {
       return allPlayers.filter(player => player.playerID === key);
     }

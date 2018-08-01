@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _board_board_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board/board.component */ "./src/app/board/board.component.ts");
+/* harmony import */ var _mygames_mygames_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mygames/mygames.component */ "./src/app/mygames/mygames.component.ts");
 /* harmony import */ var _game_game_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./game/game.component */ "./src/app/game/game.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
@@ -57,8 +57,8 @@ var routes = [
         component: _game_game_component__WEBPACK_IMPORTED_MODULE_3__["GameComponent"]
     },
     {
-        path: 'board/:id',
-        component: _board_board_component__WEBPACK_IMPORTED_MODULE_2__["BoardComponent"]
+        path: 'mygames/:id',
+        component: _mygames_mygames_component__WEBPACK_IMPORTED_MODULE_2__["MyGamesComponent"]
     },
     {
         path: '',
@@ -68,11 +68,6 @@ var routes = [
         path: 'profile',
         component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"]
     }
-    // {
-    //   path: '',
-    //   redirectTo: '/board',
-    //   pathMatch: 'full'
-    // }
     // },
     // {
     //   path: '**',
@@ -112,15 +107,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _board_board_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./board/board.component */ "./src/app/board/board.component.ts");
+/* harmony import */ var _mygames_mygames_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mygames/mygames.component */ "./src/app/mygames/mygames.component.ts");
 /* harmony import */ var _game_game_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./game/game.component */ "./src/app/game/game.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
-/* harmony import */ var _player_filter_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./player-filter.pipe */ "./src/app/player-filter.pipe.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./generic-filter.pipe */ "./src/app/generic-filter.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -145,106 +140,35 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _board_board_component__WEBPACK_IMPORTED_MODULE_3__["BoardComponent"],
+                _mygames_mygames_component__WEBPACK_IMPORTED_MODULE_3__["MyGamesComponent"],
                 _game_game_component__WEBPACK_IMPORTED_MODULE_4__["GameComponent"],
                 _main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"],
-                _player_filter_pipe__WEBPACK_IMPORTED_MODULE_7__["PlayerFilterPipe"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileDialog"]
+                _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"],
+                _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["GenericFilterPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatTabsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatProgressSpinnerModule"]
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatDividerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"]
             ],
             providers: [],
             bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]],
-            entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileDialog"]]
+            entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"]]
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/board/board.component.css":
-/*!*******************************************!*\
-  !*** ./src/app/board/board.component.css ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/board/board.component.html":
-/*!********************************************!*\
-  !*** ./src/app/board/board.component.html ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div *ngFor='let gameInfo of userBoard'>\n\t<mat-card routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t<mat-card-header>\n\t\t\t<mat-card-title><h4>{{gameInfo.gameID}}</h4></mat-card-title>\n\t\t\t<mat-card-subtitle><p>{{gameInfo.status}}</p></mat-card-subtitle>\n\t\t</mat-card-header>\n\t\t<mat-card-content>\t\t\t\t\t\t\t\t\t\n\t\t\t\t<p>\n\t\t\t\t\tExpires on : {{gameInfo.expiry}}\n\t\t\t\t</p>\t\n\t\t<mat-card-actions>\n\t\t\t\t<button mat-raised-button color=\"warn\">Delete</button>\n\t\t</mat-card-actions>\t\t\t\t\t\n\t\t</mat-card-content>\n\t</mat-card>\n\t<br/>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/board/board.component.ts":
-/*!******************************************!*\
-  !*** ./src/app/board/board.component.ts ***!
-  \******************************************/
-/*! exports provided: BoardComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardComponent", function() { return BoardComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var BoardComponent = /** @class */ (function () {
-    function BoardComponent(dataService, route) {
-        this.dataService = dataService;
-        this.route = route;
-    }
-    BoardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.subscribe(function (params) {
-            var user_id = params.id;
-            _this.userBoard = _this.dataService.getBoardDetails(user_id);
-            _this.thisPlayer = user_id;
-        });
-    };
-    BoardComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-board',
-            template: __webpack_require__(/*! ./board.component.html */ "./src/app/board/board.component.html"),
-            styles: [__webpack_require__(/*! ./board.component.css */ "./src/app/board/board.component.css")]
-        }),
-        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
-    ], BoardComponent);
-    return BoardComponent;
 }());
 
 
@@ -273,36 +197,43 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var DataService = /** @class */ (function () {
     function DataService() {
-        this.userBoard = null;
-        this.gameInfo = new _game_detail__WEBPACK_IMPORTED_MODULE_1__["GameDetail"]();
+        this.gameList = null;
+        this.gameData = new _game_detail__WEBPACK_IMPORTED_MODULE_1__["GameData"]();
         this.userList = [];
     }
-    DataService.prototype.getBoardDetails = function (id) {
-        this.userBoard = [];
-        this.userBoard.push({
-            status: 'On-going',
+    DataService.prototype.getGameDetails = function (userID) {
+        this.gameList = [];
+        if (userID === 'kavitha') {
+            return this.gameList;
+        }
+        this.gameList.push({
+            active: true,
             gameID: 'ID113',
-            expiry: new Date('2018-08-10')
+            players: ['kavi5712', 'Priya', 'Bank'],
+            active_since: new Date('2018-08-10')
         });
-        this.userBoard.push({
-            status: 'Completed',
+        this.gameList.push({
+            active: false,
             gameID: 'ID123',
-            expiry: new Date('2018-03-10')
+            players: ['kavitha', 'Priya', 'kavi5712', 'Bank'],
+            active_since: new Date('2018-03-10')
         });
-        this.userBoard.push({
-            status: 'Completed',
+        this.gameList.push({
+            active: false,
             gameID: 'ID143',
-            expiry: new Date('2018-02-15')
+            players: ['kavitha', 'Priya', 'kavi5712', 'kavin', 'Bank'],
+            active_since: new Date('2018-02-15')
         });
-        return this.userBoard;
+        return this.gameList;
     };
-    DataService.prototype.getGameDetails = function (gameID) {
-        this.gameInfo.gameInfo = {
-            status: 'On-going',
-            gameID: gameID,
-            expiry: new Date('2018-08-10')
+    DataService.prototype.getBoard = function (gameID) {
+        this.gameData.gameInfo = {
+            active: false,
+            gameID: 'ID123',
+            players: ['kavitha', 'Priya', 'kavi5712', 'Bank'],
+            active_since: new Date('2018-03-10')
         };
-        this.gameInfo.players = [{
+        this.gameData.players = [{
                 playerID: 'kavi5712',
                 balance: 200
             },
@@ -315,8 +246,8 @@ var DataService = /** @class */ (function () {
                 balance: 2500
             }
         ];
-        this.gameInfo.banker = 'kavi5712';
-        this.gameInfo.logs = [{
+        this.gameData.banker = 'kavi5712';
+        this.gameData.logs = [{
                 from: 'Bank',
                 to: 'Priya',
                 amount: 1500,
@@ -328,7 +259,7 @@ var DataService = /** @class */ (function () {
                 amount: 1500,
                 timestamp: new Date('2018-08-09')
             }];
-        return this.gameInfo;
+        return this.gameData;
     };
     DataService.prototype.checkAvailability = function (userID) {
         var response = new Promise(function (resolve, reject) {
@@ -367,19 +298,19 @@ var DataService = /** @class */ (function () {
 /*!********************************!*\
   !*** ./src/app/game-detail.ts ***!
   \********************************/
-/*! exports provided: GameDetail, Transaction, Player, GameInfo */
+/*! exports provided: GameData, Transaction, Player, GameInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GameDetail", function() { return GameDetail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GameData", function() { return GameData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Transaction", function() { return Transaction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Player", function() { return Player; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GameInfo", function() { return GameInfo; });
-var GameDetail = /** @class */ (function () {
-    function GameDetail() {
+var GameData = /** @class */ (function () {
+    function GameData() {
     }
-    return GameDetail;
+    return GameData;
 }());
 
 var Transaction = /** @class */ (function () {
@@ -422,7 +353,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<mat-tab-group>\n\t<mat-tab *ngFor='let player of gameDetail.players | playerFilter:thisPlayer:True' (click)= \"switchContextTo(thisPlayer)\" label={{player.playerID}}>\t\n\t\t<h4>Balance: {{player.balance}}</h4>\t\t\n\t</mat-tab>\n\t<mat-tab *ngFor='let player of gameDetail.players | playerFilter:\"Bank\":True'  (click)= \"switchContextTo('Bank')\" label={{player.playerID}}>\t\n\t\t<h4>Balance: {{player.balance}}</h4>\t\t\n\t</mat-tab>\n</mat-tab-group>  \n\n<mat-card>\n\t\t<mat-card-header>\n\t\t\t\t<mat-card-title><b>Transfer</b></mat-card-title>\n\t\t</mat-card-header>\n\t\t<mat-card-content >\n\t\t\t\t<mat-tab-group>\n\t\t\t\t\t\t<mat-tab *ngFor='let player of gameDetail.players | playerFilter:context:false' label={{player.playerID}}>\t\n\t\t\t\t\t\t\t\t<h4 >{{player.balance}}</h4>\t\t\n\t\t\t\t\t\t</mat-tab>\n\t\t\t\t</mat-tab-group> \n\t\t</mat-card-content>\t\t\t\t\t\t\n</mat-card>\t\n<mat-card>\n<mat-card-header>\n\t\t<mat-card-title><b>Transactions</b></mat-card-title>\n</mat-card-header>\n<mat-card-content>\t\t\t\t\t\t\t\t\t\n\t<ul *ngFor='let log of gameDetail.logs' >\t\n\t\t<p>{{log.timestamp.toLocaleString()}} : {{log.to}} received {{log.amount}} from {{log.from}}</p>\n\t</ul>\t\t\t\t\n</mat-card-content>\t\n</mat-card>\t\t\t"
+module.exports = "\n<mat-tab-group>\n\t<mat-tab *ngFor='let player of gameDetail.players | genericFilter: player:\"playerID\":thisPlayer:true' (click)= \"switchContextTo(thisPlayer)\" label={{player.playerID}}>\t\n\t\t<h4>Balance: {{player.balance}}</h4>\t\t\n\t</mat-tab>\n\t<mat-tab *ngFor='let player of gameDetail.players | genericFilter: player:\"playerID\":\"Bank\":true'  (click)= \"switchContextTo('Bank')\" label={{player.playerID}}>\t\n\t\t<h4>Balance: {{player.balance}}</h4>\t\t\n\t</mat-tab>\n</mat-tab-group>  \n\n<mat-card>\n\t\t<mat-card-header>\n\t\t\t\t<mat-card-title><b>Transfer</b></mat-card-title>\n\t\t</mat-card-header>\n\t\t<mat-card-content >\n\t\t\t\t<mat-tab-group>\n\t\t\t\t\t\t<mat-tab *ngFor='let player of gameDetail.players | genericFilter : \"player\":context:false' label={{player.playerID}}>\t\n\t\t\t\t\t\t\t\t<h4 >{{player.balance}}</h4>\t\t\n\t\t\t\t\t\t</mat-tab>\n\t\t\t\t</mat-tab-group> \n\t\t</mat-card-content>\t\t\t\t\t\t\n</mat-card>\t\n<mat-card>\n<mat-card-header>\n\t\t<mat-card-title><b>Transactions</b></mat-card-title>\n</mat-card-header>\n<mat-card-content>\t\t\t\t\t\t\t\t\t\n\t<ul *ngFor='let log of gameDetail.logs' >\t\n\t\t<p>{{log.timestamp.toLocaleString()}} : {{log.to}} received {{log.amount}} from {{log.from}}</p>\n\t</ul>\t\t\t\t\n</mat-card-content>\t\n</mat-card>\t\t\t"
 
 /***/ }),
 
@@ -464,9 +395,9 @@ var GameComponent = /** @class */ (function () {
         this.route.paramMap.subscribe(function (obj) {
             _this.pathObj = obj;
             _this.gameID = _this.pathObj.params.id;
-            _this.gameDetail = _this.dataService.getGameDetails(_this.gameID);
+            _this.gameDetail = _this.dataService.getBoard(_this.gameID);
             _this.thisPlayer = _this.pathObj.params.context;
-            if (_this.gameDetail.banker == _this.thisPlayer) {
+            if (_this.gameDetail.banker === _this.thisPlayer) {
                 _this.context = _this.thisPlayer;
             }
             else {
@@ -488,6 +419,48 @@ var GameComponent = /** @class */ (function () {
             _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]])
     ], GameComponent);
     return GameComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/generic-filter.pipe.ts":
+/*!****************************************!*\
+  !*** ./src/app/generic-filter.pipe.ts ***!
+  \****************************************/
+/*! exports provided: GenericFilterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GenericFilterPipe", function() { return GenericFilterPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var GenericFilterPipe = /** @class */ (function () {
+    function GenericFilterPipe() {
+    }
+    GenericFilterPipe.prototype.transform = function (allObject, param, key, match) {
+        if (match === void 0) { match = true; }
+        if (match === true) {
+            return allObject.filter(function (obj) { return obj[param] === key; });
+        }
+        else {
+            return allObject.filter(function (obj) { return obj[param] !== key; });
+        }
+    };
+    GenericFilterPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'genericFilter'
+        })
+    ], GenericFilterPipe);
+    return GenericFilterPipe;
 }());
 
 
@@ -602,7 +575,7 @@ var LoginComponent = /** @class */ (function () {
         console.log('googlelogin');
         var response = this.loginService.authenticate();
         if (response.status === true) {
-            this.router.navigate(['board', response.data.user_id]);
+            this.router.navigate(['mygames', response.data.user_id]);
         }
         //   const googleConsumerKey = '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com';
         //    const googleConsumerSecret = 'ixQKfkok1VXb0hYKSt0HacDa';
@@ -700,42 +673,80 @@ var MainComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/player-filter.pipe.ts":
-/*!***************************************!*\
-  !*** ./src/app/player-filter.pipe.ts ***!
-  \***************************************/
-/*! exports provided: PlayerFilterPipe */
+/***/ "./src/app/mygames/mygames.component.css":
+/*!***********************************************!*\
+  !*** ./src/app/mygames/mygames.component.css ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    align-content: space-around;\n}\n.toolbar{\n    justify-content: space-between;\n}\n"
+
+/***/ }),
+
+/***/ "./src/app/mygames/mygames.component.html":
+/*!************************************************!*\
+  !*** ./src/app/mygames/mygames.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar class='toolbar' color='accent'>\n  <mat-icon mat-list-icon>mood</mat-icon>\n  <span>MY GAMES</span>\n  <mat-icon mat-list-icon>add</mat-icon>\n</mat-toolbar>\n<mat-tab-group>\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t<span>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t\t<span>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
+
+/***/ }),
+
+/***/ "./src/app/mygames/mygames.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/mygames/mygames.component.ts ***!
+  \**********************************************/
+/*! exports provided: MyGamesComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerFilterPipe", function() { return PlayerFilterPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyGamesComponent", function() { return MyGamesComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
-var PlayerFilterPipe = /** @class */ (function () {
-    function PlayerFilterPipe() {
+
+
+var MyGamesComponent = /** @class */ (function () {
+    function MyGamesComponent(dataService, route) {
+        this.dataService = dataService;
+        this.route = route;
     }
-    PlayerFilterPipe.prototype.transform = function (allPlayers, key, match) {
-        if (match === void 0) { match = true; }
-        if (match === true) {
-            return allPlayers.filter(function (player) { return player.playerID === key; });
-        }
-        else {
-            return allPlayers.filter(function (player) { return player.playerID !== key; });
-        }
+    MyGamesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            var userID = params.id;
+            _this.gameList = _this.dataService.getGameDetails(userID);
+            console.log(_this.gameList);
+            _this.thisPlayer = userID;
+        });
     };
-    PlayerFilterPipe = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
-            name: 'playerFilter'
-        })
-    ], PlayerFilterPipe);
-    return PlayerFilterPipe;
+    MyGamesComponent.prototype.getPlayerGist = function (playerList) {
+        var _this = this;
+        return playerList.filter(function (player) { return ((player !== _this.thisPlayer) && (player !== 'Bank')); });
+    };
+    MyGamesComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'my-games',
+            template: __webpack_require__(/*! ./mygames.component.html */ "./src/app/mygames/mygames.component.html"),
+            styles: [__webpack_require__(/*! ./mygames.component.css */ "./src/app/mygames/mygames.component.css")]
+        }),
+        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+    ], MyGamesComponent);
+    return MyGamesComponent;
 }());
 
 
@@ -816,7 +827,8 @@ var ProfileComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             var dialogOptions = {
-                width: '250px',
+                width: '80vw',
+                height: '120vw',
                 hasBackdrop: false,
                 disableClose: true,
                 data: _this.userID
@@ -843,7 +855,7 @@ var ProfileDialog = /** @class */ (function () {
         this.router = router;
         this.reason = '';
         this.registering = 'nostart';
-        this.format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        this.format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     }
     ProfileDialog.prototype.register = function (userID) {
         var _this = this;
@@ -862,7 +874,7 @@ var ProfileDialog = /** @class */ (function () {
                     _this.registering = 'start';
                     _this.dataService.createProfile(userID).then(function (response) {
                         _this.dialogRef.close();
-                        _this.router.navigate(['board', userID]);
+                        _this.router.navigate(['mygames', userID]);
                     });
                 }
             }).catch(function (err) { return _this.reason = err; });
