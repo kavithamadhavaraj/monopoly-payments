@@ -39,12 +39,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game_game_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./game/game.component */ "./src/app/game/game.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -62,17 +64,16 @@ var routes = [
     },
     {
         path: '',
+        component: _main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]
+    },
+    {
+        path: 'login',
         component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"]
     },
     {
         path: 'profile',
         component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"]
-    }
-    // },
-    // {
-    //   path: '**',
-    //   component: NotFoundComponent;
-    // }
+    },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -98,12 +99,13 @@ var AppRoutingModule = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: AppModule */
+/*! exports provided: AppModule, getAuthServiceConfigs */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAuthServiceConfigs", function() { return getAuthServiceConfigs; });
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
@@ -116,12 +118,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./generic-filter.pipe */ "./src/app/generic-filter.pipe.ts");
+/* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! angular5-social-login */ "./node_modules/angular5-social-login/angular5-social-login.umd.js");
+/* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(angular5_social_login__WEBPACK_IMPORTED_MODULE_12__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -161,9 +166,10 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatDividerModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"],
+                angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["SocialLoginModule"]
             ],
-            providers: [],
+            providers: [{ provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs }],
             bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]],
             entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"]]
         })
@@ -171,6 +177,16 @@ var AppModule = /** @class */ (function () {
     return AppModule;
 }());
 
+// Configs
+function getAuthServiceConfigs() {
+    var config = new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"]([
+        {
+            id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"].PROVIDER_ID,
+            provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"]('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
+        }
+    ]);
+    return config;
+}
 
 
 /***/ }),
@@ -281,6 +297,9 @@ var DataService = /** @class */ (function () {
             }, 2000);
         });
         return response;
+    };
+    DataService.prototype.findUserID = function (userData) {
+        return null;
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -478,6 +497,8 @@ var GenericFilterPipe = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angular5-social-login */ "./node_modules/angular5-social-login/angular5-social-login.umd.js");
+/* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(angular5_social_login__WEBPACK_IMPORTED_MODULE_1__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -488,23 +509,28 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var LoginService = /** @class */ (function () {
-    function LoginService() {
+    function LoginService(socialAuthService) {
+        this.socialAuthService = socialAuthService;
+        this.socialPlatformProvider = angular5_social_login__WEBPACK_IMPORTED_MODULE_1__["GoogleLoginProvider"].PROVIDER_ID;
     }
     LoginService.prototype.authenticate = function () {
-        return { 'status': true,
-            'data': {
-                'username': 'Kavitha Madhavaraj',
-                'email_id': 'kavitha.madhavaraj@gmail.com',
-                'user_id': 'kavi5712'
-            }
-        };
+        return this.socialAuthService.signIn(this.socialPlatformProvider);
+    };
+    LoginService.prototype.getUser = function () {
+        return this.socialAuthService.authState;
+    };
+    LoginService.prototype.logout = function () {
+        this.socialAuthService.signOut().then(function (logoutdata) {
+            console.log('Signing out..');
+        });
     };
     LoginService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [angular5_social_login__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
     ], LoginService);
     return LoginService;
 }());
@@ -565,32 +591,15 @@ var LoginComponent = /** @class */ (function () {
     function LoginComponent(router, loginService) {
         this.router = router;
         this.loginService = loginService;
-        // private  Oauth2 = oauth.OAuth2;
-        this.loginStatus = false;
-        this.userData = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.googleLogin = function () {
+        var _this = this;
         console.log('googlelogin');
-        var response = this.loginService.authenticate();
-        if (response.status === true) {
-            this.router.navigate(['mygames', response.data.user_id]);
-        }
-        //   const googleConsumerKey = '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com';
-        //    const googleConsumerSecret = 'ixQKfkok1VXb0hYKSt0HacDa';
-        //    const oauth2 = new oauth.OAuth2(googleConsumerKey,
-        //     googleConsumerSecret,
-        //      'https://accounts.google.com/o/oauth2/',
-        //       'auth',
-        //       'token',
-        //       {'Access-Control-Allow-Origin': '*' } );
-        //    oauth2.getOAuthAccessToken(
-        //      '',
-        //      {'grant_type': 'client_credentials'},
-        //      function (e, access_token, refresh_token, results){
-        //         console.log('bearer: ', access_token);
-        //      });
+        var response = this.loginService.authenticate().then(function (response) {
+            _this.router.navigate(['mygames', response.name], { replaceUrl: true });
+        });
     };
     LoginComponent.prototype.fbLogin = function () {
         console.log('fblogin');
@@ -643,6 +652,9 @@ module.exports = "<router-outlet></router-outlet>"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MainComponent", function() { return MainComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -653,10 +665,38 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var MainComponent = /** @class */ (function () {
-    function MainComponent() {
+    function MainComponent(loginService, router, dataService, ngZone) {
+        this.loginService = loginService;
+        this.router = router;
+        this.dataService = dataService;
+        this.ngZone = ngZone;
     }
     MainComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loginService.getUser().subscribe(function (userData) {
+            if (userData != null) {
+                var userID_1 = _this.dataService.findUserID(userData);
+                if (userID_1 != null) {
+                    _this.ngZone.run(function () {
+                        _this.router.navigate(['mygames', userID_1], { replaceUrl: true });
+                    });
+                }
+                else {
+                    _this.ngZone.run(function () {
+                        _this.router.navigate(['profile', userData], { replaceUrl: true });
+                    });
+                }
+            }
+            else {
+                _this.ngZone.run(function () {
+                    _this.router.navigate(['login'], { replaceUrl: true });
+                });
+            }
+        });
     };
     MainComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -664,7 +704,7 @@ var MainComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./main.component.html */ "./src/app/main/main.component.html"),
             styles: [__webpack_require__(/*! ./main.component.css */ "./src/app/main/main.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_login_service__WEBPACK_IMPORTED_MODULE_1__["LoginService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]])
     ], MainComponent);
     return MainComponent;
 }());

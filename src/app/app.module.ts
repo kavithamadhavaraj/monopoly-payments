@@ -12,6 +12,8 @@ import {MatButtonModule,
   MatCardModule, MatTabsModule, MatDialogModule, MatProgressSpinnerModule,
   MatDividerModule, MatListModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import { GenericFilterPipe } from './generic-filter.pipe';
+import {GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular5-social-login';
+
 @NgModule({
   declarations: [
     MyGamesComponent,
@@ -35,10 +37,23 @@ import { GenericFilterPipe } from './generic-filter.pipe';
     MatDividerModule,
     MatListModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [{provide: AuthServiceConfig, useFactory: getAuthServiceConfigs}],
   bootstrap: [MainComponent],
   entryComponents: [ProfileDialog]
 })
+
 export class AppModule { }
+// Configs
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+      [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
+        }
+      ]);
+  return config;
+}

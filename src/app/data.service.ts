@@ -9,7 +9,7 @@ export class DataService {
   userList: String[] = [];
 
   getGameDetails(userID): GameInfo[] {
-   this.gameList = []
+   this.gameList = [];
    if (userID === 'kavitha') { return this.gameList; }
    this.gameList.push({
         active: true,
@@ -88,5 +88,9 @@ export class DataService {
           }, 2000);
       });
       return response;
+  }
+
+  findUserID(userData) {
+    return null;
   }
 }

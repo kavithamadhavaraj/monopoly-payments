@@ -4,6 +4,7 @@ import {MyGamesComponent} from './mygames/mygames.component';
 import {GameComponent} from './game/game.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import {MainComponent} from './main/main.component';
 
 const routes: Routes = [
   {
@@ -16,12 +17,16 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: MainComponent
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
     path: 'profile',
     component: ProfileComponent
-  }
+  },
 // },
 // {
 //   path: '**',

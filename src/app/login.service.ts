@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
+import { AuthService, GoogleLoginProvider } from 'angular5-social-login';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
 
-  constructor() { }
+  public socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+  constructor(private socialAuthService: AuthService ) { }
 
   authenticate() {
-    return { 'status' : true,
-             'data' : {
-                'username' : 'Kavitha Madhavaraj',
-                'email_id' : 'kavitha.madhavaraj@gmail.com',
-                'user_id' : 'kavi5712'
-              }
-            };
+    return this.socialAuthService.signIn(this.socialPlatformProvider);
+  }
+
+  getUser() {
+    return this.socialAuthService.authState;
+  }
+
+  logout() {
+     this.socialAuthService.signOut().then((logoutdata) => {
+      console.log('Signing out..');
+    });
   }
 }
