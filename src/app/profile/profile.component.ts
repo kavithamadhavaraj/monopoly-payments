@@ -1,26 +1,25 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-
+import { LoginService } from '../login.service';
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
   userID = null;
   dialogRef = null;
-  ngOnInit() {
+  constructor(public dialog: MatDialog) {
+  }
+  ngOnInit(){
     setTimeout(() => {
       const dialogOptions = {
-        width: '80vw',
-        height: '120vw',
+        width: '90vw',
+        height: '140vw',
         hasBackdrop: false,
         disableClose: true,
-        data: this.userID
       };
       this.dialogRef = this.dialog.open(ProfileDialog, dialogOptions);
     }, 20);
@@ -29,18 +28,28 @@ export class ProfileComponent implements OnInit {
 
 @Component({
   selector: 'profile-dialog',
-  templateUrl: './profile-dialog.html'
+  templateUrl: './profile-dialog.html',
+  styleUrls: ['./profile-dialog.css']
 })
-export class ProfileDialog {
+export class ProfileDialog implements OnInit {
   reason = '';
   registering = 'nostart';
   format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   constructor(
     public dialogRef: MatDialogRef<ProfileDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: String,
     private dataService: DataService,
-    private router: Router) {}
+    private router: Router,
+    private loginService: LoginService,
+    private ngZone: NgZone) {}
+    public profile_path = '../../assets/images/pictures/0.jpg';
+    public userData = null;
+    ngOnInit() {
+      this.loginService.getUser().subscribe((userData) => {
+      this.userData = userData;
+      this.profile_path = userData.image;
+     });
+    }
 
     register(userID: string) {
       if ((userID === '') || (userID === undefined)){
@@ -58,7 +67,9 @@ export class ProfileDialog {
             this.registering = 'start';
             this.dataService.createProfile(userID).then(response => {
               this.dialogRef.close();
-              this.router.navigate(['mygames', userID]);
+              this.ngZone.run(() => {
+                this.router.navigate(['mygames', userID], { replaceUrl: true });
+              });
             });
           }
         }).catch(err => this.reason = err);

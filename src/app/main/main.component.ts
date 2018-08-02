@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
           }
           else {
             this.ngZone.run(() => {
-              this.router.navigate(['profile', userData], { replaceUrl: true });
+              this.router.navigate(['profile'], { replaceUrl: true });
             });
           }
         }

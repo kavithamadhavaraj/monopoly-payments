@@ -1,8 +1,4 @@
-<mat-toolbar class='toolbar' color='accent'>
-  <mat-icon mat-list-icon>mood</mat-icon>
-  <span>MY GAMES</span>
-  <mat-icon mat-list-icon>add</mat-icon>
-</mat-toolbar>
+<toolbar context = "MY GAMES" > </toolbar>
 <mat-tab-group>
 	<mat-tab label="Active">
 		<div class='nogame' *ngIf='(gameList|genericFilter:"active":true).length == 0'> 

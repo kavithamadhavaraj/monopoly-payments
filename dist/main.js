@@ -120,12 +120,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./generic-filter.pipe */ "./src/app/generic-filter.pipe.ts");
 /* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! angular5-social-login */ "./node_modules/angular5-social-login/angular5-social-login.umd.js");
 /* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(angular5_social_login__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./toolbar/toolbar.component */ "./src/app/toolbar/toolbar.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -151,7 +153,8 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"],
-                _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["GenericFilterPipe"]
+                _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["GenericFilterPipe"],
+                _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["ToolbarComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -687,7 +690,7 @@ var MainComponent = /** @class */ (function () {
                 }
                 else {
                     _this.ngZone.run(function () {
-                        _this.router.navigate(['profile', userData], { replaceUrl: true });
+                        _this.router.navigate(['profile'], { replaceUrl: true });
                     });
                 }
             }
@@ -720,7 +723,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    align-content: space-around;\n}\n.toolbar{\n    justify-content: space-between;\n}\n"
+module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    align-content: space-around;\n}\n\n"
 
 /***/ }),
 
@@ -731,7 +734,7 @@ module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class='toolbar' color='accent'>\n  <mat-icon mat-list-icon>mood</mat-icon>\n  <span>MY GAMES</span>\n  <mat-icon mat-list-icon>add</mat-icon>\n</mat-toolbar>\n<mat-tab-group>\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t<span>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t\t<span>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
+module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group>\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t<span>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t\t<span>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
 
 /***/ }),
 
@@ -748,6 +751,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -760,16 +764,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MyGamesComponent = /** @class */ (function () {
-    function MyGamesComponent(dataService, route) {
+    function MyGamesComponent(dataService, route, loginService) {
         this.dataService = dataService;
         this.route = route;
+        this.loginService = loginService;
     }
     MyGamesComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
             var userID = params.id;
             _this.gameList = _this.dataService.getGameDetails(userID);
+            _this.loginService.getUser().subscribe(function (userData) { _this.userData = userData; });
             console.log(_this.gameList);
             _this.thisPlayer = userID;
         });
@@ -784,12 +791,23 @@ var MyGamesComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./mygames.component.html */ "./src/app/mygames/mygames.component.html"),
             styles: [__webpack_require__(/*! ./mygames.component.css */ "./src/app/mygames/mygames.component.css")]
         }),
-        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _login_service__WEBPACK_IMPORTED_MODULE_3__["LoginService"]])
     ], MyGamesComponent);
     return MyGamesComponent;
 }());
 
 
+
+/***/ }),
+
+/***/ "./src/app/profile/profile-dialog.css":
+/*!********************************************!*\
+  !*** ./src/app/profile/profile-dialog.css ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".profile_pic {\n    display: inline-block;\n    width: 30vw;\n    height: 30vw;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  \n\n.dialog_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}  \n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}"
 
 /***/ }),
 
@@ -800,7 +818,7 @@ var MyGamesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n <div *ngIf=\"registering == 'start'\">\n    <h1 mat-dialog-title>Hold on.. Creating profile..</h1>\n    <div mat-dialog-content>\n    <mat-progress-spinner\n    color=\"accent\"\n    mode=\"indeterminate\">\n    </mat-progress-spinner>\n    </div>\n</div>\n<div *ngIf=\"registering == 'nostart'\">\n    <h1 mat-dialog-title>Give yourself a cool player name</h1>\n<div mat-dialog-content>\n\n      <h3>Player name</h3>\n      <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>\n        <input placeholder= 'CoolJack' matInput [(ngModel)] = \"userID\">\n    <div mat-dialog-actions>\n      <button mat-raised-button color='primary' (click)=\"register(userID)\" cdkFocusInitial>CONTINUE</button>\n      <div *ngIf='reason'>{{reason}}</div>\n    </div>\n</div>\n</div> \n"
+module.exports = "<div >\n    <h1 mat-dialog-title>Give yourself a cool player name</h1>\n    \n    <div mat-dialog-content class='dialog_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>\n        <input placeholder= 'CoolJack' matInput [(ngModel)] = \"userID\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='dialog_container'>\n            <button mat-raised-button color='primary' (click)=\"register(userID)\" cdkFocusInitial>CONTINUE</button>\n            <span *ngIf='reason'>{{reason}}</span>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
 
 /***/ }),
 
@@ -811,7 +829,7 @@ module.exports = "\n <div *ngIf=\"registering == 'start'\">\n    <h1 mat-dialog-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome {\t\n   color: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}"
+module.exports = ".welcome {\t\n   color: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n\n  "
 
 /***/ }),
 
@@ -841,6 +859,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -850,9 +869,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
+
 
 
 
@@ -867,11 +884,10 @@ var ProfileComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             var dialogOptions = {
-                width: '80vw',
-                height: '120vw',
+                width: '90vw',
+                height: '140vw',
                 hasBackdrop: false,
                 disableClose: true,
-                data: _this.userID
             };
             _this.dialogRef = _this.dialog.open(ProfileDialog, dialogOptions);
         }, 20);
@@ -888,15 +904,25 @@ var ProfileComponent = /** @class */ (function () {
 }());
 
 var ProfileDialog = /** @class */ (function () {
-    function ProfileDialog(dialogRef, data, dataService, router) {
+    function ProfileDialog(dialogRef, dataService, router, loginService, ngZone) {
         this.dialogRef = dialogRef;
-        this.data = data;
         this.dataService = dataService;
         this.router = router;
+        this.loginService = loginService;
+        this.ngZone = ngZone;
         this.reason = '';
         this.registering = 'nostart';
         this.format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.userData = null;
     }
+    ProfileDialog.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loginService.getUser().subscribe(function (userData) {
+            _this.userData = userData;
+            _this.profile_path = userData.image;
+        });
+    };
     ProfileDialog.prototype.register = function (userID) {
         var _this = this;
         if ((userID === '') || (userID === undefined)) {
@@ -914,7 +940,9 @@ var ProfileDialog = /** @class */ (function () {
                     _this.registering = 'start';
                     _this.dataService.createProfile(userID).then(function (response) {
                         _this.dialogRef.close();
-                        _this.router.navigate(['mygames', userID]);
+                        _this.ngZone.run(function () {
+                            _this.router.navigate(['mygames', userID], { replaceUrl: true });
+                        });
                     });
                 }
             }).catch(function (err) { return _this.reason = err; });
@@ -923,15 +951,91 @@ var ProfileDialog = /** @class */ (function () {
     ProfileDialog = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'profile-dialog',
-            template: __webpack_require__(/*! ./profile-dialog.html */ "./src/app/profile/profile-dialog.html")
+            template: __webpack_require__(/*! ./profile-dialog.html */ "./src/app/profile/profile-dialog.html"),
+            styles: [__webpack_require__(/*! ./profile-dialog.css */ "./src/app/profile/profile-dialog.css")]
         }),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"],
-            String,
             _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _login_service__WEBPACK_IMPORTED_MODULE_4__["LoginService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]])
     ], ProfileDialog);
     return ProfileDialog;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/toolbar/toolbar.component.css":
+/*!***********************************************!*\
+  !*** ./src/app/toolbar/toolbar.component.css ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".toolbar{\n    justify-content: space-between;\n    align-items: center;\n}\n\n.profile_pic {\n    margin-top: 20%;\n    display: inline-block;\n    width: 10vw;\n    height: 10vw;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
+
+/***/ }),
+
+/***/ "./src/app/toolbar/toolbar.component.html":
+/*!************************************************!*\
+  !*** ./src/app/toolbar/toolbar.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar class='toolbar' color='accent'>\n    <span><img class='profile_pic' [src]='profile_path'/></span>\n    <span>{{context}}</span>\n    <mat-icon mat-list-icon>add</mat-icon>\n</mat-toolbar>\n"
+
+/***/ }),
+
+/***/ "./src/app/toolbar/toolbar.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/toolbar/toolbar.component.ts ***!
+  \**********************************************/
+/*! exports provided: ToolbarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolbarComponent", function() { return ToolbarComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ToolbarComponent = /** @class */ (function () {
+    function ToolbarComponent(loginService) {
+        this.loginService = loginService;
+        this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.context = '';
+    }
+    ToolbarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loginService.getUser().subscribe(function (userData) { return _this.userData = userData; });
+        this.profile_path = this.userData.image;
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], ToolbarComponent.prototype, "context", void 0);
+    ToolbarComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'toolbar',
+            template: __webpack_require__(/*! ./toolbar.component.html */ "./src/app/toolbar/toolbar.component.html"),
+            styles: [__webpack_require__(/*! ./toolbar.component.css */ "./src/app/toolbar/toolbar.component.css")]
+        }),
+        __metadata("design:paramtypes", [_login_service__WEBPACK_IMPORTED_MODULE_1__["LoginService"]])
+    ], ToolbarComponent);
+    return ToolbarComponent;
 }());
 
 

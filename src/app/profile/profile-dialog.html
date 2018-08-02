@@ -1,23 +1,21 @@
-
- <div *ngIf="registering == 'start'">
-    <h1 mat-dialog-title>Hold on.. Creating profile..</h1>
-    <div mat-dialog-content>
-    <mat-progress-spinner
-    color="accent"
-    mode="indeterminate">
-    </mat-progress-spinner>
-    </div>
-</div>
-<div *ngIf="registering == 'nostart'">
+<div >
     <h1 mat-dialog-title>Give yourself a cool player name</h1>
-<div mat-dialog-content>
-
-      <h3>Player name</h3>
-      <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>
-        <input placeholder= 'CoolJack' matInput [(ngModel)] = "userID">
-    <div mat-dialog-actions>
-      <button mat-raised-button color='primary' (click)="register(userID)" cdkFocusInitial>CONTINUE</button>
-      <div *ngIf='reason'>{{reason}}</div>
+    
+    <div mat-dialog-content class='dialog_container'>
+        <span><img class='profile_pic' [src]='profile_path'/></span>  
+        <h3>{{userData.name}}</h3>
+        <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>
+        <input placeholder= 'CoolJack' matInput [(ngModel)] = "userID"/>
     </div>
-</div>
+    <span *ngIf="registering == 'nostart'" mat-dialog-actions class='dialog_container'>
+            <button mat-raised-button color='primary' (click)="register(userID)" cdkFocusInitial>CONTINUE</button>
+            <span *ngIf='reason'>{{reason}}</span>
+    </span>
+    <span *ngIf="registering == 'start'" mat-dialog-actions class='spinner'>
+            <mat-progress-spinner diameter='40'
+            color="accent"
+            mode="indeterminate">
+            </mat-progress-spinner>
+    </span>
+   
 </div> 

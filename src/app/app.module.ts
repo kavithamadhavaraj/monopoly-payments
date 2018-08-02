@@ -13,6 +13,7 @@ import {MatButtonModule,
   MatDividerModule, MatListModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import { GenericFilterPipe } from './generic-filter.pipe';
 import {GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular5-social-login';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular
     LoginComponent,
     ProfileComponent,
     ProfileDialog,
-    GenericFilterPipe
+    GenericFilterPipe,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
