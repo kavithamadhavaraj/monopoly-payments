@@ -1,7 +1,5 @@
 .profile_pic {
-    display: inline-block;
-    width: 30vw;
-    height: 30vw;
+    width: 80%;
     border-radius: 50%;   
     background-repeat: no-repeat;
     background-position: center center;

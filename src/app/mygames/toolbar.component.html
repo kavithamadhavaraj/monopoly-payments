@@ -1,0 +1,10 @@
+<mat-toolbar class='toolbar'>
+    <img class='profile_pic' [src]='profile_path'/>
+    <span class='context'>{{context}}</span>
+    <span [matMenuTriggerFor]="menu" ><mat-icon mat-list-icon>add</mat-icon></span>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+        <button mat-menu-item>Create new game</button>
+        <mat-divider> </mat-divider>
+        <button mat-menu-item>Join existing game</button>
+</mat-menu>

@@ -10,10 +10,10 @@ import { ProfileComponent, ProfileDialog } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule,
   MatCardModule, MatTabsModule, MatDialogModule, MatProgressSpinnerModule,
-  MatDividerModule, MatListModule, MatIconModule, MatToolbarModule} from '@angular/material';
+  MatDividerModule, MatListModule, MatIconModule, MatToolbarModule, MatMenuModule} from '@angular/material';
 import { GenericFilterPipe } from './generic-filter.pipe';
 import {GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular5-social-login';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ToolbarComponent } from './mygames/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatMenuModule
   ],
   providers: [{provide: AuthServiceConfig, useFactory: getAuthServiceConfigs}],
   bootstrap: [MainComponent],

@@ -16,8 +16,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(){
     setTimeout(() => {
       const dialogOptions = {
-        width: '90vw',
-        height: '140vw',
+        width: '80%',
+        height: '70%',
         hasBackdrop: false,
         disableClose: true,
       };

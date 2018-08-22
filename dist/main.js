@@ -120,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./generic-filter.pipe */ "./src/app/generic-filter.pipe.ts");
 /* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! angular5-social-login */ "./node_modules/angular5-social-login/angular5-social-login.umd.js");
 /* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(angular5_social_login__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./toolbar/toolbar.component */ "./src/app/toolbar/toolbar.component.ts");
+/* harmony import */ var _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./mygames/toolbar.component */ "./src/app/mygames/toolbar.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -154,7 +154,7 @@ var AppModule = /** @class */ (function () {
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"],
                 _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["GenericFilterPipe"],
-                _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["ToolbarComponent"]
+                _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["ToolbarComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -170,7 +170,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"],
-                angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["SocialLoginModule"]
+                angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["SocialLoginModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"]
             ],
             providers: [{ provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs }],
             bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]],
@@ -723,7 +724,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    align-content: space-around;\n}\n\n"
+module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    align-content: space-around;\n}\n"
 
 /***/ }),
 
@@ -734,7 +735,7 @@ module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group>\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t<span>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t\t<span>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
+module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group >\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t<span>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t\t<span>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
 
 /***/ }),
 
@@ -800,6 +801,83 @@ var MyGamesComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/mygames/toolbar.component.css":
+/*!***********************************************!*\
+  !*** ./src/app/mygames/toolbar.component.css ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #232C3D;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 2px 4px 0 #212431;\n}\n\n.context {\n    color:#11BA78;\n}\n\n.mat-menu-item{\n    color:#CCCCCC;\n}\n\n.profile_pic {\n    width: 30px;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
+
+/***/ }),
+
+/***/ "./src/app/mygames/toolbar.component.html":
+/*!************************************************!*\
+  !*** ./src/app/mygames/toolbar.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar class='toolbar'>\n    <img class='profile_pic' [src]='profile_path'/>\n    <span class='context'>{{context}}</span>\n    <span [matMenuTriggerFor]=\"menu\" ><mat-icon mat-list-icon>add</mat-icon></span>\n</mat-toolbar>\n<mat-menu #menu=\"matMenu\">\n        <button mat-menu-item>Create new game</button>\n        <mat-divider> </mat-divider>\n        <button mat-menu-item>Join existing game</button>\n</mat-menu>"
+
+/***/ }),
+
+/***/ "./src/app/mygames/toolbar.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/mygames/toolbar.component.ts ***!
+  \**********************************************/
+/*! exports provided: ToolbarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolbarComponent", function() { return ToolbarComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ToolbarComponent = /** @class */ (function () {
+    function ToolbarComponent(loginService) {
+        this.loginService = loginService;
+        this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.context = '';
+    }
+    ToolbarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loginService.getUser().subscribe(function (userData) { return _this.userData = userData; });
+        this.profile_path = this.userData.image;
+    };
+    ToolbarComponent.prototype.addGame = function () {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], ToolbarComponent.prototype, "context", void 0);
+    ToolbarComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'toolbar',
+            template: __webpack_require__(/*! ./toolbar.component.html */ "./src/app/mygames/toolbar.component.html"),
+            styles: [__webpack_require__(/*! ./toolbar.component.css */ "./src/app/mygames/toolbar.component.css")]
+        }),
+        __metadata("design:paramtypes", [_login_service__WEBPACK_IMPORTED_MODULE_1__["LoginService"]])
+    ], ToolbarComponent);
+    return ToolbarComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/profile/profile-dialog.css":
 /*!********************************************!*\
   !*** ./src/app/profile/profile-dialog.css ***!
@@ -807,7 +885,7 @@ var MyGamesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".profile_pic {\n    display: inline-block;\n    width: 30vw;\n    height: 30vw;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  \n\n.dialog_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}  \n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}"
+module.exports = ".profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  \n\n.dialog_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}  \n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}"
 
 /***/ }),
 
@@ -818,7 +896,7 @@ module.exports = ".profile_pic {\n    display: inline-block;\n    width: 30vw;\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div >\n    <h1 mat-dialog-title>Give yourself a cool player name</h1>\n    \n    <div mat-dialog-content class='dialog_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <p>player name should be 4 -12 characters long; no special characters and spaces allowed. </p>\n        <input placeholder= 'CoolJack' matInput [(ngModel)] = \"userID\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='dialog_container'>\n            <button mat-raised-button color='primary' (click)=\"register(userID)\" cdkFocusInitial>CONTINUE</button>\n            <span *ngIf='reason'>{{reason}}</span>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
+module.exports = "<div >\n    <h1 mat-dialog-title class='dialog_container'>Give yourself a cool player name</h1>\n    <div mat-dialog-content class='dialog_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <p style=\"font-size : 14px;\">Player name should be 4 -12 characters long; no special characters and spaces allowed. </p>\n        <input placeholder= 'CoolJack' matInput [(ngModel)] = \"userID\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='dialog_container'>\n            <button mat-raised-button color='primary' (click)=\"register(userID)\" cdkFocusInitial>CONTINUE</button>\n            <span *ngIf='reason'>{{reason}}</span>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
 
 /***/ }),
 
@@ -884,8 +962,8 @@ var ProfileComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             var dialogOptions = {
-                width: '90vw',
-                height: '140vw',
+                width: '80%',
+                height: '70%',
                 hasBackdrop: false,
                 disableClose: true,
             };
@@ -961,81 +1039,6 @@ var ProfileDialog = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]])
     ], ProfileDialog);
     return ProfileDialog;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/toolbar/toolbar.component.css":
-/*!***********************************************!*\
-  !*** ./src/app/toolbar/toolbar.component.css ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".toolbar{\n    justify-content: space-between;\n    align-items: center;\n}\n\n.profile_pic {\n    margin-top: 20%;\n    display: inline-block;\n    width: 10vw;\n    height: 10vw;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
-
-/***/ }),
-
-/***/ "./src/app/toolbar/toolbar.component.html":
-/*!************************************************!*\
-  !*** ./src/app/toolbar/toolbar.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<mat-toolbar class='toolbar' color='accent'>\n    <span><img class='profile_pic' [src]='profile_path'/></span>\n    <span>{{context}}</span>\n    <mat-icon mat-list-icon>add</mat-icon>\n</mat-toolbar>\n"
-
-/***/ }),
-
-/***/ "./src/app/toolbar/toolbar.component.ts":
-/*!**********************************************!*\
-  !*** ./src/app/toolbar/toolbar.component.ts ***!
-  \**********************************************/
-/*! exports provided: ToolbarComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolbarComponent", function() { return ToolbarComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ToolbarComponent = /** @class */ (function () {
-    function ToolbarComponent(loginService) {
-        this.loginService = loginService;
-        this.profile_path = '../../assets/images/pictures/0.jpg';
-        this.context = '';
-    }
-    ToolbarComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.loginService.getUser().subscribe(function (userData) { return _this.userData = userData; });
-        this.profile_path = this.userData.image;
-    };
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], ToolbarComponent.prototype, "context", void 0);
-    ToolbarComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'toolbar',
-            template: __webpack_require__(/*! ./toolbar.component.html */ "./src/app/toolbar/toolbar.component.html"),
-            styles: [__webpack_require__(/*! ./toolbar.component.css */ "./src/app/toolbar/toolbar.component.css")]
-        }),
-        __metadata("design:paramtypes", [_login_service__WEBPACK_IMPORTED_MODULE_1__["LoginService"]])
-    ], ToolbarComponent);
-    return ToolbarComponent;
 }());
 
 
