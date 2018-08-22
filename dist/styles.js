@@ -48,7 +48,7 @@ module.exports = ".mat-elevation-z0{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rg
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\nhtml, body { height: 100%; }\nbody { \n    margin: 0; \n    font-family: 'Roboto', sans-serif; \n    background-color: #212431;\n    }\n.mat-menu-content, .mat-tab-labels{\n    background-color: #232C3D;\n    color: #11BA78;\n}\n.mat-tab-label\n{\n    color: #11BA78;\n    width: 50%;   \n}\n.mat-tab-group.mat-primary .mat-ink-bar{\n    background-color: #11BA78;\n}\n.mat-list-text{\n    color:#EEEEEE;\n}\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\nhtml, body { height: 100%; }\nbody { \n    margin: 0; \n    font-family: 'Roboto', sans-serif; \n    background-color: #212431;\n    }\n.mat-menu-content, .mat-tab-labels{\n    background-color: #232C3D;\n    color: #11BA78; \n}\n.mat-menu-panel{\n    position: relative;\n    z-index: 3;\n    box-shadow: 0 2px 4px 0 #212431;\n    border-radius: 4px;   \n    background: #232C3D;\n}\n.mat-tab-label\n{\n    color: #11BA78;\n    width: 50%;   \n}\n.mat-tab-group.mat-primary .mat-ink-bar{\n    background-color: #11BA78;\n}\n.mat-list-text{\n    color:#EEEEEE;\n}\n"
 
 /***/ }),
 

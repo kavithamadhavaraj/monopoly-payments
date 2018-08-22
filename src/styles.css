@@ -8,8 +8,17 @@ body {
 
 .mat-menu-content, .mat-tab-labels{
     background-color: #232C3D;
-    color: #11BA78;
+    color: #11BA78; 
 }
+
+.mat-menu-panel{
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 2px 4px 0 #212431;
+    border-radius: 4px;   
+    background: #232C3D;
+}
+
 .mat-tab-label
 {
     color: #11BA78;
