@@ -1,5 +1,32 @@
-.nogame{
-    display:flex;
+.nogame-container{
+    display: flex;
     flex-direction: column;
-    align-content: space-around;
+    align-items: center;
+}
+
+#monopoly-man{
+    margin-top: 30%;
+    margin-bottom: 5%;
+}
+.nogame{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    color: #AAAAAA;
+    padding: 1.5%;
+}
+
+#player_gist{
+    color: #AAAAAA;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+}
+
+#game_id{
+    color: #EEEEEE;	
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
 }

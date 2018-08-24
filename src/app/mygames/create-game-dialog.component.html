@@ -1,0 +1,18 @@
+<div>
+    <h1 mat-dialog-title class='dialog_container'><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>
+    <div mat-dialog-content class='dialog_container'>
+        <p style="font-size : 14px;">Game name</p>
+        <input placeholder= 'Fools day game' matInput [(ngModel)] = "game_name"/>
+    </div>
+    <span *ngIf="registering == 'nostart'" mat-dialog-actions class='dialog_container'>
+            <button mat-raised-button color='primary' (click)="register(game_name)">LET'S ROLL</button>
+            <span *ngIf='reason'>{{reason}}</span>
+    </span>
+    <span *ngIf="registering == 'start'" mat-dialog-actions class='spinner'>
+            <mat-progress-spinner diameter='40'
+            color="accent"
+            mode="indeterminate">
+            </mat-progress-spinner>
+    </span>
+   
+</div> 

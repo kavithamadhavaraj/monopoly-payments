@@ -13,7 +13,7 @@ import {MatButtonModule,
   MatDividerModule, MatListModule, MatIconModule, MatToolbarModule, MatMenuModule} from '@angular/material';
 import { GenericFilterPipe } from './generic-filter.pipe';
 import {GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular5-social-login';
-import { ToolbarComponent } from './mygames/toolbar.component';
+import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import { ToolbarComponent } from './mygames/toolbar.component';
     LoginComponent,
     ProfileComponent,
     ProfileDialog,
+    CreateGameDialog,
     GenericFilterPipe,
     ToolbarComponent
   ],
@@ -45,7 +46,7 @@ import { ToolbarComponent } from './mygames/toolbar.component';
   ],
   providers: [{provide: AuthServiceConfig, useFactory: getAuthServiceConfigs}],
   bootstrap: [MainComponent],
-  entryComponents: [ProfileDialog]
+  entryComponents: [ProfileDialog, CreateGameDialog]
 })
 
 export class AppModule { }

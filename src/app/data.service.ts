@@ -12,7 +12,7 @@ export class DataService {
    this.gameList = [];
    if (userID === 'kavitha') { return this.gameList; }
    this.gameList.push({
-        active: true,
+        active: false,
         gameID: 'ID113',
         players: [ 'kavi5712', 'Priya', 'Bank'],
         active_since: new Date('2018-08-10')

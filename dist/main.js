@@ -153,6 +153,7 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"],
+                _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["CreateGameDialog"],
                 _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["GenericFilterPipe"],
                 _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["ToolbarComponent"]
             ],
@@ -175,7 +176,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [{ provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs }],
             bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]],
-            entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"]]
+            entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"], _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["CreateGameDialog"]]
         })
     ], AppModule);
     return AppModule;
@@ -227,7 +228,7 @@ var DataService = /** @class */ (function () {
             return this.gameList;
         }
         this.gameList.push({
-            active: true,
+            active: false,
             gameID: 'ID113',
             players: ['kavi5712', 'Priya', 'Bank'],
             active_since: new Date('2018-08-10')
@@ -717,6 +718,28 @@ var MainComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/mygames/create-game-dialog.component.html":
+/*!***********************************************************!*\
+  !*** ./src/app/mygames/create-game-dialog.component.html ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n    <h1 mat-dialog-title class='dialog_container'><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n    <div mat-dialog-content class='dialog_container'>\n        <p style=\"font-size : 14px;\">Game name</p>\n        <input placeholder= 'Fools day game' matInput [(ngModel)] = \"game_name\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='dialog_container'>\n            <button mat-raised-button color='primary' (click)=\"register(game_name)\">LET'S ROLL</button>\n            <span *ngIf='reason'>{{reason}}</span>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
+
+/***/ }),
+
+/***/ "./src/app/mygames/create-join-game.component.css":
+/*!********************************************************!*\
+  !*** ./src/app/mygames/create-join-game.component.css ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
 /***/ "./src/app/mygames/mygames.component.css":
 /*!***********************************************!*\
   !*** ./src/app/mygames/mygames.component.css ***!
@@ -724,7 +747,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    align-content: space-around;\n}\n"
+module.exports = ".nogame-container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n#monopoly-man{\n    margin-top: 30%;\n    margin-bottom: 5%;\n}\n\n.nogame{\n    font-size: 16px;\n    font-weight: 600;\n    line-height: 24px;\n    text-align: center;\n    color: #AAAAAA;\n    padding: 1.5%;\n}\n\n#player_gist{\n    color: #AAAAAA;\n    font-size: 14px;\n    font-weight: 600;\n    line-height: 21px;\n}\n\n#game_id{\n    color: #EEEEEE;\t\n    font-size: 16px;\n    font-weight: 600;\n    line-height: 30px;\n}"
 
 /***/ }),
 
@@ -735,7 +758,7 @@ module.exports = ".nogame{\n    display:flex;\n    flex-direction: column;\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group >\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t<span>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t\t<span>Start playing by tapping</span>\n\t\t\t\t\t<mat-icon mat-list-icon>add</mat-icon>\n\t\t\t\t\t<span>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<mat-icon mat-list-icon>group</mat-icon>\n\t\t\t\t\t\t<h4 mat-line>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line> You and \n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span id='player_gist' *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
+module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group >\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame-container' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<img id=\"monopoly-man\" src='../../assets/images/pictures/monopoly-man.png'/>\n\t\t\t\t<span class='nogame'>Start playing by tapping</span>\n\t\t\t\t<img src='../../assets/images/icons/add_new.png'/>\n\t\t\t\t<span class='nogame'>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line id='player_gist'> \n\t\t\t\t\t\t<img style = 'margin-right: 1.5%;\n\t\t\t\t\t\tmargin-top: 1%;' src='../../assets/images/icons/player_icon.png'/>  You and \n\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span>\n\t\t\t\t\t</p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame-container' *ngIf='(gameList|genericFilter:\"active\":false).length == 0'> \n\t\t\t\t\t<img id=\"monopoly-man\" src='../../assets/images/pictures/monopoly-man.png'/>\n\t\t\t\t\t<span class='nogame'>Start playing by tapping</span>\n\t\t\t\t\t<img src='../../assets/images/icons/add_new.png'/>\n\t\t\t\t\t<span class='nogame'>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line id='player_gist'> \n\t\t\t\t\t\t\t<img style = 'margin-right: 1.5%;\n\t\t\t\t\t\t\tmargin-top: 1%;' src='../../assets/images/icons/player_icon.png'/> You and \n\t\t\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
 
 /***/ }),
 
@@ -808,7 +831,7 @@ var MyGamesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #232C3D;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 2px 4px 0 #212431;\n}\n\n.context {\n    color:#11BA78;\n}\n\n.mat-menu-item{\n    color:#CCCCCC;\n}\n\n.profile_pic {\n    width: 30px;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
+module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #232C3D;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 2px 4px 0 #212431;\n}\n\n.context {\n    color:#11BA78;\n}\n\n.mat-menu-item{\n    color:#CCCCCC;\n    font-size: 16px;\n    font-weight: 600;\n\tline-height: 24px;\n}\n\n.profile_pic {\n    width: 30px;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
 
 /***/ }),
 
@@ -819,7 +842,7 @@ module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-betw
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class='toolbar'>\n    <img class='profile_pic' [src]='profile_path'/>\n    <span class='context'>{{context}}</span>\n    <span [matMenuTriggerFor]=\"menu\" ><mat-icon mat-list-icon>add</mat-icon></span>\n</mat-toolbar>\n<mat-menu #menu=\"matMenu\">\n        <button mat-menu-item>Create new game</button>\n        <mat-divider> </mat-divider>\n        <button mat-menu-item>Join existing game</button>\n</mat-menu>"
+module.exports = "<mat-toolbar class='toolbar'>\n    <img class='profile_pic' [src]='profile_path'/>\n    <span class='context'>{{context}}</span>\n    <span [matMenuTriggerFor]=\"menu\" ><img class='add_new' src='../../assets/images/icons/add_new.png'/></span>\n</mat-toolbar>\n<mat-menu #menu=\"matMenu\">\n        <button (click) = 'createGame()' mat-menu-item>Create new game </button>\n        <mat-divider> </mat-divider>\n        <button (click) = 'joinGame()' mat-menu-item>Join existing game</button>\n</mat-menu>"
 
 /***/ }),
 
@@ -827,14 +850,16 @@ module.exports = "<mat-toolbar class='toolbar'>\n    <img class='profile_pic' [s
 /*!**********************************************!*\
   !*** ./src/app/mygames/toolbar.component.ts ***!
   \**********************************************/
-/*! exports provided: ToolbarComponent */
+/*! exports provided: ToolbarComponent, CreateGameDialog */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolbarComponent", function() { return ToolbarComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateGameDialog", function() { return CreateGameDialog; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -846,10 +871,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var ToolbarComponent = /** @class */ (function () {
-    function ToolbarComponent(loginService) {
+    function ToolbarComponent(loginService, dialog) {
         this.loginService = loginService;
+        this.dialog = dialog;
         this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.createGameOptions = {
+            width: '80%',
+            height: '40%',
+            hasBackdrop: false,
+            disableClose: true
+        };
         this.context = '';
     }
     ToolbarComponent.prototype.ngOnInit = function () {
@@ -857,7 +890,11 @@ var ToolbarComponent = /** @class */ (function () {
         this.loginService.getUser().subscribe(function (userData) { return _this.userData = userData; });
         this.profile_path = this.userData.image;
     };
-    ToolbarComponent.prototype.addGame = function () {
+    ToolbarComponent.prototype.createGame = function () {
+        this.dialog.open(CreateGameDialog, this.createGameOptions);
+    };
+    ToolbarComponent.prototype.joinGame = function () {
+        console.log('You joined');
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -869,9 +906,29 @@ var ToolbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./toolbar.component.html */ "./src/app/mygames/toolbar.component.html"),
             styles: [__webpack_require__(/*! ./toolbar.component.css */ "./src/app/mygames/toolbar.component.css")]
         }),
-        __metadata("design:paramtypes", [_login_service__WEBPACK_IMPORTED_MODULE_1__["LoginService"]])
+        __metadata("design:paramtypes", [_login_service__WEBPACK_IMPORTED_MODULE_1__["LoginService"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
     ], ToolbarComponent);
     return ToolbarComponent;
+}());
+
+var CreateGameDialog = /** @class */ (function () {
+    function CreateGameDialog() {
+        this.reason = '';
+        this.registering = 'nostart';
+    }
+    CreateGameDialog.prototype.register = function (game_name) {
+        console.log(game_name);
+    };
+    CreateGameDialog.prototype.ngOnInit = function () {
+    };
+    CreateGameDialog = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'create-game-dialog',
+            template: __webpack_require__(/*! ./create-game-dialog.component.html */ "./src/app/mygames/create-game-dialog.component.html"),
+            styles: [__webpack_require__(/*! ./create-join-game.component.css */ "./src/app/mygames/create-join-game.component.css")]
+        })
+    ], CreateGameDialog);
+    return CreateGameDialog;
 }());
 
 
