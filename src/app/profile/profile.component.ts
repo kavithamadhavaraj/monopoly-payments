@@ -1,78 +1,62 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { FormControl, Validators} from '@angular/forms';
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  userID = null;
-  dialogRef = null;
-  constructor(public dialog: MatDialog) {
+  public profile_path = '../../assets/images/pictures/0.jpg';
+  public userData = null;
+  public registering = 'nostart';
+  public valid = false;
+  public available: boolean = false;
+  public userID = new FormControl('', [Validators.minLength(4), Validators.required, Validators.pattern('^[A-Z\\a-z\\d]+$')]);
+
+  constructor(private router: Router, private ngZone: NgZone, private loginService: LoginService, private dataService: DataService) {
   }
-  ngOnInit(){
-    setTimeout(() => {
-      const dialogOptions = {
-        width: '80%',
-        height: '70%',
-        hasBackdrop: false,
-        disableClose: true,
-      };
-      this.dialogRef = this.dialog.open(ProfileDialog, dialogOptions);
-    }, 20);
-  }
+  ngOnInit() {
+    this.loginService.getUser().subscribe((userData) => {
+    this.userData = userData;
+    this.profile_path = userData.image;
+  });
+ }
+
+ getErrorMessage() {
+   console.log(this.userID);
+   if (this.userID.valid === true) {
+     this.valid = true;
+   }
+  return this.userID.hasError('required') ? 'Player name cannot be empty' :
+      this.userID.hasError('minlength') ? 'Player name must be at least 4 characters long' :
+      this.userID.hasError('pattern') ? 'Space & special characters not allowed' :
+      this.userID.hasError('unavailable') ? 'Player name not available' :
+      this.userID.hasError('tryagain') ? 'Server error occured. Try again.' :
+      null;
 }
 
-@Component({
-  selector: 'profile-dialog',
-  templateUrl: './profile-dialog.html',
-  styleUrls: ['./profile-dialog.css']
-})
-export class ProfileDialog implements OnInit {
-  reason = '';
-  registering = 'nostart';
-  format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-
-  constructor(
-    public dialogRef: MatDialogRef<ProfileDialog>,
-    private dataService: DataService,
-    private router: Router,
-    private loginService: LoginService,
-    private ngZone: NgZone) {}
-    public profile_path = '../../assets/images/pictures/0.jpg';
-    public userData = null;
-    ngOnInit() {
-      this.loginService.getUser().subscribe((userData) => {
-      this.userData = userData;
-      this.profile_path = userData.image;
-     });
-    }
-
-    register(userID: string) {
-      if ((userID === '') || (userID === undefined)){
-        this.reason = 'User ID cannot be empty';
-      }
-      else if ((userID.length  < 4) || (userID.length > 12)){
-        this.reason = 'Length must be between 4 - 12';
-      }
-      else if(this.format.test(userID)) {
-        this.reason = 'Space & special characters not allowed';
-      }
-      else {
-        this.dataService.checkAvailability(userID).then(valid => {
-          if (valid) {
-            this.registering = 'start';
-            this.dataService.createProfile(userID).then(response => {
-              this.dialogRef.close();
-              this.ngZone.run(() => {
-                this.router.navigate(['mygames', userID], { replaceUrl: true });
-              });
+  register(userID: string) {
+    this.userID.markAsTouched();
+    if (this.getErrorMessage() == null) {
+      this.dataService.checkAvailability(userID).then(available => {
+        this.available = available;
+        if (this.available === true) {
+          this.registering = 'start';
+          this.dataService.createProfile(userID).then(response => {
+            console.log(response);
+            this.ngZone.run(() => {
+              this.router.navigate(['mygames', userID], { replaceUrl: true });
             });
-          }
-        }).catch(err => this.reason = err);
-      }
+          });
+        }
+        else{
+          this.userID.setErrors({'unavailable' : true});
+        }
+      }).catch(err => this.userID.setErrors({ 'tryagain' : true}));
+    }
   }
 }
+

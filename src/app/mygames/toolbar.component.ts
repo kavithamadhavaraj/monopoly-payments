@@ -3,7 +3,6 @@ import { LoginService } from '../login.service';
 import { SocialUser } from 'angular5-social-login';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
-
 @Component({
   selector: 'toolbar',
   templateUrl: './toolbar.component.html',
@@ -16,8 +15,9 @@ export class ToolbarComponent implements OnInit {
     width: '80%',
     height: '40%',
     hasBackdrop: false,
-    disableClose: true
+    disableClose: true,
   };
+
   constructor(private loginService: LoginService, private dialog: MatDialog) { }
   userData:SocialUser;
   @Input() context = '';
@@ -32,6 +32,7 @@ export class ToolbarComponent implements OnInit {
   joinGame() {
     console.log('You joined');
   }
+
 }
 
 
@@ -44,11 +45,17 @@ export class CreateGameDialog implements OnInit {
   reason = '';
   registering = 'nostart';
 
+  constructor(public dialogRef: MatDialogRef<CreateGameDialog>){
+  }
   register(game_name: string) {
     console.log(game_name);
   }
 
   ngOnInit() {
 
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 }

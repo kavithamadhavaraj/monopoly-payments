@@ -68,8 +68,8 @@ export class DataService {
     return this.gameData;
   }
 
-  checkAvailability(userID: String): Promise<Boolean> {
-    const response = new Promise<Boolean>((resolve, reject) => {
+  checkAvailability(userID: String): Promise<boolean> {
+    const response = new Promise<boolean>((resolve, reject) => {
       if ((userID === '') || (userID === undefined)) {
         reject('UserID cannot be empty');
       }
@@ -80,8 +80,8 @@ export class DataService {
     return response;
   }
 
-  createProfile(userID: String): Promise<Boolean> {
-      const response = new Promise<Boolean>((resolve, reject) => {
+  createProfile(userID: String): Promise<boolean> {
+      const response = new Promise<boolean>((resolve, reject) => {
           setTimeout(() => {
           this.userList.push(userID);
           resolve(true);

@@ -1,20 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyGamesComponent } from './mygames/mygames.component';
 import { GameComponent } from './game/game.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent, ProfileDialog } from './profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule,
-  MatCardModule, MatTabsModule, MatDialogModule, MatProgressSpinnerModule,
-  MatDividerModule, MatListModule, MatIconModule, MatToolbarModule, MatMenuModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatTabsModule, MatDialogModule,
+        MatProgressSpinnerModule, MatDividerModule, MatListModule,
+        MatIconModule, MatToolbarModule, MatMenuModule,
+        MatFormFieldModule, MatInputModule} from '@angular/material';
 import { GenericFilterPipe } from './generic-filter.pipe';
 import {GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular5-social-login';
 import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component';
-
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
 @NgModule({
   declarations: [
     MyGamesComponent,
@@ -22,7 +23,6 @@ import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component'
     MainComponent,
     LoginComponent,
     ProfileComponent,
-    ProfileDialog,
     CreateGameDialog,
     GenericFilterPipe,
     ToolbarComponent
@@ -30,6 +30,7 @@ import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component'
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -42,11 +43,16 @@ import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component'
     MatIconModule,
     MatToolbarModule,
     SocialLoginModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [{provide: AuthServiceConfig, useFactory: getAuthServiceConfigs}],
+  providers: [
+    {provide: AuthServiceConfig, useFactory: getAuthServiceConfigs},
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [MainComponent],
-  entryComponents: [ProfileDialog, CreateGameDialog]
+  entryComponents: [CreateGameDialog]
 })
 
 export class AppModule { }

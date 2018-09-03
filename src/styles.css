@@ -2,8 +2,8 @@
 html, body { height: 100%; }
 body { 
     margin: 0; 
-    font-family: 'Barlow', sans-serif;
     background-color: #212431;
+    color: EEEEEE;
     }
 
 * {
@@ -39,3 +39,16 @@ body {
     color:#EEEEEE;
 }
 
+.mat-dialog-container{
+    background-color: #232C3D;
+}
+
+.mat-raised-button.mat-primary{
+    background-color: #11BA78;
+}
+
+.mat-focused .mat-form-field-underline .mat-form-field-ripple{ background: #cccccc; }
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color:#cccccc; 
+}

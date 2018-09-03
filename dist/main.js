@@ -141,6 +141,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -152,7 +153,6 @@ var AppModule = /** @class */ (function () {
                 _main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"],
                 _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["CreateGameDialog"],
                 _generic_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["GenericFilterPipe"],
                 _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["ToolbarComponent"]
@@ -160,6 +160,7 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatButtonModule"],
@@ -172,11 +173,16 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"],
                 angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["SocialLoginModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"]
             ],
-            providers: [{ provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs }],
+            providers: [
+                { provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs },
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_10__["ErrorStateMatcher"], useClass: _angular_material__WEBPACK_IMPORTED_MODULE_10__["ShowOnDirtyErrorStateMatcher"] }
+            ],
             bootstrap: [_main_main_component__WEBPACK_IMPORTED_MODULE_6__["MainComponent"]],
-            entryComponents: [_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileDialog"], _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["CreateGameDialog"]]
+            entryComponents: [_mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__["CreateGameDialog"]]
         })
     ], AppModule);
     return AppModule;
@@ -725,7 +731,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n    <h1 mat-dialog-title class='dialog_container'><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n    <div mat-dialog-content class='dialog_container'>\n        <p style=\"font-size : 14px;\">Game name</p>\n        <input placeholder= 'Fools day game' matInput [(ngModel)] = \"game_name\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='dialog_container'>\n            <button mat-raised-button color='primary' (click)=\"register(game_name)\">LET'S ROLL</button>\n            <span *ngIf='reason'>{{reason}}</span>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
+module.exports = "<div class='dialog_container'>\n    <h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n    <div mat-dialog-content>\n        <p style=\"font-size : 14px;\">Game name</p>\n        <input placeholder= 'Fools day game' matInput [(ngModel)] = \"game_name\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions>\n            <span *ngIf='reason'>{{reason}}</span>\n            <button mat-raised-button color='primary' (click)=\"register(game_name)\">LET'S ROLL</button>           \n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
 
 /***/ }),
 
@@ -736,7 +742,7 @@ module.exports = "<div>\n    <h1 mat-dialog-title class='dialog_container'><mat-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "mat-dialog-container{\n    background-color: #212431;\n}\n"
 
 /***/ }),
 
@@ -881,7 +887,7 @@ var ToolbarComponent = /** @class */ (function () {
             width: '80%',
             height: '40%',
             hasBackdrop: false,
-            disableClose: true
+            disableClose: true,
         };
         this.context = '';
     }
@@ -912,7 +918,8 @@ var ToolbarComponent = /** @class */ (function () {
 }());
 
 var CreateGameDialog = /** @class */ (function () {
-    function CreateGameDialog() {
+    function CreateGameDialog(dialogRef) {
+        this.dialogRef = dialogRef;
         this.reason = '';
         this.registering = 'nostart';
     }
@@ -921,39 +928,21 @@ var CreateGameDialog = /** @class */ (function () {
     };
     CreateGameDialog.prototype.ngOnInit = function () {
     };
+    CreateGameDialog.prototype.closeDialog = function () {
+        this.dialogRef.close();
+    };
     CreateGameDialog = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'create-game-dialog',
             template: __webpack_require__(/*! ./create-game-dialog.component.html */ "./src/app/mygames/create-game-dialog.component.html"),
             styles: [__webpack_require__(/*! ./create-join-game.component.css */ "./src/app/mygames/create-join-game.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
     ], CreateGameDialog);
     return CreateGameDialog;
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/profile/profile-dialog.css":
-/*!********************************************!*\
-  !*** ./src/app/profile/profile-dialog.css ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  \n\n.dialog_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}  \n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}"
-
-/***/ }),
-
-/***/ "./src/app/profile/profile-dialog.html":
-/*!*********************************************!*\
-  !*** ./src/app/profile/profile-dialog.html ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div >\n    <h1 mat-dialog-title class='dialog_container'>Give yourself a cool player name</h1>\n    <div mat-dialog-content class='dialog_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <p style=\"font-size : 14px;\">Player name should be 4 -12 characters long; no special characters and spaces allowed. </p>\n        <input placeholder= 'CoolJack' matInput [(ngModel)] = \"userID\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='dialog_container'>\n            <button mat-raised-button color='primary' (click)=\"register(userID)\" cdkFocusInitial>CONTINUE</button>\n            <span *ngIf='reason'>{{reason}}</span>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
 
 /***/ }),
 
@@ -964,7 +953,7 @@ module.exports = "<div >\n    <h1 mat-dialog-title class='dialog_container'>Give
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome {\t\n   color: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n\n  "
+module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    color: #cccccc;\t    \n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    height: 66.27%;\twidth: 78.67%;\tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
 
 /***/ }),
 
@@ -975,7 +964,7 @@ module.exports = ".welcome {\t\n   color: #11BA78;\tfont-family: \"Arial Rounded
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n</body>"
+module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <div class='card_container'>\n    <h1 mat-card-title class='flex_container'>Give yourself a cool player name</h1>\n    <div mat-card-content class='flex_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <mat-form-field>\n            <input matInput #input minlength='4' maxlength=\"15\" [formControl]=\"userID\">\n            <mat-placeholder class='placeholder'>Player name</mat-placeholder>\n            <span matSuffix>{{input.value?.length || 0}}/15</span>\n            <mat-error *ngIf=\"userID.invalid\">\n                <img style=\"position:absolute;\" src='../../assets/images/icons/error.png'/>\n                <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n            </mat-error>\n            <mat-hint *ngIf=\"!userID.invalid && available\"> \n              <img style=\"position:absolute;\" src='../../assets/images/icons/success.png'/>\n              <div style=\"margin-left:18%;  width: 100%;\">Player name available!</div>\n            </mat-hint>\n        </mat-form-field> \n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-card-actions class='flex_container'>\n            <button id='register' mat-raised-button color='primary' [disabled]='!userID.valid' (click)=\"register(input.value)\">CONTINUE</button>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-card-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n</div> \n</body>"
 
 /***/ }),
 
@@ -983,18 +972,17 @@ module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</d
 /*!**********************************************!*\
   !*** ./src/app/profile/profile.component.ts ***!
   \**********************************************/
-/*! exports provided: ProfileComponent, ProfileDialog */
+/*! exports provided: ProfileComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileDialog", function() { return ProfileDialog; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1010,22 +998,57 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(dialog) {
-        this.dialog = dialog;
-        this.userID = null;
-        this.dialogRef = null;
+    function ProfileComponent(router, ngZone, loginService, dataService) {
+        this.router = router;
+        this.ngZone = ngZone;
+        this.loginService = loginService;
+        this.dataService = dataService;
+        this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.userData = null;
+        this.registering = 'nostart';
+        this.valid = false;
+        this.available = false;
+        this.userID = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(4), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern('^[A-Z\\a-z\\d]+$')]);
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        setTimeout(function () {
-            var dialogOptions = {
-                width: '80%',
-                height: '70%',
-                hasBackdrop: false,
-                disableClose: true,
-            };
-            _this.dialogRef = _this.dialog.open(ProfileDialog, dialogOptions);
-        }, 20);
+        this.loginService.getUser().subscribe(function (userData) {
+            _this.userData = userData;
+            _this.profile_path = userData.image;
+        });
+    };
+    ProfileComponent.prototype.getErrorMessage = function () {
+        console.log(this.userID);
+        if (this.userID.valid === true) {
+            this.valid = true;
+        }
+        return this.userID.hasError('required') ? 'Player name cannot be empty' :
+            this.userID.hasError('minlength') ? 'Player name must be at least 4 characters long' :
+                this.userID.hasError('pattern') ? 'Space & special characters not allowed' :
+                    this.userID.hasError('unavailable') ? 'Player name not available' :
+                        this.userID.hasError('tryagain') ? 'Server error occured. Try again.' :
+                            null;
+    };
+    ProfileComponent.prototype.register = function (userID) {
+        var _this = this;
+        this.userID.markAsTouched();
+        if (this.getErrorMessage() == null) {
+            this.dataService.checkAvailability(userID).then(function (available) {
+                _this.available = available;
+                if (_this.available === true) {
+                    _this.registering = 'start';
+                    _this.dataService.createProfile(userID).then(function (response) {
+                        console.log(response);
+                        _this.ngZone.run(function () {
+                            _this.router.navigate(['mygames', userID], { replaceUrl: true });
+                        });
+                    });
+                }
+                else {
+                    _this.userID.setErrors({ 'unavailable': true });
+                }
+            }).catch(function (err) { return _this.userID.setErrors({ 'tryagain': true }); });
+        }
     };
     ProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1033,69 +1056,9 @@ var ProfileComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./profile.component.html */ "./src/app/profile/profile.component.html"),
             styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/profile/profile.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _login_service__WEBPACK_IMPORTED_MODULE_3__["LoginService"], _data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
     ], ProfileComponent);
     return ProfileComponent;
-}());
-
-var ProfileDialog = /** @class */ (function () {
-    function ProfileDialog(dialogRef, dataService, router, loginService, ngZone) {
-        this.dialogRef = dialogRef;
-        this.dataService = dataService;
-        this.router = router;
-        this.loginService = loginService;
-        this.ngZone = ngZone;
-        this.reason = '';
-        this.registering = 'nostart';
-        this.format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        this.profile_path = '../../assets/images/pictures/0.jpg';
-        this.userData = null;
-    }
-    ProfileDialog.prototype.ngOnInit = function () {
-        var _this = this;
-        this.loginService.getUser().subscribe(function (userData) {
-            _this.userData = userData;
-            _this.profile_path = userData.image;
-        });
-    };
-    ProfileDialog.prototype.register = function (userID) {
-        var _this = this;
-        if ((userID === '') || (userID === undefined)) {
-            this.reason = 'User ID cannot be empty';
-        }
-        else if ((userID.length < 4) || (userID.length > 12)) {
-            this.reason = 'Length must be between 4 - 12';
-        }
-        else if (this.format.test(userID)) {
-            this.reason = 'Space & special characters not allowed';
-        }
-        else {
-            this.dataService.checkAvailability(userID).then(function (valid) {
-                if (valid) {
-                    _this.registering = 'start';
-                    _this.dataService.createProfile(userID).then(function (response) {
-                        _this.dialogRef.close();
-                        _this.ngZone.run(function () {
-                            _this.router.navigate(['mygames', userID], { replaceUrl: true });
-                        });
-                    });
-                }
-            }).catch(function (err) { return _this.reason = err; });
-        }
-    };
-    ProfileDialog = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'profile-dialog',
-            template: __webpack_require__(/*! ./profile-dialog.html */ "./src/app/profile/profile-dialog.html"),
-            styles: [__webpack_require__(/*! ./profile-dialog.css */ "./src/app/profile/profile-dialog.css")]
-        }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"],
-            _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-            _login_service__WEBPACK_IMPORTED_MODULE_4__["LoginService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]])
-    ], ProfileDialog);
-    return ProfileDialog;
 }());
 
 

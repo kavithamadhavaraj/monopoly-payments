@@ -1,3 +1,32 @@
 <body>
   <div class='welcome'>Welcome to Monopoly Payments</div>
+  <div class='card_container'>
+    <h1 mat-card-title class='flex_container'>Give yourself a cool player name</h1>
+    <div mat-card-content class='flex_container'>
+        <span><img class='profile_pic' [src]='profile_path'/></span>  
+        <h3>{{userData.name}}</h3>
+        <mat-form-field>
+            <input matInput #input minlength='4' maxlength="15" [formControl]="userID">
+            <mat-placeholder class='placeholder'>Player name</mat-placeholder>
+            <span matSuffix>{{input.value?.length || 0}}/15</span>
+            <mat-error *ngIf="userID.invalid">
+                <img style="position:absolute;" src='../../assets/images/icons/error.png'/>
+                <div style="margin-left:10%;">{{getErrorMessage()}}</div>
+            </mat-error>
+            <mat-hint *ngIf="!userID.invalid && available"> 
+              <img style="position:absolute;" src='../../assets/images/icons/success.png'/>
+              <div style="margin-left:18%;  width: 100%;">Player name available!</div>
+            </mat-hint>
+        </mat-form-field> 
+    </div>
+    <span *ngIf="registering == 'nostart'" mat-card-actions class='flex_container'>
+            <button id='register' mat-raised-button color='primary' [disabled]='!userID.valid' (click)="register(input.value)">CONTINUE</button>
+    </span>
+    <span *ngIf="registering == 'start'" mat-card-actions class='spinner'>
+            <mat-progress-spinner diameter='40'
+            color="accent"
+            mode="indeterminate">
+            </mat-progress-spinner>
+    </span>
+</div> 
 </body>
