@@ -1,24 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
+
 body { 
     margin: 0; 
     background-color: #212431;
     color: EEEEEE;
-    }
+}
 
-* {
+*{
     font-family: 'Barlow', sans-serif;
 }
 
-.mat-menu-content, .mat-tab-labels{
+.mat-tab-labels{
     background-color: #232C3D;
     color: #11BA78; 
+}
+
+.mat-menu-content{
+    background-color: #212431;
 }
 
 .mat-menu-panel{
     position: relative;
     z-index: 3;
-    box-shadow: 0 2px 4px 0 #212431;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     border-radius: 4px;   
     background: #232C3D;
 }
@@ -41,6 +46,7 @@ body {
 
 .mat-dialog-container{
     background-color: #232C3D;
+    color:#EEEEEE;
 }
 
 .mat-raised-button.mat-primary{

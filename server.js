@@ -2,12 +2,10 @@
 const express = require('express');
 const app = express();
 
-// Start the app by listening on the default
-// Heroku port
+// Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 4201);
 
-// Run the app by serving the static files
-// in the dist directory
+// Run the app by serving the static files in the dist directory
 app.use(express.static(__dirname + '/dist'))
 
 // If an incoming request uses
@@ -30,17 +28,16 @@ const forceSSL = function() {
 // middleware
 app.use(forceSSL());
 
-
-
-
-
 const path = require('path');
 
-// ...
-// For all GET requests, send back index.html
-// so that PathLocationStrategy can be used
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+// /api/* Matches
+app.get( '^/api/:params*', function( req, res, next ) {
+    res.send( "Matches an /api/ route." );
+} );
+
+// For all GET requests except for internal API's (starts with /api/), send back index.html so that PathLocationStrategy can be used
+app.get( /^((?!\/api\/).)*$/, function( req, res, next ) {
+   res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
 

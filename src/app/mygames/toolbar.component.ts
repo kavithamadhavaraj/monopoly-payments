@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { LoginService } from '../login.service';
 import { SocialUser } from 'angular5-social-login';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { Validators, FormControl} from '@angular/forms';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'toolbar',
@@ -12,10 +15,9 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 export class ToolbarComponent implements OnInit {
   public profile_path = '../../assets/images/pictures/0.jpg';
   private createGameOptions = {
-    width: '80vh',
-    height: '40vh',
-    hasBackdrop: false,
+    hasBackdrop: true,
     disableClose: true,
+    closeOnNavigation: true,
   };
 
   constructor(private loginService: LoginService, private dialog: MatDialog) { }
@@ -39,23 +41,54 @@ export class ToolbarComponent implements OnInit {
 @Component({
   selector: 'create-game-dialog',
   templateUrl: './create-game-dialog.component.html',
-  styleUrls: ['./create-join-game.component.css']
+  styleUrls: ['./create-game-dialog.component.css']
 })
 export class CreateGameDialog implements OnInit {
-  reason = '';
+  valid = false;
   registering = 'nostart';
-
-  constructor(public dialogRef: MatDialogRef<CreateGameDialog>){
-  }
-  register(game_name: string) {
-    console.log(game_name);
+  available = false;
+  public gameName = new FormControl('', [Validators.minLength(4), Validators.required, Validators.pattern('^[A-Z\\a-z\\d]+$')]);
+  constructor(private dialogRef: MatDialogRef<CreateGameDialog>,
+     private ngZone: NgZone, private dataService: DataService,
+     private router: Router) {
   }
 
   ngOnInit() {
+  }
 
+  getErrorMessage() {
+    if (this.gameName.valid === true) {
+      this.valid = true;
+    }
+   return this.gameName.hasError('required') ? 'Game name cannot be empty' :
+       this.gameName.hasError('minlength') ? 'Game name must be at least 4 characters long' :
+       this.gameName.hasError('pattern') ? 'Space & special characters not allowed' :
+       this.gameName.hasError('unavailable') ? 'Game name not available' :
+       this.gameName.hasError('tryagain') ? 'Server error occured. Try again.' :
+       null;
   }
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  register(gameName: string) {
+    console.log(this.registering);
+    this.gameName.markAsTouched();
+    if (this.getErrorMessage() == null) {
+      this.dataService.checkGameAvailability(gameName).then(available => {
+        this.available = available;
+        if (this.available === true) {
+          this.registering = 'start';
+          this.dataService.createGame(gameName).then(response => {
+            console.log(response);
+            this.dialogRef.close();
+          });
+        }
+        else {
+          this.gameName.setErrors({'unavailable' : true});
+        }
+      }).catch(err => this.gameName.setErrors({ 'tryagain' : true}));
+    }
   }
 }

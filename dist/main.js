@@ -300,11 +300,31 @@ var DataService = /** @class */ (function () {
         });
         return response;
     };
+    DataService.prototype.checkGameAvailability = function (gameName) {
+        var response = new Promise(function (resolve, reject) {
+            if ((gameName === '') || (gameName === undefined)) {
+                reject('Game name cannot be empty');
+            }
+            else {
+                resolve(true);
+            }
+        });
+        return response;
+    };
     DataService.prototype.createProfile = function (userID) {
         var _this = this;
         var response = new Promise(function (resolve, reject) {
             setTimeout(function () {
                 _this.userList.push(userID);
+                resolve(true);
+            }, 2000);
+        });
+        return response;
+    };
+    DataService.prototype.createGame = function (gameName) {
+        var response = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                //this.userList.push(gameName);
                 resolve(true);
             }, 2000);
         });
@@ -725,6 +745,17 @@ var MainComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/mygames/create-game-dialog.component.css":
+/*!**********************************************************!*\
+  !*** ./src/app/mygames/create-game-dialog.component.css ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 5px;\n}\n\n.mat-error{\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\nh1.mat-dialog-title{\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center; \n}\n\n#register{\n    border-radius: 4px;\n    width:100%;\n    margin-top: 10%;\n}\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    color: #cccccc;\t   \n    overflow: visible;    \n}\n\n.mat-form-field-appearance-legacy .mat-form-field-wrapper{\n    margin-bottom: 28%;\n}"
+
+/***/ }),
+
 /***/ "./src/app/mygames/create-game-dialog.component.html":
 /*!***********************************************************!*\
   !*** ./src/app/mygames/create-game-dialog.component.html ***!
@@ -732,18 +763,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='dialog_container'>\n    <h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n    <div mat-dialog-content>\n        <p style=\"font-size : 14px;\">Game name</p>\n        <input tabindex=\"0\" placeholder= 'Fools day game' matInput [(ngModel)] = \"game_name\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions>\n            <span *ngIf='reason'>{{reason}}</span>\n            <button mat-raised-button color='primary' (click)=\"register(game_name)\">LET'S ROLL</button>           \n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
-
-/***/ }),
-
-/***/ "./src/app/mygames/create-join-game.component.css":
-/*!********************************************************!*\
-  !*** ./src/app/mygames/create-join-game.component.css ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "mat-dialog-container{\n    background-color: #212431;\n}\n"
+module.exports = "\n<h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n<div mat-dialog-content class='flex_container'>\n    <mat-form-field>\n        <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"20\" [formControl]=\"gameName\">\n        <mat-placeholder class='placeholder'>Game name</mat-placeholder>\n        <span matSuffix>{{input.value?.length || 0}}/20</span>\n        <mat-error *ngIf=\"gameName.invalid\">\n            <img style=\"position:absolute;\" src='../../assets/images/icons/error.png'/>\n            <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n        </mat-error>\n        <mat-hint *ngIf=\"!gameName.invalid && available\"> \n            <img style=\"position:absolute;\" src='../../assets/images/icons/success.png'/>\n            <div style=\"margin-left:18%;  width: 100%;\">Game name available!</div>\n        </mat-hint>\n    </mat-form-field> \n</div>\n<span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner flex_container'>\n        <mat-progress-spinner diameter='40' color=\"accent\" mode=\"indeterminate\"></mat-progress-spinner>\n</span>\n<span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='flex_container'>\n        <button mat-raised-button id='register' color='primary' [disabled]='!gameName.valid' (click)= \"register(input.value)\"> LET'S ROLL </button>           \n</span>\n\n\n"
 
 /***/ }),
 
@@ -838,7 +858,7 @@ var MyGamesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #232C3D;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 2px 4px 0 #212431;\n}\n\n.context {\n    color:#11BA78;\n}\n\n.mat-menu-item{\n    color:#CCCCCC;\n    font-size: 16px;\n    font-weight: 600;\n\tline-height: 24px;\n}\n\n.profile_pic {\n    width: 30px;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
+module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #232C3D;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 2px 4px 0 #212431;\n}\n\n.context {\n    color:#11BA78;\n}\n\n.mat-menu-item{\n    color:#CCCCCC;\n    font-size: 14px;\n    font-weight: 600;\n\tline-height: 24px;\n}\n\n.profile_pic {\n    width: 30px;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;    \n  }  "
 
 /***/ }),
 
@@ -867,6 +887,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -879,16 +902,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ToolbarComponent = /** @class */ (function () {
     function ToolbarComponent(loginService, dialog) {
         this.loginService = loginService;
         this.dialog = dialog;
         this.profile_path = '../../assets/images/pictures/0.jpg';
         this.createGameOptions = {
-            width: '80vh',
-            height: '40vh',
-            hasBackdrop: false,
+            hasBackdrop: true,
             disableClose: true,
+            closeOnNavigation: true,
         };
         this.context = '';
     }
@@ -919,26 +944,61 @@ var ToolbarComponent = /** @class */ (function () {
 }());
 
 var CreateGameDialog = /** @class */ (function () {
-    function CreateGameDialog(dialogRef) {
+    function CreateGameDialog(dialogRef, ngZone, dataService, router) {
         this.dialogRef = dialogRef;
-        this.reason = '';
+        this.ngZone = ngZone;
+        this.dataService = dataService;
+        this.router = router;
+        this.valid = false;
         this.registering = 'nostart';
+        this.available = false;
+        this.gameName = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(4), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[A-Z\\a-z\\d]+$')]);
     }
-    CreateGameDialog.prototype.register = function (game_name) {
-        console.log(game_name);
-    };
     CreateGameDialog.prototype.ngOnInit = function () {
+    };
+    CreateGameDialog.prototype.getErrorMessage = function () {
+        if (this.gameName.valid === true) {
+            this.valid = true;
+        }
+        return this.gameName.hasError('required') ? 'Game name cannot be empty' :
+            this.gameName.hasError('minlength') ? 'Game name must be at least 4 characters long' :
+                this.gameName.hasError('pattern') ? 'Space & special characters not allowed' :
+                    this.gameName.hasError('unavailable') ? 'Game name not available' :
+                        this.gameName.hasError('tryagain') ? 'Server error occured. Try again.' :
+                            null;
     };
     CreateGameDialog.prototype.closeDialog = function () {
         this.dialogRef.close();
+    };
+    CreateGameDialog.prototype.register = function (gameName) {
+        var _this = this;
+        console.log(this.registering);
+        this.gameName.markAsTouched();
+        if (this.getErrorMessage() == null) {
+            this.dataService.checkGameAvailability(gameName).then(function (available) {
+                _this.available = available;
+                if (_this.available === true) {
+                    _this.registering = 'start';
+                    _this.dataService.createGame(gameName).then(function (response) {
+                        console.log(response);
+                        _this.dialogRef.close();
+                    });
+                }
+                else {
+                    _this.gameName.setErrors({ 'unavailable': true });
+                }
+            }).catch(function (err) { return _this.gameName.setErrors({ 'tryagain': true }); });
+        }
     };
     CreateGameDialog = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'create-game-dialog',
             template: __webpack_require__(/*! ./create-game-dialog.component.html */ "./src/app/mygames/create-game-dialog.component.html"),
-            styles: [__webpack_require__(/*! ./create-join-game.component.css */ "./src/app/mygames/create-join-game.component.css")]
+            styles: [__webpack_require__(/*! ./create-game-dialog.component.css */ "./src/app/mygames/create-game-dialog.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _data_service__WEBPACK_IMPORTED_MODULE_4__["DataService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], CreateGameDialog);
     return CreateGameDialog;
 }());
@@ -954,7 +1014,7 @@ var CreateGameDialog = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    color: #cccccc;\t   \n    overflow :'auto';\n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n   \tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n    /* Makes the card scrollable on smaller sized screens */\n    overflow: auto;\n\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
+module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n    color: #cccccc;\t   \n    overflow :'auto';\n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n   \tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n    /* Makes the card scrollable on smaller sized screens */\n    overflow: auto;\n\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
 
 /***/ }),
 

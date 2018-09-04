@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   public userData = null;
   public registering = 'nostart';
   public valid = false;
-  public available: boolean = false;
+  public available = false;
   public userID = new FormControl('', [Validators.minLength(4), Validators.required, Validators.pattern('^[A-Z\\a-z\\d]+$')]);
 
   constructor(private router: Router, private ngZone: NgZone, private loginService: LoginService, private dataService: DataService) {

@@ -80,6 +80,18 @@ export class DataService {
     return response;
   }
 
+  checkGameAvailability(gameName: String): Promise<boolean> {
+    const response = new Promise<boolean>((resolve, reject) => {
+      if ((gameName === '') || (gameName === undefined)) {
+        reject('Game name cannot be empty');
+      }
+      else{
+        resolve(true);
+      }
+    });
+    return response;
+  }
+
   createProfile(userID: String): Promise<boolean> {
       const response = new Promise<boolean>((resolve, reject) => {
           setTimeout(() => {
@@ -89,6 +101,16 @@ export class DataService {
       });
       return response;
   }
+
+  createGame(gameName: String): Promise<boolean> {
+    const response = new Promise<boolean>((resolve, reject) => {
+        setTimeout(() => {
+        //this.userList.push(gameName);
+        resolve(true);
+        }, 2000);
+    });
+    return response;
+}
 
   findUserID(userData) {
     return null;

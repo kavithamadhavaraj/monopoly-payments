@@ -1,18 +1,25 @@
-<div class='dialog_container'>
-    <h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>
-    <div mat-dialog-content>
-        <p style="font-size : 14px;">Game name</p>
-        <input tabindex="0" placeholder= 'Fools day game' matInput [(ngModel)] = "game_name"/>
-    </div>
-    <span *ngIf="registering == 'nostart'" mat-dialog-actions>
-            <span *ngIf='reason'>{{reason}}</span>
-            <button mat-raised-button color='primary' (click)="register(game_name)">LET'S ROLL</button>           
-    </span>
-    <span *ngIf="registering == 'start'" mat-dialog-actions class='spinner'>
-            <mat-progress-spinner diameter='40'
-            color="accent"
-            mode="indeterminate">
-            </mat-progress-spinner>
-    </span>
-   
-</div> 
+
+<h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>
+<div mat-dialog-content class='flex_container'>
+    <mat-form-field>
+        <input tabindex="0" matInput #input minlength='4' maxlength="20" [formControl]="gameName">
+        <mat-placeholder class='placeholder'>Game name</mat-placeholder>
+        <span matSuffix>{{input.value?.length || 0}}/20</span>
+        <mat-error *ngIf="gameName.invalid">
+            <img style="position:absolute;" src='../../assets/images/icons/error.png'/>
+            <div style="margin-left:10%;">{{getErrorMessage()}}</div>
+        </mat-error>
+        <mat-hint *ngIf="!gameName.invalid && available"> 
+            <img style="position:absolute;" src='../../assets/images/icons/success.png'/>
+            <div style="margin-left:18%;  width: 100%;">Game name available!</div>
+        </mat-hint>
+    </mat-form-field> 
+</div>
+<span *ngIf="registering == 'start'" mat-dialog-actions class='spinner flex_container'>
+        <mat-progress-spinner diameter='40' color="accent" mode="indeterminate"></mat-progress-spinner>
+</span>
+<span *ngIf="registering == 'nostart'" mat-dialog-actions class='flex_container'>
+        <button mat-raised-button id='register' color='primary' [disabled]='!gameName.valid' (click)= "register(input.value)"> LET'S ROLL </button>           
+</span>
+
+
