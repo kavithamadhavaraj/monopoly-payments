@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
  }
 
  getErrorMessage() {
-   console.log(this.userID);
    if (this.userID.valid === true) {
      this.valid = true;
    }

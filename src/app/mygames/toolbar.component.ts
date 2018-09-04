@@ -12,8 +12,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 export class ToolbarComponent implements OnInit {
   public profile_path = '../../assets/images/pictures/0.jpg';
   private createGameOptions = {
-    width: '80%',
-    height: '40%',
+    width: '80vh',
+    height: '40vh',
     hasBackdrop: false,
     disableClose: true,
   };

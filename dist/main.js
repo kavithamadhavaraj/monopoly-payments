@@ -193,6 +193,7 @@ function getAuthServiceConfigs() {
     var config = new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"]([
         {
             id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"].PROVIDER_ID,
+            //TODO: Move this key to a separate config file
             provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"]('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
         }
     ]);
@@ -731,7 +732,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='dialog_container'>\n    <h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n    <div mat-dialog-content>\n        <p style=\"font-size : 14px;\">Game name</p>\n        <input placeholder= 'Fools day game' matInput [(ngModel)] = \"game_name\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions>\n            <span *ngIf='reason'>{{reason}}</span>\n            <button mat-raised-button color='primary' (click)=\"register(game_name)\">LET'S ROLL</button>           \n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
+module.exports = "<div class='dialog_container'>\n    <h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n    <div mat-dialog-content>\n        <p style=\"font-size : 14px;\">Game name</p>\n        <input tabindex=\"0\" placeholder= 'Fools day game' matInput [(ngModel)] = \"game_name\"/>\n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-dialog-actions>\n            <span *ngIf='reason'>{{reason}}</span>\n            <button mat-raised-button color='primary' (click)=\"register(game_name)\">LET'S ROLL</button>           \n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n   \n</div> \n"
 
 /***/ }),
 
@@ -884,8 +885,8 @@ var ToolbarComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.profile_path = '../../assets/images/pictures/0.jpg';
         this.createGameOptions = {
-            width: '80%',
-            height: '40%',
+            width: '80vh',
+            height: '40vh',
             hasBackdrop: false,
             disableClose: true,
         };
@@ -953,7 +954,7 @@ var CreateGameDialog = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    color: #cccccc;\t    \n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    height: 66.27%;\twidth: 78.67%;\tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
+module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    color: #cccccc;\t   \n    overflow :'auto';\n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n   \tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n    /* Makes the card scrollable on smaller sized screens */\n    overflow: auto;\n\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
 
 /***/ }),
 
@@ -964,7 +965,7 @@ module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <div class='card_container'>\n    <h1 mat-card-title class='flex_container'>Give yourself a cool player name</h1>\n    <div mat-card-content class='flex_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <mat-form-field>\n            <input matInput #input minlength='4' maxlength=\"15\" [formControl]=\"userID\">\n            <mat-placeholder class='placeholder'>Player name</mat-placeholder>\n            <span matSuffix>{{input.value?.length || 0}}/15</span>\n            <mat-error *ngIf=\"userID.invalid\">\n                <img style=\"position:absolute;\" src='../../assets/images/icons/error.png'/>\n                <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n            </mat-error>\n            <mat-hint *ngIf=\"!userID.invalid && available\"> \n              <img style=\"position:absolute;\" src='../../assets/images/icons/success.png'/>\n              <div style=\"margin-left:18%;  width: 100%;\">Player name available!</div>\n            </mat-hint>\n        </mat-form-field> \n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-card-actions class='flex_container'>\n            <button id='register' mat-raised-button color='primary' [disabled]='!userID.valid' (click)=\"register(input.value)\">CONTINUE</button>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-card-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n</div> \n</body>"
+module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <mat-card class='card_container'>\n    <h1 mat-card-title class='flex_container'>Give yourself a cool player name</h1>\n    <div mat-card-content class='flex_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <mat-form-field>\n            <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"15\" [formControl]=\"userID\">\n            <mat-placeholder class='placeholder'>Player name</mat-placeholder>\n            <span matSuffix>{{input.value?.length || 0}}/15</span>\n            <mat-error *ngIf=\"userID.invalid\">\n                <img style=\"position:absolute;\" src='../../assets/images/icons/error.png'/>\n                <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n            </mat-error>\n            <mat-hint *ngIf=\"!userID.invalid && available\"> \n              <img style=\"position:absolute;\" src='../../assets/images/icons/success.png'/>\n              <div style=\"margin-left:18%;  width: 100%;\">Player name available!</div>\n            </mat-hint>\n        </mat-form-field> \n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-card-actions class='flex_container'>\n        <button id='register' mat-raised-button color='primary' [disabled]='!userID.valid' (click)=\"register(input.value)\">CONTINUE</button>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-card-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n    </mat-card >\n</body>"
 
 /***/ }),
 
@@ -1018,7 +1019,6 @@ var ProfileComponent = /** @class */ (function () {
         });
     };
     ProfileComponent.prototype.getErrorMessage = function () {
-        console.log(this.userID);
         if (this.userID.valid === true) {
             this.valid = true;
         }

@@ -2,7 +2,7 @@
     <h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>
     <div mat-dialog-content>
         <p style="font-size : 14px;">Game name</p>
-        <input placeholder= 'Fools day game' matInput [(ngModel)] = "game_name"/>
+        <input tabindex="0" placeholder= 'Fools day game' matInput [(ngModel)] = "game_name"/>
     </div>
     <span *ngIf="registering == 'nostart'" mat-dialog-actions>
             <span *ngIf='reason'>{{reason}}</span>
