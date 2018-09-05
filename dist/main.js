@@ -193,8 +193,13 @@ function getAuthServiceConfigs() {
     var config = new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"]([
         {
             id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"].PROVIDER_ID,
-            //TODO: Move this key to a separate config file
+            // TODO: Move this key to a separate config file
             provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"]('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
+        },
+        {
+            id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"].PROVIDER_ID,
+            // TODO: Move this key to a separate config file
+            provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"]('261162644517129')
         }
     ]);
     return config;
@@ -545,9 +550,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var LoginService = /** @class */ (function () {
     function LoginService(socialAuthService) {
         this.socialAuthService = socialAuthService;
-        this.socialPlatformProvider = angular5_social_login__WEBPACK_IMPORTED_MODULE_1__["GoogleLoginProvider"].PROVIDER_ID;
+        this.googleProvider = angular5_social_login__WEBPACK_IMPORTED_MODULE_1__["GoogleLoginProvider"].PROVIDER_ID;
+        this.facebookProvider = angular5_social_login__WEBPACK_IMPORTED_MODULE_1__["FacebookLoginProvider"].PROVIDER_ID;
+        this.socialPlatformProvider = null;
     }
-    LoginService.prototype.authenticate = function () {
+    LoginService.prototype.authenticate = function (provider) {
+        if (provider === 'google') {
+            this.socialPlatformProvider = this.googleProvider;
+        }
+        else if (provider === 'facebook') {
+            this.socialPlatformProvider = this.facebookProvider;
+        }
         return this.socialAuthService.signIn(this.socialPlatformProvider);
     };
     LoginService.prototype.getUser = function () {
@@ -578,7 +591,7 @@ var LoginService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n.payments {\t\n    position: relative;\n    right:50%;\n    left: 30%;\n    top: 50.97%;\n    bottom: 45.43%;   \n    height: 3.6%;\twidth: 41.87%;\tcolor: #11BA78;\tfont-family: \"Arial Rounded MT Bold\";\tfont-size: 16px;\tletter-spacing: 10px;\tline-height: 24px;}\n"
+module.exports = "body{\n    background-image: url('transparent_background.png');\n}\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n}\nimg{\n    height: 20%;\n    width: 50%;\n    margin: 35%;\n}\nbutton{\n    margin: 4%;\n    height: 6.6%;\n    width: 90%;\n    border-radius: 4px;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    color: #FFFFFF;\n    font-size: 16px;\tfont-weight: 600;\t\n}\n#redbutton{\n    background-color: #EA4335;\n}\n#bluebutton{\n    background-color: #4267B2;\n}"
 
 /***/ }),
 
@@ -589,7 +602,7 @@ module.exports = "\n\n.payments {\t\n    position: relative;\n    right:50%;\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='mat-app-background'>\n<div class='payments'>\n  PAYMENTS\n</div>\n<button mat-raised-button color=\"primary\" (click) = 'googleLogin()'>Google Login</button>\n<button mat-raised-button color=\"primary\" (click) = 'fbLogin()' >FB Login</button>\n</body>"
+module.exports = "<body>\n<div class='flex_container'>\n<img src='../../assets/images/pictures/logo.png'/>\n<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>SIGN IN USING GOOGLE</button>\n<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >SIGN IN USING FACEBOOK</button>\n</div>\n</body>"
 
 /***/ }),
 
@@ -629,12 +642,16 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.googleLogin = function () {
         var _this = this;
         console.log('googlelogin');
-        var response = this.loginService.authenticate().then(function (response) {
+        this.loginService.authenticate('google').then(function (response) {
             _this.router.navigate(['mygames', response.name], { replaceUrl: true });
         });
     };
     LoginComponent.prototype.fbLogin = function () {
+        var _this = this;
         console.log('fblogin');
+        this.loginService.authenticate('facebook').then(function (response) {
+            _this.router.navigate(['mygames', response.name], { replaceUrl: true });
+        });
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -710,6 +727,7 @@ var MainComponent = /** @class */ (function () {
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loginService.getUser().subscribe(function (userData) {
+            userData = null;
             if (userData != null) {
                 var userID_1 = _this.dataService.findUserID(userData);
                 if (userID_1 != null) {
@@ -1014,7 +1032,7 @@ var CreateGameDialog = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n    color: #cccccc;\t   \n    overflow :'auto';\n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n   \tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n    /* Makes the card scrollable on smaller sized screens */\n    overflow: auto;\n\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
+module.exports = "body{\n    background-image: url('transparent_background.png');\n}\n\n.welcome {\t\n   margin-top: 10%;\n   margin-bottom: 5%;\n   color: #11BA78;\tfont-family: Barlow;\n   font-size: 20px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center;}\n\n.profile_pic {\n    width: 80%;\n    border-radius: 50%;   \n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;  \n    margin-top: 8%;\n  }\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n    color: #cccccc;\t   \n    overflow :'auto';\n}\n\n.card_container{\n    background-color: #232C3D;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n   \tborder-radius: 4px;\n    margin-left:10%;\n    margin-right:10%;\n    margin-top:5%;\n    /* Makes the card scrollable on smaller sized screens */\n    overflow: auto;\n\n}\n\nh1.flex_container.mat-card-title{\n    padding-top: 10%;\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 24px;\ttext-align: center;   \n}\n\nh3{\n    margin-top: 0%\n}\n\n.spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 30px;\n}\n\n#register{\n    border-radius: 4px;\n    width:68%;\n    margin-top:15%;\n}\n\n.mat-error{\n    margin-top:5%;\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    margin-top:5%;\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\n"
 
 /***/ }),
 

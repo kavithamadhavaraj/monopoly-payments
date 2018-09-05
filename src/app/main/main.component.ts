@@ -12,22 +12,20 @@ export class MainComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router, private dataService: DataService, private ngZone: NgZone) { }
   ngOnInit() {
-      this.loginService.getUser().subscribe((userData) =>
-      {
+      this.loginService.getUser().subscribe((userData) => {
+        userData = null;
         if (userData != null) {
           const userID = this.dataService.findUserID(userData);
           if (userID != null) {
             this.ngZone.run(() => {
               this.router.navigate(['mygames', userID], { replaceUrl: true });
             });
-          }
-          else {
+          } else {
             this.ngZone.run(() => {
               this.router.navigate(['profile'], { replaceUrl: true });
             });
           }
-        }
-        else {
+        } else {
           this.ngZone.run(() => {
             this.router.navigate(['login'], { replaceUrl: true });
           });

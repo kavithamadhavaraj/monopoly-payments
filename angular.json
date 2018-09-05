@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "monopoly-money": {
+    "monopoly-payments": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -53,18 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "monopoly-money:build"
+            "browserTarget": "monopoly-payments:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "monopoly-money:build:production"
+              "browserTarget": "monopoly-payments:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "monopoly-money:build"
+            "browserTarget": "monopoly-payments:build"
           }
         },
         "test": {
@@ -101,7 +101,7 @@
         }
       }
     },
-    "monopoly-money-e2e": {
+    "monopoly-payments-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -109,11 +109,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "monopoly-money:serve"
+            "devServerTarget": "monopoly-payments:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "monopoly-money:serve:production"
+              "devServerTarget": "monopoly-payments:serve:production"
             }
           }
         },
@@ -129,5 +129,5 @@
       }
     }
   },
-  "defaultProject": "monopoly-money"
+  "defaultProject": "monopoly-payments"
 }

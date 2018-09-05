@@ -21,7 +21,7 @@ export class ToolbarComponent implements OnInit {
   };
 
   constructor(private loginService: LoginService, private dialog: MatDialog) { }
-  userData:SocialUser;
+  userData: SocialUser;
   @Input() context = '';
   ngOnInit() {
     this.loginService.getUser().subscribe((userData) => this.userData = userData);
@@ -34,7 +34,6 @@ export class ToolbarComponent implements OnInit {
   joinGame() {
     console.log('You joined');
   }
-
 }
 
 
@@ -84,8 +83,7 @@ export class CreateGameDialog implements OnInit {
             console.log(response);
             this.dialogRef.close();
           });
-        }
-        else {
+        } else {
           this.gameName.setErrors({'unavailable' : true});
         }
       }).catch(err => this.gameName.setErrors({ 'tryagain' : true}));

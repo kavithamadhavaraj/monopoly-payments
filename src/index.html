@@ -4,14 +4,29 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Barlow:400i,600" rel="stylesheet">
   <meta charset="utf-8">
-  <title>Monopoly Money</title>
+  <title>Monopoly Payments</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="./assets/styles/indigo-pink.css" rel="stylesheet">  
-
+  <link href="./assets/styles/indigo-pink.css" rel="stylesheet"> 
+  <style>
+    #splash{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+    #splash_logo{
+      margin-top: 50%;
+      padding-left: 25%;
+      height: 30%;
+      width: 50%;
+    }
+</style> 
 </head>
 <body>
-  <app-main></app-main>
+  <app-main>
+     <img id="splash" src='./assets/images/pictures/transparent_background.png'>
+    <img id="splash_logo" src='../../assets/images/pictures/logo.png'/>
+  </app-main>
 </body>
 </html>

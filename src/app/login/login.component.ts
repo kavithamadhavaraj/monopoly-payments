@@ -19,14 +19,16 @@ export class LoginComponent implements OnInit {
 
   googleLogin() {
     console.log('googlelogin');
-    const response = this.loginService.authenticate().then((response:SocialUser) =>
-    {
+    this.loginService.authenticate('google').then((response: SocialUser) => {
       this.router.navigate(['mygames', response.name], { replaceUrl: true });
     });
   }
 
   fbLogin() {
     console.log('fblogin');
+    this.loginService.authenticate('facebook').then((response: SocialUser) => {
+      this.router.navigate(['mygames', response.name], { replaceUrl: true });
+    });
   }
 
 }

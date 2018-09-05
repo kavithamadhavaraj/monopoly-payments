@@ -13,7 +13,7 @@ import { MatButtonModule, MatCardModule, MatTabsModule, MatDialogModule,
         MatIconModule, MatToolbarModule, MatMenuModule,
         MatFormFieldModule, MatInputModule} from '@angular/material';
 import { GenericFilterPipe } from './generic-filter.pipe';
-import { GoogleLoginProvider, SocialLoginModule, AuthServiceConfig} from 'angular5-social-login';
+import { GoogleLoginProvider, SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angular5-social-login';
 import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 @NgModule({
@@ -62,8 +62,13 @@ export function getAuthServiceConfigs() {
       [
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          //TODO: Move this key to a separate config file
+          // TODO: Move this key to a separate config file
           provider: new GoogleLoginProvider('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
+        },
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          // TODO: Move this key to a separate config file
+          provider: new FacebookLoginProvider('261162644517129')
         }
       ]);
   return config;
