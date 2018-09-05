@@ -1,7 +1,7 @@
 <mat-toolbar class='toolbar'>
     <img class='profile_pic' [src]='profile_path'/>
     <span class='context'>{{context}}</span>
-    <span [matMenuTriggerFor]="menu" ><img class='add_new' src='../../assets/images/icons/add_new.png'/></span>
+    <span [matMenuTriggerFor]="menu" ><img class='add_new' src='../../assets/icons/add_new.png'/></span>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
         <button (click) = 'createGame()' mat-menu-item>Create new game </button>

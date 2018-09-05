@@ -10,11 +10,11 @@
             <mat-placeholder class='placeholder'>Player name</mat-placeholder>
             <span matSuffix>{{input.value?.length || 0}}/15</span>
             <mat-error *ngIf="userID.invalid">
-                <img style="position:absolute;" src='../../assets/images/icons/error.png'/>
+                <img style="position:absolute;" src='../../assets/icons/error.png'/>
                 <div style="margin-left:10%;">{{getErrorMessage()}}</div>
             </mat-error>
             <mat-hint *ngIf="!userID.invalid && available"> 
-              <img style="position:absolute;" src='../../assets/images/icons/success.png'/>
+              <img style="position:absolute;" src='../../assets/icons/success.png'/>
               <div style="margin-left:18%;  width: 100%;">Player name available!</div>
             </mat-hint>
         </mat-form-field> 

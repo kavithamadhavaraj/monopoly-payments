@@ -1,5 +1,36 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
 /***/ "./src/$$_lazy_route_resource lazy recursive":
 /*!**********************************************************!*\
   !*** ./src/$$_lazy_route_resource lazy namespace object ***!
@@ -121,12 +152,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! angular5-social-login */ "./node_modules/angular5-social-login/angular5-social-login.umd.js");
 /* harmony import */ var angular5_social_login__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(angular5_social_login__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _mygames_toolbar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./mygames/toolbar.component */ "./src/app/mygames/toolbar.component.ts");
+/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/service-worker */ "./node_modules/@angular/service-worker/fesm5/service-worker.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -160,6 +197,7 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"],
@@ -175,7 +213,8 @@ var AppModule = /** @class */ (function () {
                 angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["SocialLoginModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"],
+                _angular_service_worker__WEBPACK_IMPORTED_MODULE_14__["ServiceWorkerModule"].register('ngsw-worker.js', { enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].production })
             ],
             providers: [
                 { provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs },
@@ -194,12 +233,12 @@ function getAuthServiceConfigs() {
         {
             id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"].PROVIDER_ID,
             // TODO: Move this key to a separate config file
-            provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"]('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
+            provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"](_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].google_client_id)
         },
         {
             id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"].PROVIDER_ID,
             // TODO: Move this key to a separate config file
-            provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"]('261162644517129')
+            provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"](_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].facebook_client_id)
         }
     ]);
     return config;
@@ -591,7 +630,7 @@ var LoginService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body{\n    background-image: url('transparent_background.png');\n}\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n}\nimg{\n    height: 20%;\n    width: 50%;\n    margin: 35%;\n}\nbutton{\n    margin: 4%;\n    height: 6.6%;\n    width: 90%;\n    border-radius: 4px;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    color: #FFFFFF;\n    font-size: 16px;\tfont-weight: 600;\t\n}\n#redbutton{\n    background-color: #EA4335;\n}\n#bluebutton{\n    background-color: #4267B2;\n}"
+module.exports = "body{\n    background-image: url('transparent_background.png');\n}\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n}\nimg{\n    height: 20%;\n    width: 50%;\n    margin: 35%;\n}\nbutton{\n    margin: 4%;\n    height: 6.6%;\n    width: 90%;\n    border-radius: 4px;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    color: #FFFFFF;\n    font-size: 16px;\tfont-weight: 600;\t\n}\n#redbutton{\n    background-color: #EA4335;\n}\n#bluebutton{\n    background-color: #4267B2;\n}\nmat-icon{\n    float:left;\n    padding:2%;\n}"
 
 /***/ }),
 
@@ -602,7 +641,7 @@ module.exports = "body{\n    background-image: url('transparent_background.png')
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n<div class='flex_container'>\n<img src='../../assets/images/pictures/logo.png'/>\n<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>SIGN IN USING GOOGLE</button>\n<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >SIGN IN USING FACEBOOK</button>\n</div>\n</body>"
+module.exports = "<body>\n<div class='flex_container'>\n<img src='../../assets/images/logo.png'/>\n<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>\n        <mat-icon svgIcon='google-icon'></mat-icon> SIGN IN USING GOOGLE\n</button>\n<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >\n        <mat-icon svgIcon='facebook-icon'></mat-icon> SIGN IN USING FACEBOOK\n</button>\n</div>\n</body>"
 
 /***/ }),
 
@@ -619,6 +658,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _login_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../login.service */ "./src/app/login.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -631,11 +672,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 // import * as oauth from 'oauth';
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(router, loginService) {
+    function LoginComponent(router, iconRegistry, loginService, sanitizer) {
         this.router = router;
+        this.iconRegistry = iconRegistry;
         this.loginService = loginService;
+        this.sanitizer = sanitizer;
+        this.iconRegistry.addSvgIcon('google-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/blood-sample.svg'));
+        this.iconRegistry.addSvgIcon('facebook-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/blood-sample.svg'));
+        this.iconRegistry.getNamedSvgIcon('google-icon').subscribe(function (e) { console.log(e); });
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -659,7 +707,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconRegistry"],
+            _login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -727,7 +776,6 @@ var MainComponent = /** @class */ (function () {
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loginService.getUser().subscribe(function (userData) {
-            userData = null;
             if (userData != null) {
                 var userID_1 = _this.dataService.findUserID(userData);
                 if (userID_1 != null) {
@@ -781,7 +829,7 @@ module.exports = ".spinner{\n    display: flex;\n    flex-direction: column;\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n<div mat-dialog-content class='flex_container'>\n    <mat-form-field>\n        <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"20\" [formControl]=\"gameName\">\n        <mat-placeholder class='placeholder'>Game name</mat-placeholder>\n        <span matSuffix>{{input.value?.length || 0}}/20</span>\n        <mat-error *ngIf=\"gameName.invalid\">\n            <img style=\"position:absolute;\" src='../../assets/images/icons/error.png'/>\n            <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n        </mat-error>\n        <mat-hint *ngIf=\"!gameName.invalid && available\"> \n            <img style=\"position:absolute;\" src='../../assets/images/icons/success.png'/>\n            <div style=\"margin-left:18%;  width: 100%;\">Game name available!</div>\n        </mat-hint>\n    </mat-form-field> \n</div>\n<span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner flex_container'>\n        <mat-progress-spinner diameter='40' color=\"accent\" mode=\"indeterminate\"></mat-progress-spinner>\n</span>\n<span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='flex_container'>\n        <button mat-raised-button id='register' color='primary' [disabled]='!gameName.valid' (click)= \"register(input.value)\"> LET'S ROLL </button>           \n</span>\n\n\n"
+module.exports = "\n<h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n<div mat-dialog-content class='flex_container'>\n    <mat-form-field>\n        <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"20\" [formControl]=\"gameName\">\n        <mat-placeholder class='placeholder'>Game name</mat-placeholder>\n        <span matSuffix>{{input.value?.length || 0}}/20</span>\n        <mat-error *ngIf=\"gameName.invalid\">\n            <img style=\"position:absolute;\" src='../../assets/icons/error.png'/>\n            <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n        </mat-error>\n        <mat-hint *ngIf=\"!gameName.invalid && available\"> \n            <img style=\"position:absolute;\" src='../../assets/icons/success.png'/>\n            <div style=\"margin-left:18%;  width: 100%;\">Game name available!</div>\n        </mat-hint>\n    </mat-form-field> \n</div>\n<span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner flex_container'>\n        <mat-progress-spinner diameter='40' color=\"accent\" mode=\"indeterminate\"></mat-progress-spinner>\n</span>\n<span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='flex_container'>\n        <button mat-raised-button id='register' color='primary' [disabled]='!gameName.valid' (click)= \"register(input.value)\"> LET'S ROLL </button>           \n</span>\n\n\n"
 
 /***/ }),
 
@@ -803,7 +851,7 @@ module.exports = ".nogame-container{\n    display: flex;\n    flex-direction: co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group >\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame-container' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<img id=\"monopoly-man\" src='../../assets/images/pictures/monopoly-man.png'/>\n\t\t\t\t<span class='nogame'>Start playing by tapping</span>\n\t\t\t\t<img src='../../assets/images/icons/add_new.png'/>\n\t\t\t\t<span class='nogame'>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line id='player_gist'> \n\t\t\t\t\t\t<img style = 'margin-right: 1.5%;\n\t\t\t\t\t\tmargin-top: 1%;' src='../../assets/images/icons/player_icon.png'/>  You and \n\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span>\n\t\t\t\t\t</p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame-container' *ngIf='(gameList|genericFilter:\"active\":false).length == 0'> \n\t\t\t\t\t<img id=\"monopoly-man\" src='../../assets/images/pictures/monopoly-man.png'/>\n\t\t\t\t\t<span class='nogame'>Start playing by tapping</span>\n\t\t\t\t\t<img src='../../assets/images/icons/add_new.png'/>\n\t\t\t\t\t<span class='nogame'>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line id='player_gist'> \n\t\t\t\t\t\t\t<img style = 'margin-right: 1.5%;\n\t\t\t\t\t\t\tmargin-top: 1%;' src='../../assets/images/icons/player_icon.png'/> You and \n\t\t\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
+module.exports = "<toolbar context = \"MY GAMES\" > </toolbar>\n<mat-tab-group >\n\t<mat-tab label=\"Active\">\n\t\t<div class='nogame-container' *ngIf='(gameList|genericFilter:\"active\":true).length == 0'> \n\t\t\t\t<img id=\"monopoly-man\" src='../../assets/images/monopoly-man.png'/>\n\t\t\t\t<span class='nogame'>Start playing by tapping</span>\n\t\t\t\t<img src='../../assets/icons/add_new.png'/>\n\t\t\t\t<span class='nogame'>icon on top</span>\n\t\t</div>\n\t\t<mat-list>\n\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":true' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t<p mat-line id='player_gist'> \n\t\t\t\t\t\t<img style = 'margin-right: 1.5%;\n\t\t\t\t\t\tmargin-top: 1%;' src='../../assets/icons/player_icon.png'/>  You and \n\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span>\n\t\t\t\t\t</p>\n\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t</mat-list-item>\n\t\t</mat-list>\n\t</mat-tab>\n\t<mat-tab label=\"Completed\">\n\t\t\t<div class='nogame-container' *ngIf='(gameList|genericFilter:\"active\":false).length == 0'> \n\t\t\t\t\t<img id=\"monopoly-man\" src='../../assets/images/monopoly-man.png'/>\n\t\t\t\t\t<span class='nogame'>Start playing by tapping</span>\n\t\t\t\t\t<img src='../../assets/icons/add_new.png'/>\n\t\t\t\t\t<span class='nogame'>icon on top</span>\n\t\t\t</div>\n\t\t\t<mat-list>\n\t\t\t\t\t<mat-list-item *ngFor='let gameInfo of gameList|genericFilter:\"active\":false' routerLink='/game/{{gameInfo.gameID}}/{{thisPlayer}}'>\n\t\t\t\t\t\t<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>\n\t\t\t\t\t\t<p mat-line id='player_gist'> \n\t\t\t\t\t\t\t<img style = 'margin-right: 1.5%;\n\t\t\t\t\t\t\tmargin-top: 1%;' src='../../assets/icons/player_icon.png'/> You and \n\t\t\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length > 3\"> {{gameInfo.players.length - 2}} friends </span>\n\t\t\t\t\t\t\t\t<span *ngIf=\"gameInfo.players.length <= 3\">{{getPlayerGist(gameInfo.players)}}</span>\n\t\t\t\t\t\t\t\t<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>\n\t\t\t\t\t\t<mat-divider></mat-divider>\n\t\t\t\t\t</mat-list-item>\n\t\t\t</mat-list>\n\t</mat-tab>\n</mat-tab-group>\n"
 
 /***/ }),
 
@@ -887,7 +935,7 @@ module.exports = ".toolbar{\n    display: flex;\n    justify-content: space-betw
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class='toolbar'>\n    <img class='profile_pic' [src]='profile_path'/>\n    <span class='context'>{{context}}</span>\n    <span [matMenuTriggerFor]=\"menu\" ><img class='add_new' src='../../assets/images/icons/add_new.png'/></span>\n</mat-toolbar>\n<mat-menu #menu=\"matMenu\">\n        <button (click) = 'createGame()' mat-menu-item>Create new game </button>\n        <mat-divider> </mat-divider>\n        <button (click) = 'joinGame()' mat-menu-item>Join existing game</button>\n</mat-menu>"
+module.exports = "<mat-toolbar class='toolbar'>\n    <img class='profile_pic' [src]='profile_path'/>\n    <span class='context'>{{context}}</span>\n    <span [matMenuTriggerFor]=\"menu\" ><img class='add_new' src='../../assets/icons/add_new.png'/></span>\n</mat-toolbar>\n<mat-menu #menu=\"matMenu\">\n        <button (click) = 'createGame()' mat-menu-item>Create new game </button>\n        <mat-divider> </mat-divider>\n        <button (click) = 'joinGame()' mat-menu-item>Join existing game</button>\n</mat-menu>"
 
 /***/ }),
 
@@ -927,7 +975,7 @@ var ToolbarComponent = /** @class */ (function () {
     function ToolbarComponent(loginService, dialog) {
         this.loginService = loginService;
         this.dialog = dialog;
-        this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.profile_path = '../../assets/images/0.jpg';
         this.createGameOptions = {
             hasBackdrop: true,
             disableClose: true,
@@ -1043,7 +1091,7 @@ module.exports = "body{\n    background-image: url('transparent_background.png')
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <mat-card class='card_container'>\n    <h1 mat-card-title class='flex_container'>Give yourself a cool player name</h1>\n    <div mat-card-content class='flex_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <mat-form-field>\n            <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"15\" [formControl]=\"userID\">\n            <mat-placeholder class='placeholder'>Player name</mat-placeholder>\n            <span matSuffix>{{input.value?.length || 0}}/15</span>\n            <mat-error *ngIf=\"userID.invalid\">\n                <img style=\"position:absolute;\" src='../../assets/images/icons/error.png'/>\n                <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n            </mat-error>\n            <mat-hint *ngIf=\"!userID.invalid && available\"> \n              <img style=\"position:absolute;\" src='../../assets/images/icons/success.png'/>\n              <div style=\"margin-left:18%;  width: 100%;\">Player name available!</div>\n            </mat-hint>\n        </mat-form-field> \n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-card-actions class='flex_container'>\n        <button id='register' mat-raised-button color='primary' [disabled]='!userID.valid' (click)=\"register(input.value)\">CONTINUE</button>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-card-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n    </mat-card >\n</body>"
+module.exports = "<body>\n  <div class='welcome'>Welcome to Monopoly Payments</div>\n  <mat-card class='card_container'>\n    <h1 mat-card-title class='flex_container'>Give yourself a cool player name</h1>\n    <div mat-card-content class='flex_container'>\n        <span><img class='profile_pic' [src]='profile_path'/></span>  \n        <h3>{{userData.name}}</h3>\n        <mat-form-field>\n            <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"15\" [formControl]=\"userID\">\n            <mat-placeholder class='placeholder'>Player name</mat-placeholder>\n            <span matSuffix>{{input.value?.length || 0}}/15</span>\n            <mat-error *ngIf=\"userID.invalid\">\n                <img style=\"position:absolute;\" src='../../assets/icons/error.png'/>\n                <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n            </mat-error>\n            <mat-hint *ngIf=\"!userID.invalid && available\"> \n              <img style=\"position:absolute;\" src='../../assets/icons/success.png'/>\n              <div style=\"margin-left:18%;  width: 100%;\">Player name available!</div>\n            </mat-hint>\n        </mat-form-field> \n    </div>\n    <span *ngIf=\"registering == 'nostart'\" mat-card-actions class='flex_container'>\n        <button id='register' mat-raised-button color='primary' [disabled]='!userID.valid' (click)=\"register(input.value)\">CONTINUE</button>\n    </span>\n    <span *ngIf=\"registering == 'start'\" mat-card-actions class='spinner'>\n            <mat-progress-spinner diameter='40'\n            color=\"accent\"\n            mode=\"indeterminate\">\n            </mat-progress-spinner>\n    </span>\n    </mat-card >\n</body>"
 
 /***/ }),
 
@@ -1082,7 +1130,7 @@ var ProfileComponent = /** @class */ (function () {
         this.ngZone = ngZone;
         this.loginService = loginService;
         this.dataService = dataService;
-        this.profile_path = '../../assets/images/pictures/0.jpg';
+        this.profile_path = '../../assets/images/0.jpg';
         this.userData = null;
         this.registering = 'nostart';
         this.valid = false;
@@ -1157,7 +1205,9 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false
+    production: false,
+    google_client_id: '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com',
+    facebook_client_id: '261162644517129'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

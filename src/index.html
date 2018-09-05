@@ -14,6 +14,7 @@
       position: absolute;
       height: 100%;
       width: 100%;
+      /*background-color: #212431;*/
     }
     #splash_logo{
       margin-top: 50%;
@@ -22,11 +23,14 @@
       width: 50%;
     }
 </style> 
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
 </head>
 <body>
-  <app-main>
-     <img id="splash" src='./assets/images/pictures/transparent_background.png'>
-    <img id="splash_logo" src='../../assets/images/pictures/logo.png'/>
-  </app-main>
+    <app-main>
+       <img id="splash" src='./assets/images/transparent_background.png'>
+       <img id="splash_logo" src='./assets/images/logo.png'/>
+     </app-main>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 </html>

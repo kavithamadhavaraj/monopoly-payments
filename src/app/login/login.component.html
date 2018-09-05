@@ -1,7 +1,11 @@
 <body>
 <div class='flex_container'>
-<img src='../../assets/images/pictures/logo.png'/>
-<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>SIGN IN USING GOOGLE</button>
-<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >SIGN IN USING FACEBOOK</button>
+<img src='../../assets/images/logo.png'/>
+<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>
+        <mat-icon svgIcon='google-icon'></mat-icon> SIGN IN USING GOOGLE
+</button>
+<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >
+        <mat-icon svgIcon='facebook-icon'></mat-icon> SIGN IN USING FACEBOOK
+</button>
 </div>
 </body>

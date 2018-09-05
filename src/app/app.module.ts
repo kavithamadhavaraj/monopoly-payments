@@ -16,6 +16,10 @@ import { GenericFilterPipe } from './generic-filter.pipe';
 import { GoogleLoginProvider, SocialLoginModule, AuthServiceConfig, FacebookLoginProvider} from 'angular5-social-login';
 import { ToolbarComponent, CreateGameDialog } from './mygames/toolbar.component';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     MyGamesComponent,
@@ -30,6 +34,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -45,7 +50,8 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     SocialLoginModule,
     MatMenuModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfigs},
@@ -63,12 +69,12 @@ export function getAuthServiceConfigs() {
         {
           id: GoogleLoginProvider.PROVIDER_ID,
           // TODO: Move this key to a separate config file
-          provider: new GoogleLoginProvider('462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com')
+          provider: new GoogleLoginProvider(environment.google_client_id)
         },
         {
           id: FacebookLoginProvider.PROVIDER_ID,
           // TODO: Move this key to a separate config file
-          provider: new FacebookLoginProvider('261162644517129')
+          provider: new FacebookLoginProvider(environment.facebook_client_id)
         }
       ]);
   return config;

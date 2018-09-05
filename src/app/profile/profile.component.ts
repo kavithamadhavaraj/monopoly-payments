@@ -9,7 +9,7 @@ import { FormControl, Validators} from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public profile_path = '../../assets/images/pictures/0.jpg';
+  public profile_path = '../../assets/images/0.jpg';
   public userData = null;
   public registering = 'nostart';
   public valid = false;

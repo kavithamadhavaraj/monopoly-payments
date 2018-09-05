@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 
 export class ToolbarComponent implements OnInit {
-  public profile_path = '../../assets/images/pictures/0.jpg';
+  public profile_path = '../../assets/images/0.jpg';
   private createGameOptions = {
     hasBackdrop: true,
     disableClose: true,

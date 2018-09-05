@@ -1,5 +1,5 @@
 body{
-    background-image: url("../../assets/images/pictures/transparent_background.png");
+    background-image: url("../../assets/images/transparent_background.png");
 }
 .flex_container{
     display: flex;
@@ -30,4 +30,9 @@ button{
 
 #bluebutton{
     background-color: #4267B2;
+}
+
+mat-icon{
+    float:left;
+    padding:2%;
 }

@@ -6,11 +6,11 @@
         <mat-placeholder class='placeholder'>Game name</mat-placeholder>
         <span matSuffix>{{input.value?.length || 0}}/20</span>
         <mat-error *ngIf="gameName.invalid">
-            <img style="position:absolute;" src='../../assets/images/icons/error.png'/>
+            <img style="position:absolute;" src='../../assets/icons/error.png'/>
             <div style="margin-left:10%;">{{getErrorMessage()}}</div>
         </mat-error>
         <mat-hint *ngIf="!gameName.invalid && available"> 
-            <img style="position:absolute;" src='../../assets/images/icons/success.png'/>
+            <img style="position:absolute;" src='../../assets/icons/success.png'/>
             <div style="margin-left:18%;  width: 100%;">Game name available!</div>
         </mat-hint>
     </mat-form-field> 

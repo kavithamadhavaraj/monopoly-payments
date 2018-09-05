@@ -2,9 +2,9 @@
 <mat-tab-group >
 	<mat-tab label="Active">
 		<div class='nogame-container' *ngIf='(gameList|genericFilter:"active":true).length == 0'> 
-				<img id="monopoly-man" src='../../assets/images/pictures/monopoly-man.png'/>
+				<img id="monopoly-man" src='../../assets/images/monopoly-man.png'/>
 				<span class='nogame'>Start playing by tapping</span>
-				<img src='../../assets/images/icons/add_new.png'/>
+				<img src='../../assets/icons/add_new.png'/>
 				<span class='nogame'>icon on top</span>
 		</div>
 		<mat-list>
@@ -12,7 +12,7 @@
 					<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>
 					<p mat-line id='player_gist'> 
 						<img style = 'margin-right: 1.5%;
-						margin-top: 1%;' src='../../assets/images/icons/player_icon.png'/>  You and 
+						margin-top: 1%;' src='../../assets/icons/player_icon.png'/>  You and 
 						<span *ngIf="gameInfo.players.length > 3"> {{gameInfo.players.length - 2}} friends </span>
 						<span *ngIf="gameInfo.players.length <= 3">{{getPlayerGist(gameInfo.players)}}</span>
 						<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span>
@@ -23,9 +23,9 @@
 	</mat-tab>
 	<mat-tab label="Completed">
 			<div class='nogame-container' *ngIf='(gameList|genericFilter:"active":false).length == 0'> 
-					<img id="monopoly-man" src='../../assets/images/pictures/monopoly-man.png'/>
+					<img id="monopoly-man" src='../../assets/images/monopoly-man.png'/>
 					<span class='nogame'>Start playing by tapping</span>
-					<img src='../../assets/images/icons/add_new.png'/>
+					<img src='../../assets/icons/add_new.png'/>
 					<span class='nogame'>icon on top</span>
 			</div>
 			<mat-list>
@@ -33,7 +33,7 @@
 						<h4 mat-line id='game_id'>{{gameInfo.gameID}}</h4>
 						<p mat-line id='player_gist'> 
 							<img style = 'margin-right: 1.5%;
-							margin-top: 1%;' src='../../assets/images/icons/player_icon.png'/> You and 
+							margin-top: 1%;' src='../../assets/icons/player_icon.png'/> You and 
 								<span *ngIf="gameInfo.players.length > 3"> {{gameInfo.players.length - 2}} friends </span>
 								<span *ngIf="gameInfo.players.length <= 3">{{getPlayerGist(gameInfo.players)}}</span>
 								<span style='float:right;' id='created_on'>{{gameInfo.active_since | date}}</span> </p>
