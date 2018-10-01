@@ -1,5 +1,5 @@
 
-<h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>
+<h1 mat-dialog-title ><mat-icon (click)=closeDialog() svgIcon='white-close' style='transform: scale(0.7);'></mat-icon>Create new game</h1>
 <div mat-dialog-content class='flex_container'>
     <mat-form-field>
         <input tabindex="0" matInput #input minlength='4' maxlength="20" [formControl]="gameName">

@@ -21,7 +21,7 @@
 h1.mat-dialog-title{
     padding-left: 5%;
     padding-right: 5%;
-    color: #FFFFFF;	font-family: Barlow;	font-size: 16px;	font-weight: 600;	line-height: 30px;	text-align: center; 
+    color: #FFFFFF;	font-family: Barlow;	font-size: 16px;	font-weight: 600;	line-height: 30px;	
 }
 
 #register{
@@ -40,4 +40,11 @@ h1.mat-dialog-title{
 
 .mat-form-field-appearance-legacy .mat-form-field-wrapper{
     margin-bottom: 28%;
+}
+
+mat-icon{
+    float:left;
+    padding:2%;
+    position: relative;
+    left: -10%;
 }

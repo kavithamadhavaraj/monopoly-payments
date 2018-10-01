@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { Validators, FormControl} from '@angular/forms';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'toolbar',
@@ -49,7 +51,9 @@ export class CreateGameDialog implements OnInit {
   public gameName = new FormControl('', [Validators.minLength(4), Validators.required, Validators.pattern('^[A-Z\\a-z\\d]+$')]);
   constructor(private dialogRef: MatDialogRef<CreateGameDialog>,
      private ngZone: NgZone, private dataService: DataService,
-     private router: Router) {
+     private router: Router, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+      this.iconRegistry.addSvgIcon('white-close', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/close-white.svg'));
+      this.iconRegistry.addSvgIcon('dice', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/dice.svg'));
   }
 
   ngOnInit() {

@@ -51,7 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production === 'true' ? true : false  })
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfigs},
@@ -68,12 +68,10 @@ export function getAuthServiceConfigs() {
       [
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          // TODO: Move this key to a separate config file
           provider: new GoogleLoginProvider(environment.google_client_id)
         },
         {
           id: FacebookLoginProvider.PROVIDER_ID,
-          // TODO: Move this key to a separate config file
           provider: new FacebookLoginProvider(environment.facebook_client_id)
         }
       ]);

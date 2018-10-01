@@ -14,9 +14,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LoginComponent implements OnInit {
   constructor(private router: Router, private iconRegistry: MatIconRegistry, 
     private loginService: LoginService, private sanitizer: DomSanitizer) {
-      this.iconRegistry.addSvgIcon('google-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/blood-sample.svg'));
-      this.iconRegistry.addSvgIcon('facebook-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/blood-sample.svg'));
-      this.iconRegistry.getNamedSvgIcon('google-icon').subscribe((e) => {console.log(e); });
+      this.iconRegistry.addSvgIcon('google-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/google.svg'));
+      this.iconRegistry.addSvgIcon('facebook-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/fb.svg'));
    }
 
   ngOnInit() {

@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   register(userID: string) {
     this.userID.markAsTouched();
     if (this.getErrorMessage() == null) {
-      this.dataService.checkAvailability(userID).then(available => {
+      this.dataService.checkAvailability(userID).subscribe(available => {
         this.available = available;
         if (this.available === true) {
           this.registering = 'start';
@@ -50,11 +50,10 @@ export class ProfileComponent implements OnInit {
               this.router.navigate(['mygames', userID], { replaceUrl: true });
             });
           });
-        }
-        else{
+        } else {
           this.userID.setErrors({'unavailable' : true});
         }
-      }).catch(err => this.userID.setErrors({ 'tryagain' : true}));
+      });
     }
   }
 }

@@ -214,7 +214,7 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatMenuModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"],
-                _angular_service_worker__WEBPACK_IMPORTED_MODULE_14__["ServiceWorkerModule"].register('ngsw-worker.js', { enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].production })
+                _angular_service_worker__WEBPACK_IMPORTED_MODULE_14__["ServiceWorkerModule"].register('ngsw-worker.js', { enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].production === 'true' ? true : false })
             ],
             providers: [
                 { provide: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"], useFactory: getAuthServiceConfigs },
@@ -232,12 +232,10 @@ function getAuthServiceConfigs() {
     var config = new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["AuthServiceConfig"]([
         {
             id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"].PROVIDER_ID,
-            // TODO: Move this key to a separate config file
             provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["GoogleLoginProvider"](_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].google_client_id)
         },
         {
             id: angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"].PROVIDER_ID,
-            // TODO: Move this key to a separate config file
             provider: new angular5_social_login__WEBPACK_IMPORTED_MODULE_12__["FacebookLoginProvider"](_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].facebook_client_id)
         }
     ]);
@@ -259,16 +257,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _game_detail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game-detail */ "./src/app/game-detail.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 
 var DataService = /** @class */ (function () {
-    function DataService() {
+    function DataService(http) {
+        this.http = http;
         this.gameList = null;
         this.gameData = new _game_detail__WEBPACK_IMPORTED_MODULE_1__["GameData"]();
         this.userList = [];
@@ -333,16 +337,9 @@ var DataService = /** @class */ (function () {
             }];
         return this.gameData;
     };
-    DataService.prototype.checkAvailability = function (userID) {
-        var response = new Promise(function (resolve, reject) {
-            if ((userID === '') || (userID === undefined)) {
-                reject('UserID cannot be empty');
-            }
-            else {
-                resolve(true);
-            }
-        });
-        return response;
+    DataService.prototype.checkAvailability = function (requested_userID) {
+        var url = "/api/profile/available/?userID=" + requested_userID;
+        return this.http.get(url);
     };
     DataService.prototype.checkGameAvailability = function (gameName) {
         var response = new Promise(function (resolve, reject) {
@@ -380,7 +377,8 @@ var DataService = /** @class */ (function () {
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], DataService);
     return DataService;
 }());
@@ -630,7 +628,7 @@ var LoginService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body{\n    background-image: url('transparent_background.png');\n}\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n}\nimg{\n    height: 20%;\n    width: 50%;\n    margin: 35%;\n}\nbutton{\n    margin: 4%;\n    height: 6.6%;\n    width: 90%;\n    border-radius: 4px;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    color: #FFFFFF;\n    font-size: 16px;\tfont-weight: 600;\t\n}\n#redbutton{\n    background-color: #EA4335;\n}\n#bluebutton{\n    background-color: #4267B2;\n}\nmat-icon{\n    float:left;\n    padding:2%;\n}"
+module.exports = "body{\n    background-image: url('transparent_background.png');\n}\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: stretch;\n}\nimg{\n    height: 20%;\n    width: 50%;\n    margin: 35%;\n}\nbutton{\n    margin: 4%;\n    height: 6.6%;\n    width: 90%;\n    border-radius: 4px;\n    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);\n    color: #FFFFFF;\n    font-size: 16px;\tfont-weight: 600;\t\n}\n#redbutton{\n    background-color: #EA4335;\n}\n#bluebutton{\n    background-color: #4267B2;\n}\nmat-icon{\n    float:left;\n    padding:2%;\n}\n"
 
 /***/ }),
 
@@ -641,7 +639,7 @@ module.exports = "body{\n    background-image: url('transparent_background.png')
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n<div class='flex_container'>\n<img src='../../assets/images/logo.png'/>\n<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>\n        <mat-icon svgIcon='google-icon'></mat-icon> SIGN IN USING GOOGLE\n</button>\n<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >\n        <mat-icon svgIcon='facebook-icon'></mat-icon> SIGN IN USING FACEBOOK\n</button>\n</div>\n</body>"
+module.exports = "<body>\n<div class='flex_container'>\n<img src='../../assets/images/logo.png'/>\n<button mat-raised-button id='redbutton' (click) = 'googleLogin()'>\n        <mat-icon svgIcon='google-icon' style='transform: scale(1.3);'></mat-icon> SIGN IN USING GOOGLE\n</button>\n<button mat-raised-button id='bluebutton' (click) = 'fbLogin()' >\n        <mat-icon svgIcon='facebook-icon' style='transform: scale(1.3);'></mat-icon> SIGN IN USING FACEBOOK\n</button>\n</div>\n</body>"
 
 /***/ }),
 
@@ -681,9 +679,8 @@ var LoginComponent = /** @class */ (function () {
         this.iconRegistry = iconRegistry;
         this.loginService = loginService;
         this.sanitizer = sanitizer;
-        this.iconRegistry.addSvgIcon('google-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/blood-sample.svg'));
-        this.iconRegistry.addSvgIcon('facebook-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/blood-sample.svg'));
-        this.iconRegistry.getNamedSvgIcon('google-icon').subscribe(function (e) { console.log(e); });
+        this.iconRegistry.addSvgIcon('google-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/google.svg'));
+        this.iconRegistry.addSvgIcon('facebook-icon', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/fb.svg'));
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -818,7 +815,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 5px;\n}\n\n.mat-error{\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\nh1.mat-dialog-title{\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 30px;\ttext-align: center; \n}\n\n#register{\n    border-radius: 4px;\n    width:100%;\n    margin-top: 10%;\n}\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    color: #cccccc;\t   \n    overflow: visible;    \n}\n\n.mat-form-field-appearance-legacy .mat-form-field-wrapper{\n    margin-bottom: 28%;\n}"
+module.exports = ".spinner{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    margin: 5px;\n}\n\n.mat-error{\n    color: #f44336;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.mat-hint{\n    color: #11BA78;\tfont-size: 12px;\tfont-style: italic;\tline-height: 18px;\n}\n\n.placeholder{\n    color:#CCCCCC;\n    font-weight: 600;\tline-height: 21px;\n}\n\nh1.mat-dialog-title{\n    padding-left: 5%;\n    padding-right: 5%;\n    color: #FFFFFF;\tfont-family: Barlow;\tfont-size: 16px;\tfont-weight: 600;\tline-height: 30px;\t\n}\n\n#register{\n    border-radius: 4px;\n    width:100%;\n    margin-top: 10%;\n}\n\n.flex_container{\n    display: flex;\n    flex-direction: column;\n    color: #cccccc;\t   \n    overflow: visible;    \n}\n\n.mat-form-field-appearance-legacy .mat-form-field-wrapper{\n    margin-bottom: 28%;\n}\n\nmat-icon{\n    float:left;\n    padding:2%;\n    position: relative;\n    left: -10%;\n}"
 
 /***/ }),
 
@@ -829,7 +826,7 @@ module.exports = ".spinner{\n    display: flex;\n    flex-direction: column;\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<h1 mat-dialog-title ><mat-icon (click)=closeDialog()>close</mat-icon>Create new game</h1>\n<div mat-dialog-content class='flex_container'>\n    <mat-form-field>\n        <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"20\" [formControl]=\"gameName\">\n        <mat-placeholder class='placeholder'>Game name</mat-placeholder>\n        <span matSuffix>{{input.value?.length || 0}}/20</span>\n        <mat-error *ngIf=\"gameName.invalid\">\n            <img style=\"position:absolute;\" src='../../assets/icons/error.png'/>\n            <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n        </mat-error>\n        <mat-hint *ngIf=\"!gameName.invalid && available\"> \n            <img style=\"position:absolute;\" src='../../assets/icons/success.png'/>\n            <div style=\"margin-left:18%;  width: 100%;\">Game name available!</div>\n        </mat-hint>\n    </mat-form-field> \n</div>\n<span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner flex_container'>\n        <mat-progress-spinner diameter='40' color=\"accent\" mode=\"indeterminate\"></mat-progress-spinner>\n</span>\n<span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='flex_container'>\n        <button mat-raised-button id='register' color='primary' [disabled]='!gameName.valid' (click)= \"register(input.value)\"> LET'S ROLL </button>           \n</span>\n\n\n"
+module.exports = "\n<h1 mat-dialog-title ><mat-icon (click)=closeDialog() svgIcon='white-close' style='transform: scale(0.7);'></mat-icon>Create new game</h1>\n<div mat-dialog-content class='flex_container'>\n    <mat-form-field>\n        <input tabindex=\"0\" matInput #input minlength='4' maxlength=\"20\" [formControl]=\"gameName\">\n        <mat-placeholder class='placeholder'>Game name</mat-placeholder>\n        <span matSuffix>{{input.value?.length || 0}}/20</span>\n        <mat-error *ngIf=\"gameName.invalid\">\n            <img style=\"position:absolute;\" src='../../assets/icons/error.png'/>\n            <div style=\"margin-left:10%;\">{{getErrorMessage()}}</div>\n        </mat-error>\n        <mat-hint *ngIf=\"!gameName.invalid && available\"> \n            <img style=\"position:absolute;\" src='../../assets/icons/success.png'/>\n            <div style=\"margin-left:18%;  width: 100%;\">Game name available!</div>\n        </mat-hint>\n    </mat-form-field> \n</div>\n<span *ngIf=\"registering == 'start'\" mat-dialog-actions class='spinner flex_container'>\n        <mat-progress-spinner diameter='40' color=\"accent\" mode=\"indeterminate\"></mat-progress-spinner>\n</span>\n<span *ngIf=\"registering == 'nostart'\" mat-dialog-actions class='flex_container'>\n        <button mat-raised-button id='register' color='primary' [disabled]='!gameName.valid' (click)= \"register(input.value)\"> LET'S ROLL </button>           \n</span>\n\n\n"
 
 /***/ }),
 
@@ -956,6 +953,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -965,6 +963,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1010,15 +1010,19 @@ var ToolbarComponent = /** @class */ (function () {
 }());
 
 var CreateGameDialog = /** @class */ (function () {
-    function CreateGameDialog(dialogRef, ngZone, dataService, router) {
+    function CreateGameDialog(dialogRef, ngZone, dataService, router, iconRegistry, sanitizer) {
         this.dialogRef = dialogRef;
         this.ngZone = ngZone;
         this.dataService = dataService;
         this.router = router;
+        this.iconRegistry = iconRegistry;
+        this.sanitizer = sanitizer;
         this.valid = false;
         this.registering = 'nostart';
         this.available = false;
         this.gameName = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(4), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[A-Z\\a-z\\d]+$')]);
+        this.iconRegistry.addSvgIcon('white-close', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/close-white.svg'));
+        this.iconRegistry.addSvgIcon('dice', this.sanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/dice.svg'));
     }
     CreateGameDialog.prototype.ngOnInit = function () {
     };
@@ -1064,7 +1068,7 @@ var CreateGameDialog = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _data_service__WEBPACK_IMPORTED_MODULE_4__["DataService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconRegistry"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["DomSanitizer"]])
     ], CreateGameDialog);
     return CreateGameDialog;
 }());
@@ -1159,7 +1163,7 @@ var ProfileComponent = /** @class */ (function () {
         var _this = this;
         this.userID.markAsTouched();
         if (this.getErrorMessage() == null) {
-            this.dataService.checkAvailability(userID).then(function (available) {
+            this.dataService.checkAvailability(userID).subscribe(function (available) {
                 _this.available = available;
                 if (_this.available === true) {
                     _this.registering = 'start';
@@ -1173,7 +1177,7 @@ var ProfileComponent = /** @class */ (function () {
                 else {
                     _this.userID.setErrors({ 'unavailable': true });
                 }
-            }).catch(function (err) { return _this.userID.setErrors({ 'tryagain': true }); });
+            });
         }
     };
     ProfileComponent = __decorate([
@@ -1205,9 +1209,10 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false,
+    production: 'false',
     google_client_id: '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com',
-    facebook_client_id: '261162644517129'
+    facebook_client_id: '261162644517129',
+    MONGODB_URI: 'mongodb://heroku_dr8nqvps:111ui50pf1okljk4pims6amg6q@ds245762.mlab.com:45762/heroku_dr8nqvps'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
@@ -1237,7 +1242,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production === 'true') {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])

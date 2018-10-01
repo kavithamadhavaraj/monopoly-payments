@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>0B3896E8-20EE-4C1E-8F63-94D8C0A13026</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Login" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-24.000000, -583.000000)">
+            <g id="fb-btn" transform="translate(20.000000, 579.000000)">
+                <g id="fb" transform="translate(4.000000, 4.000000)">
+                    <rect id="Rectangle-3" fill="#FFFFFF" x="0" y="0" width="36" height="36" rx="4"></rect>
+                    <g id="facebook-letter-logo" transform="translate(17.000000, 8.000000)" fill="#4267B2" fill-rule="nonzero">
+                        <path d="M2.82433413,5.4227085 C2.82433413,6.12832007 2.82433413,9.27776021 2.82433413,9.27776021 L0,9.27776021 L0,13.9917324 L2.82433413,13.9917324 L2.82433413,28 L8.62611599,28 L8.62611599,13.992123 L12.519381,13.992123 C12.519381,13.992123 12.8840023,11.7318094 13.060747,9.26037869 C12.5540138,9.26037869 8.64805446,9.26037869 8.64805446,9.26037869 C8.64805446,9.26037869 8.64805446,6.51793951 8.64805446,6.03724611 C8.64805446,5.55551112 9.28062458,4.90751246 9.90583848,4.90751246 C10.5298806,4.90751246 11.8469701,4.90751246 13.0668663,4.90751246 C13.0668663,4.26569824 13.0668663,2.0480898 13.0668663,0 C11.4383416,0 9.58561491,0 8.7689439,0 C2.68092032,-0.000325496615 2.82433413,4.71833383 2.82433413,5.4227085 Z" id="Facebook"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

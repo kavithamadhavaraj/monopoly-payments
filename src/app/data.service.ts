@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GameData, GameInfo } from './game-detail';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,6 +10,9 @@ export class DataService {
   gameList: GameInfo[] = null;
   gameData: GameData = new GameData();
   userList: String[] = [];
+  constructor(private http: HttpClient) {
+
+  }
 
   getGameDetails(userID): GameInfo[] {
    this.gameList = [];
@@ -68,16 +74,9 @@ export class DataService {
     return this.gameData;
   }
 
-  checkAvailability(userID: String): Promise<boolean> {
-    const response = new Promise<boolean>((resolve, reject) => {
-      if ((userID === '') || (userID === undefined)) {
-        reject('UserID cannot be empty');
-      }
-      else{
-        resolve(true);
-      }
-    });
-    return response;
+  checkAvailability(requested_userID: String): Observable<any> {
+    const url = `/api/profile/availablity?userID=${requested_userID}`;
+    return this.http.get(url);
   }
 
   checkGameAvailability(gameName: String): Promise<boolean> {

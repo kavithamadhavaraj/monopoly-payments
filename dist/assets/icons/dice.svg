@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>D448DE89-FF55-4B26-8D4F-8FCE37FDFC6E</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Game-list" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Game-List-(4)" transform="translate(-68.000000, -392.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group-2" transform="translate(28.000000, 209.000000)">
+                <g id="Dice" transform="translate(40.000000, 183.000000)">
+                    <path d="M23.677,9.60047592 L15.192,0.370334278 C14.8015,-0.0544589235 14.168,-0.0544589235 13.778,0.370334278 L6.071,8.75415297 L1,8.75415297 C0.448,8.75415297 0,9.24149575 0,9.84197167 L0,22.895796 C0,23.496272 0.448,23.9836147 1,23.9836147 L13,23.9836147 C13.552,23.9836147 14,23.496272 14,22.895796 L14,20.5455637 C14.1475,20.6353088 14.313,20.6875241 14.485,20.6875241 C14.75,20.6875241 15.0045,20.5727592 15.192,20.3687932 L23.677,11.1386516 C23.8645,10.9346856 23.97,10.6578357 23.97,10.3695637 C23.97,10.0812918 23.8645,9.80444193 23.677,9.60047592 Z M12,17.9842946 L12,21.8079773 L2,21.8079773 L2,10.9297904 L6.485,10.9297904 L12,10.9297904 L12,17.9842946 Z M14.485,18.0609858 L14,17.5339377 L14,9.84197167 C14,9.24149575 13.552,8.75415297 13,8.75415297 L8.899,8.75415297 L14.485,2.67814164 L21.5555,10.3695637 L14.485,18.0609858 Z" id="Shape"></path>
+                    <ellipse id="Oval" cx="5" cy="14.1932465" rx="1.5" ry="1.63172805"></ellipse>
+                    <ellipse id="Oval" cx="9" cy="14.1932465" rx="1.5" ry="1.63172805"></ellipse>
+                    <ellipse id="Oval" cx="9" cy="18.5445212" rx="1.5" ry="1.63172805"></ellipse>
+                    <ellipse id="Oval" cx="5" cy="18.5445212" rx="1.5" ry="1.63172805"></ellipse>
+                    <ellipse id="Oval" cx="17" cy="10.385881" rx="1.5" ry="1.63172805"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
