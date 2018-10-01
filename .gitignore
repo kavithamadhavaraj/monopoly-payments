@@ -3,6 +3,7 @@
 #environment_data
 /src/environments/
 .env
+
 # compiled output
 /tmp
 /out-tsc
