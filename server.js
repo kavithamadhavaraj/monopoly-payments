@@ -13,16 +13,28 @@ mongoose.connect(db_URI, { useNewUrlParser: true }).then((res) => {
   console.log("DB connection error");
 });    
 
-var profile_router = require('./rest_services/profile');
+var profile_router = require('./rest_services/profile_handler');
+
+//CORS middleware
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 4201);
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended : false}))
- 
+app.use(allowCrossDomain);
 // Run the app by serving the static files in the dist directory
 app.use(express.static(__dirname + '/dist'))
 app.use('^/api/profile/', profile_router);
+
+
+
 // If an incoming request uses a protocol other than HTTPS, redirect that request to the same url but with HTTPS
 const forceSSL = function() {
   return function (req, res, next) {

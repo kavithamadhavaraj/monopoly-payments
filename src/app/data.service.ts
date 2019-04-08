@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameData, GameInfo } from './game-detail';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SocialUser } from 'angular5-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class DataService {
   gameList: GameInfo[] = null;
   gameData: GameData = new GameData();
   userList: String[] = [];
+  serverURL = 'http://localhost:4201';
   constructor(private http: HttpClient) {
 
   }
@@ -74,37 +76,25 @@ export class DataService {
     return this.gameData;
   }
 
-  checkAvailability(requested_userID: String): Observable<any> {
-    const url = `/api/profile/availablity?userID=${requested_userID}`;
+  checkProfileAvailability(requested_userID: String): Observable<any> {
+    const url = `${this.serverURL}/api/profile/availablity?userID=${requested_userID}`;
     return this.http.get(url);
   }
 
-  checkGameAvailability(gameName: String): Promise<boolean> {
-    const response = new Promise<boolean>((resolve, reject) => {
-      if ((gameName === '') || (gameName === undefined)) {
-        reject('Game name cannot be empty');
-      }
-      else{
-        resolve(true);
-      }
-    });
-    return response;
+  checkGameAvailability(userID: String, game_name: String): Observable<any> {
+    const url = `${this.serverURL}/api/game/availablity?userID=${userID}&name=${game_name}`;
+    return this.http.get(url);
   }
 
-  createProfile(userID: String): Promise<boolean> {
-      const response = new Promise<boolean>((resolve, reject) => {
-          setTimeout(() => {
-          this.userList.push(userID);
-          resolve(true);
-          }, 2000);
-      });
-      return response;
+  createProfile(userID: String, userData: SocialUser): Observable<any> {
+    const url = `${this.serverURL}/api/profile/create?userID=${userID}`;
+    return this.http.post(url, userData);
   }
 
   createGame(gameName: String): Promise<boolean> {
     const response = new Promise<boolean>((resolve, reject) => {
         setTimeout(() => {
-        //this.userList.push(gameName);
+        // this.userList.push(gameName);
         resolve(true);
         }, 2000);
     });
@@ -112,6 +102,7 @@ export class DataService {
 }
 
   findUserID(userData) {
-    return null;
+    const url = `${this.serverURL}/api/profile/find?email=${encodeURIComponent(userData.email)}`;
+    return this.http.get(url);
   }
 }

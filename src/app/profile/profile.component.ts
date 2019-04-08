@@ -40,15 +40,16 @@ export class ProfileComponent implements OnInit {
   register(userID: string) {
     this.userID.markAsTouched();
     if (this.getErrorMessage() == null) {
-      this.dataService.checkAvailability(userID).subscribe(available => {
+      this.dataService.checkProfileAvailability(userID).subscribe(available => {
         this.available = available;
         if (this.available === true) {
           this.registering = 'start';
-          this.dataService.createProfile(userID).then(response => {
-            console.log(response);
-            this.ngZone.run(() => {
-              this.router.navigate(['mygames', userID], { replaceUrl: true });
-            });
+          this.dataService.createProfile(userID, this.userData).subscribe(response => {
+            if (response._id != null) {
+              this.ngZone.run(() => {
+                this.router.navigate(['mygames', userID], { replaceUrl: true });
+              });
+            }
           });
         } else {
           this.userID.setErrors({'unavailable' : true});

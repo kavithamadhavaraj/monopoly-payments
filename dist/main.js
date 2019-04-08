@@ -337,8 +337,8 @@ var DataService = /** @class */ (function () {
             }];
         return this.gameData;
     };
-    DataService.prototype.checkAvailability = function (requested_userID) {
-        var url = "/api/profile/available/?userID=" + requested_userID;
+    DataService.prototype.checkProfileAvailability = function (requested_userID) {
+        var url = "/api/profile/availablity?userID=" + requested_userID;
         return this.http.get(url);
     };
     DataService.prototype.checkGameAvailability = function (gameName) {
@@ -352,27 +352,22 @@ var DataService = /** @class */ (function () {
         });
         return response;
     };
-    DataService.prototype.createProfile = function (userID) {
-        var _this = this;
-        var response = new Promise(function (resolve, reject) {
-            setTimeout(function () {
-                _this.userList.push(userID);
-                resolve(true);
-            }, 2000);
-        });
-        return response;
+    DataService.prototype.createProfile = function (userID, userData) {
+        var url = "/api/profile/create?userID=" + userID;
+        return this.http.post(url, userData);
     };
     DataService.prototype.createGame = function (gameName) {
         var response = new Promise(function (resolve, reject) {
             setTimeout(function () {
-                //this.userList.push(gameName);
+                // this.userList.push(gameName);
                 resolve(true);
             }, 2000);
         });
         return response;
     };
     DataService.prototype.findUserID = function (userData) {
-        return null;
+        var url = "/api/profile/find?email=" + encodeURIComponent(userData.email);
+        return this.http.get(url);
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -772,9 +767,11 @@ var MainComponent = /** @class */ (function () {
     }
     MainComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log("Main");
         this.loginService.getUser().subscribe(function (userData) {
             if (userData != null) {
                 var userID_1 = _this.dataService.findUserID(userData);
+                console.log(userID_1);
                 if (userID_1 != null) {
                     _this.ngZone.run(function () {
                         _this.router.navigate(['mygames', userID_1], { replaceUrl: true });
@@ -1163,15 +1160,16 @@ var ProfileComponent = /** @class */ (function () {
         var _this = this;
         this.userID.markAsTouched();
         if (this.getErrorMessage() == null) {
-            this.dataService.checkAvailability(userID).subscribe(function (available) {
+            this.dataService.checkProfileAvailability(userID).subscribe(function (available) {
                 _this.available = available;
                 if (_this.available === true) {
                     _this.registering = 'start';
-                    _this.dataService.createProfile(userID).then(function (response) {
-                        console.log(response);
-                        _this.ngZone.run(function () {
-                            _this.router.navigate(['mygames', userID], { replaceUrl: true });
-                        });
+                    _this.dataService.createProfile(userID, _this.userData).subscribe(function (response) {
+                        if (response._id != null) {
+                            _this.ngZone.run(function () {
+                                _this.router.navigate(['mygames', userID], { replaceUrl: true });
+                            });
+                        }
                     });
                 }
                 else {
@@ -1211,8 +1209,7 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: 'false',
     google_client_id: '462871257136-hedggfdor0mchtgschjj2fuv4dfphamk.apps.googleusercontent.com',
-    facebook_client_id: '261162644517129',
-    MONGODB_URI: 'mongodb://heroku_dr8nqvps:111ui50pf1okljk4pims6amg6q@ds245762.mlab.com:45762/heroku_dr8nqvps'
+    facebook_client_id: '261162644517129'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

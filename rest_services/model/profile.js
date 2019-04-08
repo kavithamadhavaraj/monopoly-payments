@@ -1,13 +1,11 @@
 var mongoose = require('mongoose');
 
 var ProfileSchema = new mongoose.Schema({
-  isbn: String,
-  title: String,
-  author: String,
-  description: String,
-  published_year: String,
-  publisher: String,
-  updated_date: { type: Date, default: Date.now },
+  userID: String,
+  name: String,
+  email: String,
+  provider: String,
+  image: String
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
